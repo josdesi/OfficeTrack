@@ -111,7 +111,10 @@
                             <div class="row m-t-20">
                                 <div class="col-12">
                                     <button class="btn btn-block btn-lg btn-danger" type="submit" name="action">Recuperar</button>
+                                    <br>
+                                    <a href="login.html" class="btn btn-lg btn-block btn-info">Regresar</a>
                                 </div>
+
                             </div>
                         </form>
                     </div>
@@ -147,9 +150,9 @@
     <script>
     $('[data-toggle="tooltip"]').tooltip();
     $(".preloader").fadeOut();
-    // ============================================================== 
-    // Login and Recover Password 
-    // ============================================================== 
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
     $('#to-recover').on("click", function() {
         $("#loginform").slideUp();
         $("#recoverform").fadeIn();
