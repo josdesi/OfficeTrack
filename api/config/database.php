@@ -1,14 +1,14 @@
 <?php
 class Database{
  
-    // specify your own database credentials
+    // Credenciales para la base de datos
     private $host = "localhost";
     private $db_name = "office_track";
     private $username = "root";
     private $password = "";
     public $conn;
  
-    // get the database connection
+    // Obtener la conexión con la base de datos
     public function getConnection(){
  
         $this->conn = null;
