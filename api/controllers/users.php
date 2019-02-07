@@ -1,4 +1,7 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -8,63 +11,20 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // include database and object files
 include_once '../config/database.php';
-include_once '../objects/user.php';
+include_once '../entity/User.php';
+include_once '../dto/UserDTO.php';
+include_once '../dto/ResponseDTO.php';
+include_once '../exception/ManagerException.php';
+include_once '../business/UserBusiness.php';
+include_once '../business/implementation/UserBusinessImpl.php';
 
-// get database connection
-$database = new Database();
-$db = $database->getConnection();
 
-// prepare product object
-$user = new User($db);
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestMethod) {
     case 'POST':
-        $data = json_decode(file_get_contents("php://input"));
-
-        // make sure data is not empty
-        if (
-            !empty($data->username) &&
-            !empty($data->email) &&
-            !empty($data->password)
-        ) {
-
-            // set user property values
-            $user->username = $data->username;
-            $user->password = $data->password;
-            $user->email = $data->email;
-
-            // create the user
-            if ($user->create()) {
-
-                // set response code - 201 created
-                http_response_code(201);
-
-                // tell the user
-                echo json_encode(array("message" => "Usuario agregado exitosamente."));
-            }
-
-            // if unable to create the user, tell the user
-            else {
-
-                // set response code - 503 service unavailable
-                http_response_code(503);
-
-                // tell the user
-                echo json_encode(array("message" => "El usuario no pudo crearse."));
-            }
-        }
-
-        // tell the user data is incomplete
-        else {
-
-            // set response code - 400 bad request
-            http_response_code(400);
-
-            // tell the user
-            echo json_encode(array("message" => "Faltaron algunos datos."));
-        }
+        createUser();
         break;
 
     case 'PUT':
@@ -105,3 +65,48 @@ switch ($requestMethod) {
         # code...
         break;
 }
+
+function createUser(){
+
+    $res = new ResponseDTO();
+
+    try {
+        $data = json_decode(file_get_contents("php://input"));
+
+
+        if (
+            empty($data->username)  ||
+            empty($data->email)     ||
+            empty($data->password)
+        ){
+            $res->setCode("RSP_01");
+            $res->setMessage("Faltaron algunos datos");
+            throw new Exception("Body Request Error");
+        }
+    
+
+        $userDTO = new UserDTO();
+        $userDTO->setUsername( $data->username );
+        $userDTO->setPassword( $data->password );
+        $userDTO->setEmail( $data->email );
+        $userBusiness = new UserBusinessImpl();
+        $userBusiness->createUser( $userDTO );
+
+
+        http_response_code( 200 );
+        $res->setCode("RSP_00");
+        $res->setMessage("Respuesta exitosa");       
+        $res->setResponse( "" );
+        echo json_encode( $res );
+
+    }
+    catch( Exception $e ){
+        http_response_code( 201 );        
+        $res->setResponse( $e->getMessage() );
+        echo json_encode( $res );
+    }
+    
+
+}
+
+?>
