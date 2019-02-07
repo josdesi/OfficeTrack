@@ -12,13 +12,38 @@ class UserBusinessImpl implements UserBusiness{
         $user->password = $userDTO->getPassword();
         $user->email = $userDTO->getEmail();
 
-
-        if ($user->create())
+        try {
+            $user->create();
             return $userDTO;
-        else 
-            throw new Exception("El usuario no pudo crearse");
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }        
+    }
 
-        return null;
+    public function updateUser( $userDTO ){
+        
+        $database = new Database();
+        $db = $database->getConnection();     
+        $user = new User($db);
+
+        $user->id = $userDTO->getId();
+        $user->username = $userDTO->getUsername();
+        $user->password = $userDTO->getPassword();
+        $user->name = $userDTO->getName();
+        $user->fatherSurname = $userDTO->getFatherSurname();
+        $user->motherSurname = $userDTO->getMotherSurname();
+        $user->phone = $userDTO->getPhone();
+        $user->email = $userDTO->getEmail();
+        
+        
+        try {
+            $user->update();
+            return $userDTO;
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }  
     }
 }
 ?>
