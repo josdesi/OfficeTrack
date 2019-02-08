@@ -42,6 +42,8 @@ function createUser()
 
     try {
         $data = json_decode(file_get_contents("php://input"));
+        $userBusiness = new UserBusinessImpl();
+        $userDTO = new UserDTO();
 
         if (
             empty($data->username) ||
@@ -53,11 +55,22 @@ function createUser()
             throw new Exception("Body Request Error");
         } 
 
-        $userDTO = new UserDTO();
+        if($userBusiness->findUserByEmail($data->email) !== null){
+            $res->setCode("RSP_02");
+            $res->setMessage("Email existente");
+            throw new Exception("");
+        }
+
+        if($userBusiness->findUserByUsername($data->username) !== null){
+            $res->setCode("RSP_03");
+            $res->setMessage("Useario existente");
+            throw new Exception("");
+        }
+
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setEmail($data->email);
-        $userBusiness = new UserBusinessImpl();
+
         $userBusiness->createUser($userDTO);
 
         http_response_code(200);
@@ -68,8 +81,6 @@ function createUser()
 
     } catch (Exception $e) {
         http_response_code(201);
-        $res->setMessaage($e->getMessage());
-        $res->setCode($e->getErrorCode());
         echo json_encode($res);
     }
 
@@ -79,11 +90,24 @@ function updateUser()
 {
 
     $res = new ResponseDTO();
+    $userDTO = new UserDTO();
+    $userBusiness = new UserBusinessImpl();
 
     try {
         $data = json_decode(file_get_contents("php://input"));
 
-        $userDTO = new UserDTO();
+        if($userBusiness->findUserByEmail($data->email) !== null){
+            $res->setCode("RSP_02");
+            $res->setMessage("Email existente");
+            throw new Exception("");
+        }
+
+        if($userBusiness->findUserByUsername($data->username) !== null){            
+            $res->setCode("RSP_03");
+            $res->setMessage("Usuario existente");
+            throw new Exception("");
+        }
+
         $userDTO->setId($data->id);
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
@@ -92,7 +116,6 @@ function updateUser()
         $userDTO->setMotherSurname($data->motherSurname);
         $userDTO->setPhone($data->phone);
         $userDTO->setEmail($data->email);
-        $userBusiness = new UserBusinessImpl();
         $userBusiness->updateUser($userDTO);
 
         http_response_code(200);
