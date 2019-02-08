@@ -69,7 +69,7 @@ function createUser()
     } catch (Exception $e) {
         http_response_code(201);
         $res->setMessaage($e->getMessage());
-        $res->setCode($e->getCode());
+        $res->setCode($e->getErrorCode());
         echo json_encode($res);
     }
 
