@@ -53,13 +53,14 @@ class User
 
         if($this->usernameExist()){
 
-            throw new Exception("The username is already in use");
+            throw new ManagerException("The username is already in use", "RSP_02");
             return null;
 
         } elseif ($this->emailExist()) {
             
-            throw new Exception("Another account with this email has already been registered");
+            throw new ManagerException("Another account with this email has already been registered", "RSP_03");
             return null;
+            
         }
 
         return $stmt->execute();
@@ -106,7 +107,6 @@ class User
             throw new Exception("Another account with this email has already been registered");
             return null;
         }
-        echo 'dsfa';
 
         return $stmt->execute();
 
@@ -117,6 +117,7 @@ class User
     // Private methods
 
     private function sanitizeProperties(){
+        $this->id = htmlspecialchars(strip_tags($this->id));
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->name = htmlspecialchars(strip_tags($this->name));
@@ -130,8 +131,9 @@ class User
     {
         $query = "SELECT email FROM users WHERE email=:email";
         $stmt = $this->conn->prepare($query);
+        $this->email = htmlspecialchars(strip_tags($this->email));
         $stmt->bindParam(":email",$this->email);
-        $stmt->execute();        
+        $stmt->execute();
         if($stmt->fetch(PDO::FETCH_ASSOC)===false){
             return false;
         }else{
@@ -143,6 +145,7 @@ class User
     {
         $query = "SELECT username FROM users WHERE username=:username";
         $stmt = $this->conn->prepare($query);
+        $this->username = htmlspecialchars(strip_tags($this->username));
         $stmt->bindParam(":username",$this->username);
         $stmt->execute();
         if($stmt->fetch(PDO::FETCH_ASSOC) === false){
