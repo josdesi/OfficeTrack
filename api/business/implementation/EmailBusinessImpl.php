@@ -8,7 +8,7 @@ require '../../libs/PHPMailer/Exception.php';
 require '../../libs/PHPMailer/PHPMailer.php';
 require '../../libs/PHPMailer/SMTP.php';
 
-class EmailBusinessImp
+class EmailBusinessImpl
 {
     private $mail;
 

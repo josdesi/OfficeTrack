@@ -17,6 +17,7 @@ include_once '../dto/ResponseDTO.php';
 include_once '../exception/ManagerException.php';
 include_once '../business/RoomBusiness.php';
 include_once '../business/implementation/RoomBusinessImpl.php';
+include_once '../business/implementation/TokenBusinessImpl.php';
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
@@ -41,17 +42,22 @@ function createRoom()
     $res = new ResponseDTO();
     $roomDTO = new RoomDTO();
     $roomBusiness = new RoomBusinessImpl();
+    $tokenBusinessImpl = new TokenBusinessImpl();
+    $data = json_decode(file_get_contents("php://input"));
 
     try {
-        $data = json_decode(file_get_contents("php://input"));
-
+        if(!($tokenBusinessImpl->validateToken($data->token))){
+            $res->setCode("RSP_??");
+            $res->setResponse("No estas autorizado");
+            throw new Exception("");
+        }
         if (
             empty($data->roomName) ||
             empty($data->roomKey) ||
             empty($data->typeRoomId)
         ) {
             $res->setCode("RSP_01");
-            $res->setMessage("Faltaron algunos datos");
+            $res->setResponse("Faltaron algunos datos");
             throw new Exception("Body Request Error");
         }
         

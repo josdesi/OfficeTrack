@@ -17,6 +17,7 @@ include_once '../dto/ResponseDTO.php';
 include_once '../exception/ManagerException.php';
 include_once '../business/UserBusiness.php';
 include_once '../business/implementation/UserBusinessImpl.php';
+include_once '../business/implementation/TokenBusinessImpl.php';
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
@@ -51,19 +52,19 @@ function createUser()
             empty($data->password)
         ) {
             $res->setCode("RSP_01");
-            $res->setMessage("Faltaron algunos datos");
+            $res->setResponse("Faltaron algunos datos");
             throw new Exception("Body Request Error");
         } 
 
         if($userBusiness->findUserByEmail($data->email) !== null){
             $res->setCode("RSP_02");
-            $res->setMessage("Email existente");
+            $res->setResponse("Email existente");
             throw new Exception("");
         }
 
         if($userBusiness->findUserByUsername($data->username) !== null){
             $res->setCode("RSP_03");
-            $res->setMessage("Useario existente");
+            $res->setResponse("Useario existente");
             throw new Exception("");
         }
 
@@ -81,6 +82,7 @@ function createUser()
 
     } catch (Exception $e) {
         http_response_code(201);
+        $res->setResponse($e->getMessage());
         echo json_encode($res);
     }
 
@@ -92,23 +94,32 @@ function updateUser()
     $res = new ResponseDTO();
     $userDTO = new UserDTO();
     $userBusiness = new UserBusinessImpl();
+    $tokenBusinessImpl = new TokenBusinessImpl();
 
     try {
         $data = json_decode(file_get_contents("php://input"));
 
-        if($userBusiness->findUserByEmail($data->email) !== null){
+        $userIdentity = $tokenBusinessImpl->validateToken($data->token);
+
+        if(!($tokenBusinessImpl->validateToken($data->token))){
+            $res->setCode("RSP_??");
+            $res->setMessage("No estas autorizado");
+            throw new Exception("");
+        }
+
+        if($userBusiness->findUserByEmail($userIdentity["email"]) === null){
             $res->setCode("RSP_02");
-            $res->setMessage("Email existente");
+            $res->setMessage("Email no existente");
             throw new Exception("");
         }
 
-        if($userBusiness->findUserByUsername($data->username) !== null){            
+        if($userBusiness->findUserByUsername($userIdentity["username"]) === null){
             $res->setCode("RSP_03");
-            $res->setMessage("Usuario existente");
+            $res->setMessage("Useario no existente");
             throw new Exception("");
         }
 
-        $userDTO->setId($data->id);
+        $userDTO->setId($userIdentity["id"]);
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setName($data->name);
@@ -116,12 +127,15 @@ function updateUser()
         $userDTO->setMotherSurname($data->motherSurname);
         $userDTO->setPhone($data->phone);
         $userDTO->setEmail($data->email);
-        $userBusiness->updateUser($userDTO);
+
+        if ($userBusiness->updateUser($userDTO)) {
+            $token = $tokenBusinessImpl->createToken($userDTO);
+            $res->setResponse($token);
+        }
 
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
-        $res->setResponse("");
         echo json_encode($res);
 
     } catch (Exception $e) {

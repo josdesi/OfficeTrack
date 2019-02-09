@@ -63,7 +63,10 @@ class User
         // bind values
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->generatePasswordHash($this->password));
+
+        $passwordHash = $this->generatePasswordHash($this->password);
+        $stmt->bindParam(":password", $passwordHash);
+        
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":fatherSurname", $this->fatherSurname);
         $stmt->bindParam(":motherSurname", $this->motherSurname);
@@ -71,12 +74,16 @@ class User
         $stmt->bindParam(":email", $this->email);
 
         return $stmt->execute();
+    }
 
+    public function verifyPassword($username, $password){
+        $userPasswordHash = $this->getUserPasswordHash($username);
+        return password_verify($password, $userPasswordHash);
     }
 
     public function findUserByEmail($email)
     {
-        $query = "SELECT email FROM users WHERE email=:email";
+        $query = "SELECT id, username, email  FROM users WHERE email=:email";
         $stmt = $this->conn->prepare($query);
         $email = htmlspecialchars(strip_tags($email));
         $stmt->bindParam(":email",$email);
@@ -85,13 +92,17 @@ class User
         if($result===false){
             return null;
         }else{
-            return $result;
+            $user = new UserDTO;
+            $user->setId($result["id"]);
+            $user->setEmail($result["email"]);
+            $user->setUsername($result["username"]);
+            return $user;
         }            
     }
 
     public function findUserByUsername($username)
     {
-        $query = "SELECT username FROM users WHERE username=:username";
+        $query = "SELECT id, username, email FROM users WHERE username=:username";
         $stmt = $this->conn->prepare($query);
         $username = htmlspecialchars(strip_tags($username));
         $stmt->bindParam(":username",$username);
@@ -100,13 +111,32 @@ class User
         if($result === false){
             return null;
         }else{
-            return $result;
+            $user = new UserDTO;
+            $user->setId($result["id"]);
+            $user->setEmail($result["email"]);
+            $user->setUsername($result["username"]);
+            return $user;
         }         
     }
 
     // Private methods
 
+    private function getUserPasswordHash($username){
+        $query = "SELECT password FROM users WHERE username=:username";
+        $stmt = $this->conn->prepare($query);
+        $username = htmlspecialchars(strip_tags($username));
+        $stmt->bindParam(":username",$username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result === false){
+            return null;
+        }else{
+            return $result["password"];
+        }       
+    }
+
     private function generatePasswordHash($password){
+        $password = htmlspecialchars(strip_tags($password));
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
