@@ -32,6 +32,7 @@ class User
                     username=:username, password=:password, email=:email, created=now(), modified=now()";
 
 
+
         $stmt = $this->conn->prepare($query);
 
         // sanitize
@@ -39,7 +40,7 @@ class User
 
         // bind values
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->password);;
+        $stmt->bindParam(":password", $this->generatePasswordHash($this->password));
         $stmt->bindParam(":email", $this->email);        
 
         return $stmt->execute();
@@ -62,7 +63,7 @@ class User
         // bind values
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":password", $this->generatePasswordHash($this->password));
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":fatherSurname", $this->fatherSurname);
         $stmt->bindParam(":motherSurname", $this->motherSurname);
@@ -104,6 +105,10 @@ class User
     }
 
     // Private methods
+
+    private function generatePasswordHash($password){
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
 
     private function sanitizeProperties(){
         $this->id = htmlspecialchars(strip_tags($this->id));
