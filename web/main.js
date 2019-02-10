@@ -2,7 +2,7 @@
 function validate ()
  {
   let userName = document.getElementById("username").value;
-  let userNameRGEX = //
+  let userNameRGEX = /^[a-zA-Z0-9\.]+g/
   let userNameResult = userNameRGEX.test(userName);
   alert("username:" + userNameResult);
 };
