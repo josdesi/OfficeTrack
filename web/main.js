@@ -1,27 +1,15 @@
 
-function validate () {
+function validate ()
+ {
   let userName = document.getElementById("username").value;
-  let userNameRGEX = /^[^\W\S\w]*$/
+  let userNameRGEX = //
   let userNameResult = userNameRGEX.test(userName);
   alert("username:" + userNameResult);
-}
+};
 
-
-
-
-
-
-// const inputs = document.querySelectorAll("input");
-//
-// const patterns = {
-//   username:/^[(?:.)^\W\S\w]*$/
-//   //password:/^[\S\W]{6,}$/
-// };
-//
-// //verlos en funcionamiento en consola
-//
-// inputs.forEach((input) => {
-//   input.addEventlistener("keyup", (e) => {
-//     console.log
-//   });
-// });
+// // function validate () {
+// //   let password1 = document.getElementById("password").value;
+// //   let passwordRGEX = /[\w.\S]{6,}/
+// //   let password1Result = password1RGEX.test(password);
+// //   alert("password:" + passwordResult);
+// }
