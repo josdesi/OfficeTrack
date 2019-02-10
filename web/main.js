@@ -1,10 +1,10 @@
 
 function validate (){
-  let userName = document.getElementById("username").value;
-  let password1 = document.getElementById("password").value;
-  let userNameRGEX = /^[A-Z a-z 0-9\.]\S+[^`~!@#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]$/;
-  let let password1RGEX = /^[\w\.]\S{6,}$/;
-  let userNameResult = userNameRGEX.test(userName);
-  let password1Result = password1RGEX.test(password);
-  alert("username:"+userNameResult + ", password: "+password1Result );
+  var userName = document.getElementById("username").value;
+  var password1 = document.getElementById("password").value;
+  var userNameRGEX = /^[A-Z a-z 0-9\.]\S+[^`~!@#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/]$/;
+  var password1RGEX = /^[A-Z a-z 0-9\S]{6,}$/;
+  var userNameResult = userNameRGEX.test(userName);
+  var password1Result = password1RGEX.test(password);
+  alert("username:"+userNameResult + ", password: "+password1Result);
 };
