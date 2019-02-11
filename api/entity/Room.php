@@ -30,28 +30,42 @@ class Room
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":typeRoomId", $this->typeRoomId);
 
-        if($this->roomNameExist()){
-            throw new ManagerException("The room name is already in use","RSP_02");
-            return null;
-
-        } elseif ($this->roomKeyExist()) {          
-            throw new ManagerException("Another room alredy has the same key","RSP_03");
-            return null;
-        }
-
-        var_dump($stmt->execute());
+        return $stmt->execute();
     }
 
     public function update(){
 
     }
 
-    public function read(){
-
+    
+    public function findRoomByRoomKey($roomKey)
+    {
+        $query = "SELECT roomKey FROM rooms WHERE roomKey=:roomKey";
+        $stmt = $this->conn->prepare($query);
+        $roomKey = htmlspecialchars(strip_tags($roomKey));
+        $stmt->bindParam(":roomKey",$roomKey);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result===false){
+            return null;
+        }else{
+            return $result;
+        }            
     }
 
-    public function readOne($id){
-
+    public function findRoomByRoomName($roomName)
+    {
+        $query = "SELECT roomName FROM rooms WHERE roomName=:roomName";
+        $stmt = $this->conn->prepare($query);
+        $roomName = htmlspecialchars(strip_tags($roomName));
+        $stmt->bindParam(":roomName",$roomName);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result===false){
+            return null;
+        }else{
+            return $result;
+        }          
     }
 
     private function sanitizeProperties(){
@@ -60,34 +74,6 @@ class Room
         $this->roomKey = htmlspecialchars(strip_tags($this->roomKey));
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->typeRoomId = htmlspecialchars(strip_tags($this->typeRoomId));
-    }
-
-    private function roomKeyExist()
-    {
-        $query = "SELECT roomKey FROM rooms WHERE roomKey=:roomKey";
-        $stmt = $this->conn->prepare($query);
-        $this->roomKey = htmlspecialchars(strip_tags($this->roomKey));
-        $stmt->bindParam(":roomKey",$this->roomKey);
-        $stmt->execute();
-        if($stmt->fetch(PDO::FETCH_ASSOC)===false){
-            return false;
-        }else{
-            return true;
-        }            
-    }
-
-    private function roomNameExist()
-    {
-        $query = "SELECT roomName FROM rooms WHERE roomName=:roomName";
-        $stmt = $this->conn->prepare($query);
-        $this->roomName = htmlspecialchars(strip_tags($this->roomName));
-        $stmt->bindParam(":roomName",$this->roomName);
-        $stmt->execute();
-        if($stmt->fetch(PDO::FETCH_ASSOC) === false){
-            return false;
-        }else{
-            return true;
-        }         
     }
 }
 

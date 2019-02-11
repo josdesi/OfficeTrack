@@ -45,5 +45,26 @@ class UserBusinessImpl implements UserBusiness{
             return null;
         }  
     }
+
+    public function verifyPassword( $username, $password){
+        $database = new Database();
+        $db = $database->getConnection();
+        $user = new User($db);
+        return $user->verifyPassword($username, $password);
+    }
+
+    public function findUserByEmail($email){
+        $database = new Database();
+        $db = $database->getConnection();        
+        $user = new User($db);
+        return $user->findUserByEmail($email);
+    }
+
+    public function findUserByUsername($username){
+        $database = new Database();
+        $db = $database->getConnection();        
+        $user = new User($db);
+        return $user->findUserByUsername($username);
+    }
 }
 ?>

@@ -26,19 +26,11 @@ class User
 
     public function create()
     {
-        if (
-            empty($this->username) ||
-            empty($this->email) ||
-            empty($this->password)
-        ) {
-            throw new Exception("Body Request Error");
-            return null;
-        } 
-
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
                     username=:username, password=:password, email=:email, created=now(), modified=now()";
+
 
 
         $stmt = $this->conn->prepare($query);
@@ -48,20 +40,8 @@ class User
 
         // bind values
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->password);;
-        $stmt->bindParam(":email", $this->email);
-
-        if($this->usernameExist()){
-
-            throw new ManagerException("The username is already in use", "RSP_02");
-            return null;
-
-        } elseif ($this->emailExist()) {
-            
-            throw new ManagerException("Another account with this email has already been registered", "RSP_03");
-            return null;
-            
-        }
+        $stmt->bindParam(":password", $this->generatePasswordHash($this->password));
+        $stmt->bindParam(":email", $this->email);        
 
         return $stmt->execute();
 
@@ -69,15 +49,6 @@ class User
 
     public function update()
     {
-        if (
-            empty($this->id) ||
-            empty($this->username) ||
-            empty($this->email)
-        ) {
-            throw new Exception("Body Request Error");
-            return null;
-        } 
-
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
@@ -92,29 +63,82 @@ class User
         // bind values
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $this->password);
+
+        $passwordHash = $this->generatePasswordHash($this->password);
+        $stmt->bindParam(":password", $passwordHash);
+        
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":fatherSurname", $this->fatherSurname);
         $stmt->bindParam(":motherSurname", $this->motherSurname);
         $stmt->bindParam(":phone", $this->phone);
         $stmt->bindParam(":email", $this->email);
 
-        if($this->usernameExist()){
-            throw new Exception("The username is already in use");
-            return null;
-
-        } elseif ($this->emailExist()) {            
-            throw new Exception("Another account with this email has already been registered");
-            return null;
-        }
-
         return $stmt->execute();
-
     }
 
+    public function verifyPassword($username, $password){
+        $userPasswordHash = $this->getUserPasswordHash($username);
+        return password_verify($password, $userPasswordHash);
+    }
 
+    public function findUserByEmail($email)
+    {
+        $query = "SELECT id, username, email  FROM users WHERE email=:email";
+        $stmt = $this->conn->prepare($query);
+        $email = htmlspecialchars(strip_tags($email));
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result===false){
+            return null;
+        }else{
+            $user = new UserDTO;
+            $user->setId($result["id"]);
+            $user->setEmail($result["email"]);
+            $user->setUsername($result["username"]);
+            return $user;
+        }            
+    }
+
+    public function findUserByUsername($username)
+    {
+        $query = "SELECT id, username, email FROM users WHERE username=:username";
+        $stmt = $this->conn->prepare($query);
+        $username = htmlspecialchars(strip_tags($username));
+        $stmt->bindParam(":username",$username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result === false){
+            return null;
+        }else{
+            $user = new UserDTO;
+            $user->setId($result["id"]);
+            $user->setEmail($result["email"]);
+            $user->setUsername($result["username"]);
+            return $user;
+        }         
+    }
 
     // Private methods
+
+    private function getUserPasswordHash($username){
+        $query = "SELECT password FROM users WHERE username=:username";
+        $stmt = $this->conn->prepare($query);
+        $username = htmlspecialchars(strip_tags($username));
+        $stmt->bindParam(":username",$username);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result === false){
+            return null;
+        }else{
+            return $result["password"];
+        }       
+    }
+
+    private function generatePasswordHash($password){
+        $password = htmlspecialchars(strip_tags($password));
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
 
     private function sanitizeProperties(){
         $this->id = htmlspecialchars(strip_tags($this->id));
@@ -127,31 +151,4 @@ class User
         $this->email = htmlspecialchars(strip_tags($this->email));
     }
 
-    private function emailExist()
-    {
-        $query = "SELECT email FROM users WHERE email=:email";
-        $stmt = $this->conn->prepare($query);
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $stmt->bindParam(":email",$this->email);
-        $stmt->execute();
-        if($stmt->fetch(PDO::FETCH_ASSOC)===false){
-            return false;
-        }else{
-            return true;
-        }            
-    }
-
-    private function usernameExist()
-    {
-        $query = "SELECT username FROM users WHERE username=:username";
-        $stmt = $this->conn->prepare($query);
-        $this->username = htmlspecialchars(strip_tags($this->username));
-        $stmt->bindParam(":username",$this->username);
-        $stmt->execute();
-        if($stmt->fetch(PDO::FETCH_ASSOC) === false){
-            return false;
-        }else{
-            return true;
-        }         
-    }
 }

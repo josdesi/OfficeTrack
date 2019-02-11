@@ -20,6 +20,22 @@ class RoomBusinessImpl implements RoomBusiness{
             return null;
         }        
     }
+  
+    public function findRoomByRoomkey($roomKey){
+        $database = new Database();
+        $db = $database->getConnection();        
+        $room = new Room($db);
+
+        return $room->findRoomByRoomKey($roomKey);
+    }
+
+    public function findRoomByRoomName($roomName){
+        $database = new Database();
+        $db = $database->getConnection();        
+        $room = new Room($db);
+
+        return $room->findRoomByRoomName($roomName);
+    }
     
     public function updateRoom( $roomDTO ){
         

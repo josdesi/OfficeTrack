@@ -17,6 +17,7 @@ include_once '../dto/ResponseDTO.php';
 include_once '../exception/ManagerException.php';
 include_once '../business/RoomBusiness.php';
 include_once '../business/implementation/RoomBusinessImpl.php';
+include_once '../business/implementation/TokenBusinessImpl.php';
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
@@ -39,25 +40,42 @@ function createRoom()
 {
 
     $res = new ResponseDTO();
+    $roomDTO = new RoomDTO();
+    $roomBusiness = new RoomBusinessImpl();
+    $tokenBusinessImpl = new TokenBusinessImpl();
+    $data = json_decode(file_get_contents("php://input"));
 
     try {
-        $data = json_decode(file_get_contents("php://input"));
-
+        if(!($tokenBusinessImpl->validateToken($data->token))){
+            $res->setCode("RSP_??");
+            $res->setResponse("No estas autorizado");
+            throw new Exception("");
+        }
         if (
             empty($data->roomName) ||
             empty($data->roomKey) ||
             empty($data->typeRoomId)
         ) {
             $res->setCode("RSP_01");
-            $res->setMessage("Faltaron algunos datos");
+            $res->setResponse("Faltaron algunos datos");
             throw new Exception("Body Request Error");
-        } 
+        }
+        
+        if ($roomBusiness->findRoomByRoomName($data->roomName)!==null) {
+            $res->setCode("RPS_02");
+            $res->setResponse("Room name existente");
+            throw new Exception("");
+        }
 
-        $roomDTO = new RoomDTO();
+        if ($roomBusiness->findRoomByRoomKey($data->roomKey)!==null) {
+            $res->setCode("RPS_03");
+            $res->setResponse("Room key existente");
+            throw new Exception("");
+        }
+
         $roomDTO->setRoomName($data->roomName);
         $roomDTO->setRoomKey($data->roomKey);
         $roomDTO->setTypeRoomId($data->typeRoomId);
-        $roomBusiness = new RoomBusinessImpl();
         $roomBusiness->createRoom($roomDTO);
 
         http_response_code(200);
@@ -69,7 +87,6 @@ function createRoom()
     } catch (Exception $e) {
         http_response_code(201);
         $res->setMessage($e->getMessage());
-        $res->setCode($e->getErrorCode());
         echo json_encode($res);
     }
 
