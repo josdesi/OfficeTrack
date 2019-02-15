@@ -22,7 +22,7 @@ class RoomDTO {
 		$this->roomName = $roomName;
 	}
 
-	public function getRoomKey(){
+	public function getRoomkey(){
 		return $this->roomKey;
 	}
 
