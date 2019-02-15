@@ -31,8 +31,6 @@ class User
                 SET
                     username=:username, password=:password, email=:email, created=now(), modified=now()";
 
-
-
         $stmt = $this->conn->prepare($query);
 
         // sanitize
