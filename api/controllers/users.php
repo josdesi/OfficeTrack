@@ -105,14 +105,6 @@ function updateUser()
 
     try {
 
-        $userIdentity = $tokenBusinessImpl->validateToken($data->token);
-
-        if(!($tokenBusinessImpl->validateToken($data->token))){
-            $res->setCode("RSP_??");
-            $res->setMessage("No estas autorizado");
-            throw new Exception("");
-        }
-
         if($userBusiness->findUserByEmail($userIdentity["email"]) === null){
             $res->setCode("RSP_02");
             $res->setMessage("Email no existente");
@@ -125,7 +117,7 @@ function updateUser()
             throw new Exception("");
         }
 
-        $userDTO->setId($userIdentity["id"]);
+        $userDTO->setId($data->id);
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setName($data->name);
