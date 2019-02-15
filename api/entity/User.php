@@ -47,6 +47,8 @@ class User
 
     }
 
+
+
     public function update()
     {
         $query = "UPDATE
@@ -60,13 +62,12 @@ class User
         // sanitize
         $this->sanitizeProperties();
 
+        $passwordHash = $this->generatePasswordHash($this->password);
+
         // bind values
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":username", $this->username);
-
-        $passwordHash = $this->generatePasswordHash($this->password);
-        $stmt->bindParam(":password", $passwordHash);
-        
+        $stmt->bindParam(":password", $passwordHash);        
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":fatherSurname", $this->fatherSurname);
         $stmt->bindParam(":motherSurname", $this->motherSurname);
@@ -75,6 +76,23 @@ class User
 
         return $stmt->execute();
     }
+
+    public function delete(){
+
+        $query = "DELETE FROM
+                 " . $this->table_name . "
+                 WHERE username=:username";
+        $stmt = $this->conn->prepare($query);
+        $username = htmlspecialchars(strip_tags($this->username));
+        $stmt->bindParam(":username",$username);
+        $stmt->execute();
+        if($stmt->rowCount()===1){
+            return true;
+        }else{
+            return null;
+        }  
+    }
+
 
     public function verifyPassword($username, $password){
         $userPasswordHash = $this->getUserPasswordHash($username);

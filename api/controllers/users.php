@@ -30,6 +30,10 @@ switch ($requestMethod) {
         updateUser();
         break;
 
+    case 'DELETE':
+        deleteUser();
+        break;
+
     default:
         # code...
         break;
@@ -40,11 +44,12 @@ function createUser()
 {
 
     $res = new ResponseDTO();
+    $userBusiness = new UserBusinessImpl();
+    $userDTO = new UserDTO();
+
+    $data = json_decode(file_get_contents("php://input"));
 
     try {
-        $data = json_decode(file_get_contents("php://input"));
-        $userBusiness = new UserBusinessImpl();
-        $userDTO = new UserDTO();
 
         if (
             empty($data->username) ||
@@ -96,8 +101,9 @@ function updateUser()
     $userBusiness = new UserBusinessImpl();
     $tokenBusinessImpl = new TokenBusinessImpl();
 
+    $data = json_decode(file_get_contents("php://input"));
+
     try {
-        $data = json_decode(file_get_contents("php://input"));
 
         $userIdentity = $tokenBusinessImpl->validateToken($data->token);
 
@@ -136,6 +142,49 @@ function updateUser()
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
+        echo json_encode($res);
+
+    } catch (Exception $e) {
+        http_response_code(201);
+        $res->setResponse($e->getMessage());
+        echo json_encode($res);
+    }
+
+}
+
+function deleteUser()
+{
+
+    $res = new ResponseDTO();
+    $userBusiness = new UserBusinessImpl();
+    $userDTO = new UserDTO();
+
+    $data = json_decode(file_get_contents("php://input"));
+
+    try {
+
+        if (
+            empty($data->username)
+        ) {
+            $res->setCode("RSP_01");
+            $res->setResponse("Faltaron algunos datos");
+            throw new Exception("Body Request Error");
+        }
+
+        if($userBusiness->findUserByUsername($data->username) === null){
+            $res->setCode("RSP_03");
+            $res->setResponse("El usuario no existente");
+            throw new Exception("");
+        }
+
+        $userDTO->setUsername($data->username);
+
+        $userBusiness->deleteUser($userDTO);
+
+        http_response_code(200);
+        $res->setCode("RSP_00");
+        $res->setMessage("Respuesta exitosa");
+        $res->setResponse("");
         echo json_encode($res);
 
     } catch (Exception $e) {
