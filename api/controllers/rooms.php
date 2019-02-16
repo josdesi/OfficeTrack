@@ -30,6 +30,10 @@ switch ($requestMethod) {
         # code...
         break;
 
+    case 'DELETE':
+        deleteRoom();
+        break;
+
     default:
         # code...
         break;
@@ -87,6 +91,48 @@ function createRoom()
     } catch (Exception $e) {
         http_response_code(201);
         $res->setMessage($e->getMessage());
+        echo json_encode($res);
+    }
+
+}
+
+function deleteRoom()
+{
+
+    $res = new ResponseDTO();
+    $roomBusiness = new RoomBusinessImpl();    
+    $tokenBusinessImpl = new TokenBusinessImpl();
+    $roomDTO = new RoomDTO();
+
+    $data = json_decode(file_get_contents("php://input"));
+
+    try {
+        if(!($tokenBusinessImpl->validateToken($data->token))){
+            $res->setCode("RSP_??");
+            $res->setResponse("No estas autorizado");
+            throw new Exception("");
+        }
+        if (
+            empty($data->roomKey)
+        ) {
+            $res->setCode("RSP_01");
+            $res->setResponse("Faltaron algunos datos");
+            throw new Exception("Body Request Error");
+        }
+
+        $roomDTO->setRoomkey($data->roomKey);
+
+        $roomBusiness->deleteRoom($roomDTO);
+
+        http_response_code(200);
+        $res->setCode("RSP_00");
+        $res->setMessage("Respuesta exitosa");
+        $res->setResponse("");
+        echo json_encode($res);
+
+    } catch (Exception $e) {
+        http_response_code(201);
+        $res->setResponse($e->getMessage());
         echo json_encode($res);
     }
 

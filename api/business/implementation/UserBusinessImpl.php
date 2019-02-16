@@ -46,6 +46,23 @@ class UserBusinessImpl implements UserBusiness{
         }  
     }
 
+    public function deleteUser( $userDTO ){
+
+        $database = new Database();
+        $db = $database->getConnection();     
+        $user = new User($db);
+
+        $user->username = $userDTO->getUsername();
+        
+        try {
+            $user->delete();
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }  
+    }
+
     public function verifyPassword( $username, $password){
         $database = new Database();
         $db = $database->getConnection();

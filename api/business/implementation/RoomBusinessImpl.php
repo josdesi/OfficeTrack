@@ -20,7 +20,27 @@ class RoomBusinessImpl implements RoomBusiness{
             return null;
         }        
     }
-  
+    
+    public function updateRoom( $roomDTO ){
+        
+    }
+
+    public function deleteRoom( $roomDTO ){
+        $database = new Database();
+        $db = $database->getConnection();     
+        $room = new Room($db);
+
+        $room->roomKey = $roomDTO->getRoomKey();
+        
+        try {
+            $room->delete();
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+            return null;
+        }  
+    }
+
     public function findRoomByRoomkey($roomKey){
         $database = new Database();
         $db = $database->getConnection();        
@@ -37,8 +57,5 @@ class RoomBusinessImpl implements RoomBusiness{
         return $room->findRoomByRoomName($roomName);
     }
     
-    public function updateRoom( $roomDTO ){
-        
-    }
 }
 ?>

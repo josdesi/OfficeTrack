@@ -37,6 +37,23 @@ class Room
 
     }
 
+    public function delete(){
+
+        $query = "DELETE FROM
+                 " . $this->table_name . "
+                 WHERE roomKey=:roomKey";
+        $stmt = $this->conn->prepare($query);
+        $roomKey = htmlspecialchars(strip_tags($this->roomKey));
+        $stmt->bindParam(":roomKey",$roomKey);
+        $stmt->execute();
+        if($stmt->rowCount()===1){
+            return true;
+        }else{
+            return null;
+        }  
+
+    }
+
     
     public function findRoomByRoomKey($roomKey)
     {
