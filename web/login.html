@@ -7,9 +7,9 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    img {
-      border-radius: 8px;
-    }
+        img {
+            border-radius: 8px;
+        }
     </style>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -27,124 +27,157 @@
 </head>
 
 <body>
-    <div class="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
+    <div id="component_login">
+        <div class="main-wrapper">
+            <!-- ============================================================== -->
+            <!-- Preloader - style you can find in spinners.css -->
+            <!-- ============================================================== -->
+            <div class="preloader">
+                <div class="lds-ripple">
+                    <div class="lds-pos"></div>
+                    <div class="lds-pos"></div>
+                </div>
             </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
-            <div class="auth-box">
-                <div id="loginform">
-                    <div class="logo">
-                        <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo" class="light-logo" /></span>
-                        <h5 class="font-medium m-b-20"></h5>
+            <!-- ============================================================== -->
+            <!-- Preloader - style you can find in spinners.css -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Login box.scss -->
+            <!-- ============================================================== -->
+            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
+                style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+                <div class="auth-box">
+                    <div id="loginform">
+                        <div class="logo">
+                            <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
+                                    class="light-logo" /></span>
+                            <h5 class="font-medium m-b-20"></h5>
+                        </div>
+                        <!-- Form -->
+                        <div class="row">
+                            <div class="col-12">
+                                <form v-on:submit.prevent="login" action="" onsubmit="validate()" class="form-horizontal m-t-20" id="loginform"
+                                    action="index.html">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="ti-user"></i></span>
+                                        </div>
+                                        <input v-model="username" type="text" id="username" class="form-control form-control-lg"
+                                            placeholder="Nombre de usuario" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i
+                                                    class="ti-pencil"></i></span>
+                                        </div>
+                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg"
+                                            placeholder="Password" aria-label="Password"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">Recordar</label>
+                                                <a href="javascript:void(0)" id="to-recover"
+                                                    class="text-dark float-right"><i class="fa fa-lock m-r-5"></i>
+                                                    ¿Olvidaste tu contraseña?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <div class="col-xs-12 p-b-20">
+                                            <button class="btn btn-block btn-lg btn-info" type="submit">Iniciar
+                                                sesión</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                            <div class="social">
+                                                <a href="javascript:void(0)" class="btn  btn-facebook"
+                                                    data-toggle="tooltip" title=""
+                                                    data-original-title="Iniciar sesión con Facebook"> <i
+                                                        aria-hidden="true" class="fab  fa-facebook"></i> </a>
+                                                <a href="javascript:void(0)" class="btn btn-googleplus"
+                                                    data-toggle="tooltip" title=""
+                                                    data-original-title="Iniciar sesión con Google"> <i
+                                                        aria-hidden="true" class="fab  fa-google-plus"></i> </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-b-0 m-t-10">
+                                        <div class="col-sm-12 text-center">
+                                            ¿No tienes cuenta? <a href="register.html" class="text-info m-l-5"><b>Crear
+                                                    cuenta de usuario</b></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Form -->
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="" onsubmit="validate()" class="form-horizontal m-t-20" id="loginform" action="index.html">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
-                                    </div>
-                                    <input type="text" id="username" class="form-control form-control-lg" placeholder="Nombre de usuario" aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                    </div>
-                                    <input type="text" id="pswd" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-                                </div>
+                    <div id="recoverform">
+                        <div class="logo">
+                            <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
+                                    class="light-logo" /></span>
+                            <h5 class="font-medium m-b-20"></h5>
+                            <span>Igresa tu dirección de correo para recuperar tu contraseña.</span>
+                        </div>
+                        <div class="row m-t-20">
+                            <!-- Form -->
+                            <form class="col-12" action="index.html">
+                                <!-- email -->
                                 <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Recordar</label>
-                                            <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> ¿Olvidaste tu contraseña?</a>
-                                        </div>
+                                    <div class="col-12">
+                                        <input class="form-control form-control-lg" type="email" required=""
+                                            placeholder="Correo electrónico">
                                     </div>
                                 </div>
-                                <div class="form-group text-center">
-                                    <div class="col-xs-12 p-b-20">
-                                        <button class="btn btn-block btn-lg btn-info" type="submit">Iniciar sesión</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                                        <div class="social">
-                                            <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="" data-original-title="Iniciar sesión con Facebook"> <i aria-hidden="true" class="fab  fa-facebook"></i> </a>
-                                            <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="" data-original-title="Iniciar sesión con Google"> <i aria-hidden="true" class="fab  fa-google-plus"></i> </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group m-b-0 m-t-10">
-                                    <div class="col-sm-12 text-center">
-                                        ¿No tienes cuenta? <a href="register.html" class="text-info m-l-5"><b>Crear cuenta de usuario</b></a>
+                                <!-- pwd -->
+                                <div class="row m-t-20">
+                                    <div class="col-12">
+                                        <button class="btn btn-block btn-lg btn-danger" type="submit"
+                                            name="action">Recuperar</button>
+                                        <br>
+                                        <a href="login.html" class="btn btn-lg btn-block btn-info">Regresar</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div id="recoverform">
-                    <div class="logo">
-                        <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo" class="light-logo" /></span>
-                        <h5 class="font-medium m-b-20"></h5>
-                        <span>Igresa tu dirección de correo para recuperar tu contraseña.</span>
-                    </div>
-                    <div class="row m-t-20">
-                        <!-- Form -->
-                        <form class="col-12" action="index.html">
-                            <!-- email -->
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input class="form-control form-control-lg" type="email" required="" placeholder="Correo electrónico">
-                                </div>
-                            </div>
-                            <!-- pwd -->
-                            <div class="row m-t-20">
-                                <div class="col-12">
-                                    <button class="btn btn-block btn-lg btn-danger" type="submit" name="action">Recuperar</button>
-                                    <br>
-                                    <a href="login.html" class="btn btn-lg btn-block btn-info">Regresar</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
+            <!-- ============================================================== -->
+            <!-- Login box.scss -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Page wrapper scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Page wrapper scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right Sidebar -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right Sidebar -->
+            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right Sidebar -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Vue, Vuex, Axios -->
+    <!-- ============================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js "></script>
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Register Vue component -->
+    <!-- ============================================================== -->
+    <script src="dist/components/component_login.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -152,15 +185,15 @@
     <!-- This page plugin js -->
     <!-- ============================================================== -->
     <script>
-    $('[data-toggle="tooltip"]').tooltip();
-    $(".preloader").fadeOut();
-    // ==============================================================
-    // Login and Recover Password
-    // ==============================================================
-    $('#to-recover').on("click", function() {
-        $("#loginform").slideUp();
-        $("#recoverform").fadeIn();
-    });
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+        // ==============================================================
+        // Login and Recover Password
+        // ==============================================================
+        $('#to-recover').on("click", function () {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
     </script>
     <script src="main.js"></script>
 </body>
