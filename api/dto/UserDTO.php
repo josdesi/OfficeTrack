@@ -9,6 +9,8 @@ class UserDTO implements JsonSerializable {
     private $motherSurname;
     private $phone;
     private $email;
+    private $verify;
+    private $email_token;
 
     public function getId(){
         return $this->id;
@@ -72,6 +74,22 @@ class UserDTO implements JsonSerializable {
 
     public function setEmail($email){
         $this->email = $email;
+    }
+
+    public function getEmail_token(){
+        return $this->email;
+    }
+
+    public function setEmail_token($email_token){
+        $this->email_token = $email_token;
+    }
+
+    public function getVerify(){
+        return $this->email;
+    }
+
+    public function setVerify($verify){
+        $this->verify = $verify;
     }
 
     public function jsonSerialize() {
