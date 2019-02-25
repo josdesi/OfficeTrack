@@ -62,7 +62,8 @@ function login(){
             throw new Exception("");
         }
 
-        $token = $tokenBusinessImpl->createToken($userDTO);
+        $token = "Bearer " . $tokenBusinessImpl->createToken($userDTO);
+        header("Auhtorization: $token");
 
         http_response_code(200);
         $res->setCode("RSP_00");
