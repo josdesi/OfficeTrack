@@ -82,16 +82,16 @@ function createUser()
         }
 
         $userAndDate = date("c") . $data->username;
-        $email_token = md5($userAndDate);
+        $emailToken = md5($userAndDate);
 
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setEmail($data->email);
-        $userDTO->setEmail_token($email_token);
+        $userDTO->setEmailToken($emailToken);
 
         $userBusiness->createUser($userDTO);
 
-        $confirmLink = "http://confirm/$email_token";
+        $confirmLink = "http://confirm/$emailToken";
 
         $emailBusiness->sendConfirmEmail($data->email, "<a href=$confirmLink>Da click aqui para confirmar tu cuenta</a>");
 

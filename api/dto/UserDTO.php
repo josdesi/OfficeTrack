@@ -76,12 +76,12 @@ class UserDTO implements JsonSerializable {
         $this->email = $email;
     }
 
-    public function getEmail_token(){
-        return $this->email;
+    public function getEmailToken(){
+        return $this->emailToken;
     }
 
-    public function setEmail_token($email_token){
-        $this->email_token = $email_token;
+    public function setEmailToken($emailToken){
+        $this->emailToken = $emailToken;
     }
 
     public function getVerify(){

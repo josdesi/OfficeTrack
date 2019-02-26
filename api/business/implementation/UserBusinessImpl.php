@@ -11,6 +11,7 @@ class UserBusinessImpl implements UserBusiness{
         $user->username = $userDTO->getUsername();
         $user->password = $userDTO->getPassword();
         $user->email = $userDTO->getEmail();
+        $user->emailToken = $userDTO->getEmailToken();
 
         try {
             $user->create();

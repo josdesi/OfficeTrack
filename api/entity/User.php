@@ -17,7 +17,7 @@ class User
     public $email;
     public $created;
     public $modified;
-    public $email_token;
+    public $emailToken;
     public $verify;
 
    
@@ -31,7 +31,7 @@ class User
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    username=:username, password=:password, email=:email, created=now(), modified=now(), email_token=:email_token, verify=:verify";
+                    username=:username, password=:password, email=:email, created=now(), modified=now(), emailToken=:emailToken, verify=:verify";
 
         $stmt = $this->conn->prepare($query);
 
@@ -44,7 +44,7 @@ class User
         $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":password", $passwordHash);
         $stmt->bindParam(":email", $this->email);        
-        $stmt->bindParam(":email_token", $this->email_token);
+        $stmt->bindParam(":emailToken", $this->emailToken);
         $stmt->bindParam(":verify", $this->verify); 
 
         return $stmt->execute();
@@ -58,7 +58,7 @@ class User
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                username=:username, password=:password, name=:name, fatherSurname=:fatherSurname, motherSurname=:motherSurname , phone=:phone, email=:email, modified=now(), email_token=:email_token, verify=:verify
+                username=:username, password=:password, name=:name, fatherSurname=:fatherSurname, motherSurname=:motherSurname , phone=:phone, email=:email, modified=now(), emailToken=:emailToken, verify=:verify
                     WHERE id=:id";
 
         $stmt = $this->conn->prepare($query);
@@ -77,7 +77,7 @@ class User
         $stmt->bindParam(":motherSurname", $this->motherSurname);
         $stmt->bindParam(":phone", $this->phone);
         $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":email_token", $this->email_token);
+        $stmt->bindParam(":emailToken", $this->emailToken);
         $stmt->bindParam(":verify", $this->verify);
 
         return $stmt->execute();
@@ -173,7 +173,7 @@ class User
         $this->motherSurname = htmlspecialchars(strip_tags($this->motherSurname));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->email_token = htmlspecialchars(strip_tags($this->email_token));
+        $this->emailToken = htmlspecialchars(strip_tags($this->emailToken));
         $this->verify = htmlspecialchars(strip_tags($this->verify));
     }
 
