@@ -10,7 +10,7 @@ class UserDTO implements JsonSerializable {
     private $phone;
     private $email;
     private $verify;
-    private $email_token;
+    private $emailToken;
 
     public function getId(){
         return $this->id;

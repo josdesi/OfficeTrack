@@ -36,7 +36,7 @@ class UserBusinessImpl implements UserBusiness{
         $user->motherSurname = $userDTO->getMotherSurname();
         $user->phone = $userDTO->getPhone();
         $user->email = $userDTO->getEmail();
-        $user->email = $userDTO->getEmail_token();
+        $user->email = $userDTO->getEmailToken();
         $user->email = $userDTO->getVerify();
         
         
@@ -71,6 +71,13 @@ class UserBusinessImpl implements UserBusiness{
         $db = $database->getConnection();
         $user = new User($db);
         return $user->verifyPassword($username, $password);
+    }
+
+    public function confirmEmailToken($emailToken){
+        $database = new Database();
+        $db = $database->getConnection();
+        $user = new User($db);
+        return $user->confirmEmailToken($emailToken);
     }
 
     public function findUserByEmail($email){

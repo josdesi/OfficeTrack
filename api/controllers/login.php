@@ -17,8 +17,6 @@ include_once '../business/UserBusiness.php';
 include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 
-
-
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($requestMethod) {

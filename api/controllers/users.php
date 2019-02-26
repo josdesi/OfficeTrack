@@ -21,7 +21,6 @@ include_once '../business/implementation/TokenBusinessImpl.php';
 include_once '../business/implementation/EmailBusinessImpl.php';
 
 
-
 require '../libs/PHPMailer/Exception.php';
 require '../libs/PHPMailer/PHPMailer.php';
 require '../libs/PHPMailer/SMTP.php';
@@ -83,7 +82,8 @@ function createUser()
 
         $userAndDate = date("c") . $data->username;
         $emailToken = md5($userAndDate);
-
+        $confirmationLink = "http://localhost/api/controllers/confirm.php?token=$emailToken";
+        
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setEmail($data->email);
@@ -91,9 +91,7 @@ function createUser()
 
         $userBusiness->createUser($userDTO);
 
-        $confirmLink = "http://confirm/$emailToken";
-
-        $emailBusiness->sendConfirmEmail($data->email, "<a href=$confirmLink>Da click aqui para confirmar tu cuenta</a>");
+        $emailBusiness->sendConfirmEmail($data->email, $confirmationLink);
 
         http_response_code(200);
         $res->setCode("RSP_00");
