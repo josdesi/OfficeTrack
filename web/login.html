@@ -18,9 +18,14 @@
     <title>Iniciar Sesión</title>
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/valida.css" rel="stylesheet">
+      <!-- Validation Script -->
+    <script src="validacion.js"></script>
+   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
+    
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -56,25 +61,25 @@
                         <!-- Form -->
                         <div class="row">
                             <div class="col-12">
-                                <form v-on:submit.prevent="login" action="" onsubmit="validate()" class="form-horizontal m-t-20" id="loginform"
-                                    action="index.html">
+                                <form v-on:submit.prevent="login" action=""  class="form-horizontal m-t-20" id="loginform" action="index.html" >
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                    class="ti-user"></i></span>
+                                                    class="ti-user" id="ius"></i></span>
                                         </div>
-                                        <input v-model="username" type="text" id="username" class="form-control form-control-lg"
+                                        <input v-model="username" type="text" id="username" oninput="val2()" class="form-control form-control-lg"
                                             placeholder="Nombre de usuario" aria-label="Username"
-                                            aria-describedby="basic-addon1">
+                                            aria-describedby="basic-addon1" pattern="[A-Za-z0-9_-]{1,15}"
+                                              required >
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon2"><i
-                                                    class="ti-pencil"></i></span>
+                                                    class="ti-pencil" id="pen"></i></span>
                                         </div>
-                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg"
+                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg" oninput="val1()"
                                             placeholder="Password" aria-label="Password"
-                                            aria-describedby="basic-addon1">
+                                            aria-describedby="basic-addon1" minlength="6" pattern="[A-Za-z0-9_-]{1,15}"  required>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-12">
@@ -118,6 +123,10 @@
                         </div>
                     </div>
                     <div id="recoverform">
+                        <div class="backb">
+
+                          <a href="login.html"> <img src="assets/images/backbutton.svg" width="35px" height="35px"></a> 
+                        </div>
                         <div class="logo">
                             <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
                                     class="light-logo" /></span>
@@ -130,8 +139,8 @@
                                 <!-- email -->
                                 <div class="form-group row">
                                     <div class="col-12">
-                                        <input class="form-control form-control-lg" type="email" required=""
-                                            placeholder="Correo electrónico">
+                                        <input class="form-control form-control-lg" type="email" required
+                                            placeholder="Correo electrónico" id="rmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                                     </div>
                                 </div>
                                 <!-- pwd -->
@@ -140,7 +149,7 @@
                                         <button class="btn btn-block btn-lg btn-danger" type="submit"
                                             name="action">Recuperar</button>
                                         <br>
-                                        <a href="login.html" class="btn btn-lg btn-block btn-info">Regresar</a>
+                                        
                                     </div>
                                 </div>
                             </form>
