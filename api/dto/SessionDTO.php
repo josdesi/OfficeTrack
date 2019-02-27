@@ -2,15 +2,15 @@
 
 class SessionDTO
 {
-    private $user_id;
+    private $userId;
     private $token;
 
-    public function getUser_id(){
-        return $this->user_id;
+    public function getUserId(){
+        return $this->userId;
     }
 
-    public function setUser_id($user_id){
-        $this->user_id = $user_id;
+    public function setUserId($userId){
+        $this->userId = $userId;
     }
 
     public function getToken(){

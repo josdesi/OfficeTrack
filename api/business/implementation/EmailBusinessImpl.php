@@ -1,12 +1,8 @@
 <?php
 
 // PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-require '../../libs/PHPMailer/Exception.php';
-require '../../libs/PHPMailer/PHPMailer.php';
-require '../../libs/PHPMailer/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
 
 class EmailBusinessImpl
 {
@@ -20,44 +16,34 @@ class EmailBusinessImpl
         $this->mail->Host = 'mail.lakmisystems.com.mx'; // Server desde donde se enviara
         $this->mail->SMTPAuth = true; // Permitir autenticacion SMTP
         $this->mail->Username = 'usuario@lakmisystems.com.mx'; // usuario SMTP
-        $this->mail->Password = 'password'; // contraseña SMTP
+        $this->mail->Password = 'contraseña'; // contraseña SMTP
         $this->mail->SMTPSecure = 'tls'; // Habilitar encriptacion TLS
         $this->mail->Port = 587; // Puerto de conexion TCP
     }
 
-    public function sendEmail($to, $subject, $body)
+    public function sendConfirmEmail($email, $confirmationLink)
     {
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        $to = filter_var($to, FILTER_SANITIZE_EMAIL);
-        $subj = filter_var($subject, FILTER_SANITIZE_STRING);
-        $body = filter_var($body, FILTER_SANITIZE_STRING);
-
-        if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        if ($email) {
             try {
                 // Remitente
-                $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Carlos de LakmiSystems');
-                
+                $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track');
+
                 // Destinatario
-                $this->mail->addAddress($to); // Añadir destinatario
+                $this->mail->addAddress($email); // Añadir destinatario
 
                 // Contenido
                 $this->mail->isHTML(true); // formto HTML para el email
-                $this->mail->Subject = $subject;
-                $this->mail->Body = $body;
+                $this->mail->Subject = "Confirma tu cuenta";
+                $this->mail->Body = "<a href=$confirmationLink>Da click aqui para confirmar tu cuenta</a>";
 
                 return $this->mail->send();
 
             } catch (Exception $e) {
-                
+                echo $e;
             }
         }
     }
 
 }
-
-// $send  = new EmailBusinessImp ();
-// var_dump($send->sendEmail("erasmo.mendoza@lakmisystems.com.mx","prueba","Mensaje de prueba"));
-
-?>
-
-

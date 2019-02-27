@@ -18,6 +18,12 @@ include_once '../exception/ManagerException.php';
 include_once '../business/UserBusiness.php';
 include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
+include_once '../business/implementation/EmailBusinessImpl.php';
+
+
+require '../libs/PHPMailer/Exception.php';
+require '../libs/PHPMailer/PHPMailer.php';
+require '../libs/PHPMailer/SMTP.php';
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
@@ -45,6 +51,7 @@ function createUser()
 
     $res = new ResponseDTO();
     $userBusiness = new UserBusinessImpl();
+    $emailBusiness = new EmailBusinessImpl();
     $userDTO = new UserDTO();
 
     $data = json_decode(file_get_contents("php://input"));
@@ -73,11 +80,18 @@ function createUser()
             throw new Exception("");
         }
 
+        $userAndDate = date("c") . $data->username;
+        $emailToken = md5($userAndDate);
+        $confirmationLink = "http://localhost/api/controllers/confirm.php?token=$emailToken";
+        
         $userDTO->setUsername($data->username);
         $userDTO->setPassword($data->password);
         $userDTO->setEmail($data->email);
+        $userDTO->setEmailToken($emailToken);
 
         $userBusiness->createUser($userDTO);
+
+        $emailBusiness->sendConfirmEmail($data->email, $confirmationLink);
 
         http_response_code(200);
         $res->setCode("RSP_00");
@@ -90,7 +104,6 @@ function createUser()
         $res->setResponse($e->getMessage());
         echo json_encode($res);
     }
-
 }
 
 function updateUser()
