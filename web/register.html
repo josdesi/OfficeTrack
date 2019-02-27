@@ -18,6 +18,8 @@
     <title>Crear cuenta</title>
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
+    <!-- Validation Script -->
+    <script src="validacion.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,26 +63,26 @@
                                     action="index.html">
                                     <div class="form-group row ">
                                         <div class="col-12 ">
-                                            <input v-model="username" class="form-control form-control-lg" type="text"
-                                                required=" " placeholder="Nombre de usuario">
+                                            <input v-model="username" id="username"        oninput="validate('username')" class="form-control form-control-lg" type="text" required=" " pattern="[A-Za-z0-9_-]{1,15}"
+                                                placeholder="Nombre de usuario">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12 ">
-                                            <input v-model="email" class="form-control form-control-lg" type="text"
-                                                required=" " placeholder="Correo electrónico">
+                                            <input v-model="email" id="rmail" class="form-control form-control-lg" type="email" required=" "
+                                                placeholder="Correo electrónico"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12 ">
-                                            <input v-model="password" class="form-control form-control-lg"
-                                                type="password" required=" " placeholder="Contraseña">
+                                            <input v-model="password" id="pswd" oninput="validate('psdw')"   class="form-control form-control-lg" type="password" required=" " pattern="[A-Za-z0-9_-]{1,15}"
+                                                placeholder="Contraseña" minlength="6">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12 ">
-                                            <input class="form-control form-control-lg" type="password" required=" "
-                                                placeholder="Confirmar contraseña">
+                                            <input id="pswd1" oninput="validar()"  class="form-control form-control-lg" type="password" required=" " pattern="[A-Za-z0-9_-]{1,15}"
+                                                placeholder="Confirmar contraseña" minlength="6" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
