@@ -17,8 +17,6 @@ include_once '../business/UserBusiness.php';
 include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 
-
-
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($requestMethod) {
@@ -62,12 +60,12 @@ function login(){
             throw new Exception("");
         }
 
-        $token = $tokenBusinessImpl->createToken($userDTO);
+        $token = "Bearer " . $tokenBusinessImpl->createToken($userDTO);
+        header("Authorization: $token");
 
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Autorizado");
-        $res->setResponse($token);
         echo json_encode($res);
 
     } catch (Exception $e) {

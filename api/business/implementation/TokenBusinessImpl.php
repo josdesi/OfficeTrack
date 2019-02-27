@@ -13,7 +13,9 @@ class TokenBusinessImpl
         $token = array(
             "id" => $userDTO->getId(),
             "username" => $userDTO->getUsername(),
-            "email" => $userDTO->getEmail(),
+            "name" => $userDTO->getEmail(),
+            "fatherSurname" => $userDTO->getfatherSurname(),
+            "motherSurname" => $userDTO->getmotherSurname(),
         );
         return JWT::encode($token, "example_key");
     }

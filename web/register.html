@@ -29,36 +29,38 @@
 </head>
 
 <body>
-    <div id="component_register">
-        <div class="main-wrapper">
-            <!-- ============================================================== -->
-            <!-- Preloader - style you can find in spinners.css -->
-            <!-- ============================================================== -->
-            <div class="preloader">
-                <div class="lds-ripple">
-                    <div class="lds-pos"></div>
-                    <div class="lds-pos"></div>
-                </div>
+
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
             </div>
-            <!-- ============================================================== -->
-            <!-- Preloader - style you can find in spinners.css -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Login box.scss -->
-            <!-- ============================================================== -->
-            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
-                style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
-                <div class="auth-box">
-                    <div>
-                        <div class="logo">
-                            <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
-                                    class="light-logo" /></span>
-                            <h5 class="font-medium m-b-20"></h5>
-                        </div>
-                        <!-- Form -->
-                        <div class="row">
-                            <div class="col-12">
-                                <form v-on:submit.prevent="registerUser" class="form-horizontal m-t-20" action="index.html">
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
+            style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+            <div class="auth-box">
+                <div>
+                    <div class="logo">
+                        <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
+                                class="light-logo" /></span>
+                        <h5 class="font-medium m-b-20"></h5>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="registerFormComponent">
+                                <form v-on:submit.prevent="onSubmitEventListener" class="form-horizontal m-t-20"
+                                    action="index.html">
                                     <div class="form-group row ">
                                         <div class="col-12 ">
                                             <input v-model="username" id="username"        oninput="validate('username')" class="form-control form-control-lg" type="text" required=" " pattern="[A-Za-z0-9_-]{1,15}"
@@ -127,20 +129,70 @@
             <!-- ============================================================== -->
         </div>
     </div>
+
+    <!-- ============================================================== -->
+    <!-- Configuration files -->
+    <!-- ============================================================== -->
+    <script src="dist/config/environment.js"></script>
+
+
+
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
     <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+
+
     <!-- ============================================================== -->
-    <!-- Vue, Vuex, Axios -->
+    <!-- Vue -->
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Vuex -->
+    <!-- ============================================================== -->
     <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js "></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Axios -->
+    <!-- ============================================================== -->
     <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+
+
     <!-- ============================================================== -->
-    <!-- Register Vue component -->
+    <!-- Actions -->
     <!-- ============================================================== -->
-    <script src="dist/components/component_register.js"></script>
+    <script src="dist/vuex/actions/sessionActions.js"></script>
+    <script src="dist/vuex/actions/userActions.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Store -->
+    <!-- ============================================================== -->
+    <script src="dist/vuex/store-common.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Vue component -->
+    <!-- ============================================================== -->
+    <script src="dist/components/registerFormComponent.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Utils -->
+    <!-- ============================================================== -->
+    <script src="dist/components/utils/users.js"></script>
+    <script src="dist/components/utils/sessions.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Flows -->
+    <!-- ============================================================== -->
+    <script src="dist/flows/flow_register.js"></script>
+
+
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/libs/popper.js/dist/umd/popper.min.js "></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
@@ -154,8 +206,3 @@
 </body>
 
 </html>
-
-https://cdn.jsdelivr.net/npm/vue
-
-https://unpkg.com/vuex@3.0.1/dist/vuex.min.js
-https://unpkg.com/axios@0.18.0/dist/axios.min.js

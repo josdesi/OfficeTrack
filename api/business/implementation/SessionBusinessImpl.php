@@ -8,7 +8,7 @@ class SessionBusinessImpl implements SessionBusiness{
         $db = $database->getConnection();        
         $session = new Session( $db );
 
-        $session->user_id = $sessionDTO->getUser_id();
+        $session->userId = $sessionDTO->getUserId();
         $session->token = $sessionDTO->getToken();
         
         try {
