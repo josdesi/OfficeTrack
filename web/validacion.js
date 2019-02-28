@@ -1,79 +1,121 @@
+function validateInput(inputId, pattern, errorMessagge) {
 
-function validar() {
+  let element = document.getElementById(inputId);
 
-var p1 = document.getElementById('pswd');
-var p2 = document.getElementById('pswd1');
+  element.pattern = pattern;
+  element.setCustomValidity("");
 
-
-  if (p1.value != p2.value) {
-    p2.style.borderColor="red";
-    p2.style.borderStyle="solid";
-    p2.style.borderWidth="1.5";
-    p2.style.backgroundColor="#FFEFF0";
-    p2.setCustomValidity("Las contraseñas no coinciden");
-    return false;
+  if (element.validity.valid) {
+    return true;
   } else {
-    p2.style.borderColor="#9fcbe1";
-    p2.style.borderStyle="solid";
-    p2.style.borderWidth="1.5";
-    p2.style.backgroundColor="#ecf5f9";
-    p2.setCustomValidity("");
-    return true; 
+    element.setCustomValidity(errorMessagge);
+    return false
+
   }
 }
 
+function setInvalidInputStyle(inputId) {
 
-function validate(id) {
-  var elem = document.getElementById(id);
+  var element = document.getElementById(inputId);
 
-  if(elem.validity.patternMismatch){
-     elem.setCustomValidity("Este campo no acepta carácteres especiales");
+  element.style.borderColor = "red";
+  element.style.borderStyle = "solid";
+  element.style.borderWidth = "1.5";
+  element.style.backgroundColor = "#FFEFF0";
+
+}
+
+function setValidInputStyle(inputId) {
+
+  var element = document.getElementById(inputId);
+
+  element.style.borderColor = "#9fcbe1";
+  element.style.borderStyle = "solid";
+  element.style.borderWidth = "1.5";
+  element.style.backgroundColor = "#ecf5f9";
+
+}
+
+function validateUsernameInput(inputId) {
+
+  event.preventDefault();
+
+  let pattern = "[A-Za-z0-9_-]{1,15}";
+  let errorMessagge = "Introduce un usuario valido"
+
+  return validateInput(inputId, pattern, errorMessagge)
+
+}
+
+function validateEmailInput(inputId) {  
+
+  let pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
+  let errorMessagge = "Introcude un correo valido";
+
+  return validateInput(inputId, pattern, errorMessagge)
+
+}
+
+function validatePasswordInput(inputId) {
+
+  event.preventDefault();
+
+  let pattern = "[A-Za-z0-9_-]{6,}";
+  let errorMessagge = "Introduce una contraseña valida"
+
+  return validateInput(inputId, pattern, errorMessagge)
+
+}
+
+function validatePassworConfirmationInputs() {
+
+  var password = document.getElementById('password');
+  var passwordConfirmation = document.getElementById('passwordConfirmation');
+  passwordConfirmation.setCustomValidity("");
+
+  if (password.value != passwordConfirmation.value) {
+    setInvalidInputStyle('passwordConfirmation')
+    passwordConfirmation.setCustomValidity("Las contraseñas no coinciden");
+    return false;
+  } else {
+    setValidInputStyle('passwordConfirmation')
+    return true;
   }
-  else{
-    elem.setCustomValidity("");
-  }
-   }
+
+}
 
 
-   
-   function val2() {
-    var elem = document.getElementById('username');
-    var icon = document.getElementById('basic-addon1');
+function usernameValidateListener(event){
   
-    if(elem.validity.patternMismatch){
-       elem.setCustomValidity("Este campo no acepta carácteres especiales");
-       icon.style.borderColor="red";
-       icon.style.borderStyle="solid";
-       icon.style.borderWidth="5";
-       icon.style.backgroundColor="#FFEFF0";
-      
-    }
-    else{
-      elem.setCustomValidity("");
-      icon.style.borderColor="#9fcbe1";
-      icon.style.borderStyle="solid";
-      icon.style.borderWidth="5";
-      icon.style.backgroundColor="#ecf5f9";
-    }
-     }
+  event.preventDefault();
 
-     function val1() {
-      var elem = document.getElementById('pswd');
-      var icon = document.getElementById('basic-addon2');
-      
-      if(elem.validity.patternMismatch){
-         elem.setCustomValidity("Este campo no acepta carácteres especiales");
-         icon.style.borderColor="red";
-         icon.style.borderStyle="solid";
-         icon.style.borderWidth="3";
-         icon.style.backgroundColor="#FFEFF0";
-         
-      }
-      else{
-        elem.setCustomValidity("");
-        icon.style.borderColor="#9fcbe1";
-        icon.style.borderStyle="solid";
-        icon.style.borderWidth="3";
-        icon.style.backgroundColor="#ecf5f9";
-      }
-       }
+  let element = event.target;
+  let elementId = element.id;
+
+  element.addEventListener('input', usernameValidateListener);
+
+  validateUsernameInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
+
+}
+
+function emailValidateListener(event){
+
+  event.preventDefault();
+
+  let element = event.target;
+  let elementId = element.id;
+
+  element.addEventListener('input', emailValidateListener);
+  validateEmailInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
+}
+
+function passwordValidateListener(event){
+
+  event.preventDefault();
+
+  let element = event.target;
+  let elementId = element.id;
+
+  element.addEventListener('input', passwordValidateListener);
+  validatePasswordInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
+}
