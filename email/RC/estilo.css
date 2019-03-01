@@ -55,7 +55,7 @@ div.texto {
                             
     position: relative;
     width: 460px;
-    height: 330px;
+    height: 380px;
     top: 40px;
     left: 30px;
     right: 30px;
@@ -142,7 +142,6 @@ div.ico3:active {
             
         }
 
-
 div.txt2 {
                 
              
@@ -182,16 +181,7 @@ div.txt3 {
         font-size: 9px;
         }
 
-div.ilu {
-                               
-position: relative;
-width: 350px;
-height: 205px;
-top:  5px;
-left: 70px;
-           
-            
-        }
+
 
 
 div.sep {
@@ -260,3 +250,38 @@ p.dir {
     font-weight: lighter;
     font-size: 9px;
         }
+
+a.buttonrecover{
+    background-color: #137eff;
+    /* border-radius: 5px; */
+    border: none;
+    border-radius: 8px;
+    clear: both;
+    color: #ffffff;
+    font-weight:  bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 105%;
+    float: left;
+    line-height: 125%;
+    margin:10px 140px 20px;
+    padding: 15px 25px;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: none;
+    font-family: "Flexo-Demi",arial,sans-serif;
+}
+
+a.buttonrecover:hover{
+    background-color: #006bec;
+    color: #ffffff;
+    font-weight:  bold;
+    box-shadow: 0 0 2px #103159;
+}
+
+a.buttonrecover:active{
+    color: #ffffff;
+    font-weight:  bold;
+    box-shadow: 0 0 2px #103159;
+    background-color: #103159;
+}
