@@ -14,7 +14,7 @@ function validateInput(inputId, pattern, errorMessagge) {
   }
 }
 
-function setInvalidInputStyle(inputId) {
+function applyInvalidInputStyle(inputId) {
 
   var element = document.getElementById(inputId);
 
@@ -25,7 +25,7 @@ function setInvalidInputStyle(inputId) {
 
 }
 
-function setValidInputStyle(inputId) {
+function applyValidInputStyle(inputId) {
 
   var element = document.getElementById(inputId);
 
@@ -36,7 +36,7 @@ function setValidInputStyle(inputId) {
 
 }
 
-function validateUsernameInput(inputId) {
+function validateUsernameField(inputId) {
 
   event.preventDefault();
 
@@ -47,7 +47,7 @@ function validateUsernameInput(inputId) {
 
 }
 
-function validateEmailInput(inputId) {  
+function validateEmailField(inputId) {
 
   let pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
   let errorMessagge = "Introcude un correo valido";
@@ -56,7 +56,7 @@ function validateEmailInput(inputId) {
 
 }
 
-function validatePasswordInput(inputId) {
+function validatePasswordField(inputId) {
 
   event.preventDefault();
 
@@ -67,55 +67,58 @@ function validatePasswordInput(inputId) {
 
 }
 
-function validatePassworConfirmationInputs() {
+function onUsernameChange(event) {
 
-  var password = document.getElementById('password');
-  var passwordConfirmation = document.getElementById('passwordConfirmation');
-  passwordConfirmation.setCustomValidity("");
+  event.preventDefault();
 
-  if (password.value != passwordConfirmation.value) {
-    setInvalidInputStyle('passwordConfirmation')
-    passwordConfirmation.setCustomValidity("Las contraseñas no coinciden");
-    return false;
-  } else {
-    setValidInputStyle('passwordConfirmation')
-    return true;
-  }
+  let element = event.target;
+  let elementId = element.id;
+
+  element.addEventListener('input', onUsernameChange);
+
+  validateUsernameField(elementId) ? applyValidInputStyle(elementId) : applyInvalidInputStyle(elementId);
 
 }
 
+function onEmailChange(event) {
 
-function usernameValidateListener(event){
+  event.preventDefault();
+
+  let element = event.target;
+  let elementId = element.id;
+
+  element.addEventListener('input', onEmailChange);
+  
+  validateEmailField(elementId) ? applyValidInputStyle(elementId) : applyInvalidInputStyle(elementId);
+}
+
+function onPasswordChange(event) {
+
+  event.preventDefault();
+
+  let password = event.target;
+  let passwordId = password.id;
+
+  validatePasswordField(passwordId) ? applyValidInputStyle(passwordId) : applyInvalidInputStyle(passwordId);
+
+}
+
+function onPasswordConfirmationChange(event, passwordInputId) {
   
   event.preventDefault();
 
-  let element = event.target;
-  let elementId = element.id;
+  let password = document.getElementById(passwordInputId);
 
-  element.addEventListener('input', usernameValidateListener);
+  let confirmation = event.target;
+  let confirmationId = confirmation.id;
 
-  validateUsernameInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
+  confirmation.setCustomValidity("");
 
-}
-
-function emailValidateListener(event){
-
-  event.preventDefault();
-
-  let element = event.target;
-  let elementId = element.id;
-
-  element.addEventListener('input', emailValidateListener);
-  validateEmailInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
-}
-
-function passwordValidateListener(event){
-
-  event.preventDefault();
-
-  let element = event.target;
-  let elementId = element.id;
-
-  element.addEventListener('input', passwordValidateListener);
-  validatePasswordInput(elementId) ? setValidInputStyle(elementId) : setInvalidInputStyle(elementId);
+  if (password.value != passwordConfirmation.value) {
+    applyInvalidInputStyle(confirmationId)
+    confirmation.setCustomValidity("Las contraseñas no coinciden");
+  } else {
+    applyValidInputStyle('passwordConfirmation');
+  }
+  
 }

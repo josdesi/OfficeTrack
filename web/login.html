@@ -20,7 +20,7 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="dist/css/valida.css" rel="stylesheet">
       <!-- Validation Script -->
-    <script src="validacion.js"></script>
+    <script src="validations.js"></script>
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,7 +68,7 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="ti-user" id="ius"></i></span>
                                         </div>
-                                        <input v-model="username" type="text" id="username" oninput="val2()" class="form-control form-control-lg"
+                                        <input v-model="username" type="text" id="username" oninput="onUsernameChange(event)" class="form-control form-control-lg"
                                             placeholder="Nombre de usuario" aria-label="Username"
                                             aria-describedby="basic-addon1" pattern="[A-Za-z0-9_-]{1,15}"
                                               required >
@@ -78,7 +78,7 @@
                                             <span class="input-group-text" id="basic-addon2"><i
                                                     class="ti-pencil" id="pen"></i></span>
                                         </div>
-                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg" oninput="val1()"
+                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg" oninput="onPasswordChange(event)"
                                             placeholder="Password" aria-label="Password"
                                             aria-describedby="basic-addon1" minlength="6" pattern="[A-Za-z0-9_-]{1,15}"  required>
                                     </div>
