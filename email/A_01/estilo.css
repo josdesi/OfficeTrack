@@ -1,249 +1,111 @@
 body {
     background-color: #e7f2f8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+    margin: 0;
   }
 
-div.preloader {
+.emailWraper {
+    flex-direction: column;
     z-index: 99999;
     background: #e7f2f8;
-    align: center;
+    max-width: 35rem;    
+    min-width: 5rem;
+    margin: auto;
+    display: flex;
 }
 
-div.preloader {
-    
-    width: 500px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 30%;
-    right: 30%;
-    
+.emailHeader {
+    width: 100%;
+    margin: .8rem 0;
+    text-align: center;
 }
 
-div.preloader2 {
+img {
+    vertical-align: middle;
+}
+
+.emailBody {
     z-index: 99999;
     background: #fff;
-    align: center;
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+    box-sizing: border-box;
+    border-radius: .5rem .5rem 0 0;
 }
 
-div.preloader2 {
-    
-    
-    position: relative;
-    width: 500px;
-    height: 100%;
-    top: 80px;
-    right: 0;
-   
-    
-}
-div.logo {
-    z-index: 99999;
-    background: #e7f2f8;
-    align: center;
+.emailBody .message {
+    display: inline-block;
+    margin: 0 0 1rem 0;
 }
 
-div.logo {
-    
-    
-    position: absolute;
-    width: 236px;
-    height: 100px;
-    top: 0;
-    left: 0;
-   
-    
-}
-div.texto {
-    
-    
-    position: absolute;
-    width: 440px;
-    height: 345px;
-    top: 30px;
-    left: 30px;
-    right: 30px;
-    
-    
-}
- 
-p.tex1 {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-        }
-img.ico {
-    position: absolute;
-    left: 0px;
-    top: 11px;
-    
-  }
-
-  div.rsoc {
-    
-    
-    position: absolute;
-    width: 45px;
-    height: 175px;
-    top: 335px;
-    left: 26px;
-   
-    
+.emailBody .message h2{
+    margin: 0 0 2rem 0;
 }
 
-img.ico1 {
-    position: absolute;
-    left: 0px;
-    
-    
-  }
-
-  img.ico2 {
-    position: absolute;
-    left: 55px;
-    
-    
-  }
-  img.ico3 {
-    position: absolute;
-    left: 110px;
-   
-    
-  }
-
-  div.txt2 {
-    
-    
-    position: absolute;
-    width: 440px;
-    height: 345px;
-    top: 390px;
-    left: 30px;
-    right: 30px;
-   
-    
-}
-div.txt3 {
-    
-    
-    position: absolute;
-    width: 440px;
-    height: 345px;
-    top: 390px;
-    left: 30px;
-    right: 30px;
-   
-    
+.emailBody .message p:last-child{
+    margin-bottom: 0;
 }
 
-p.pol {
-    color:  #0f7cb3;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 9px;
-        }
-
-p.cop {
-    text-align: right;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 9px;
-             }
-
-div.ilu {
-    
-    
-    position: absolute;
-    width: 45px;
-    height: 175px;
-    top: 425px;
-    left: 70px;
-   
-    
+.emailFooter {
+    background: #fff;
+    padding: 0 2.5rem;
 }
 
-img.ilus {
-    position: absolute;
-    left: 0px;
-    
-    
-  }
-
-div.sep {
-    
-    
-    position: absolute;
-    width: 45px;
-    height: 175px;
-    top: 525px;
-    left: 0px;
-   
-    
+.redessociales{
+    display: flex;
+    margin-bottom: 2rem;
 }
 
-img.ilus2 {
-    position: absolute;
-    left: 0px;
-    
-    
-  }
-div.log {
-    
-    
-    position: absolute;
-    width: 45px;
-    height: 175px;
-    top: 645px;
-    left: 26px;
-   
-    
+.redessociales img{
+    margin-right: 1rem
 }
 
-img.log2 {
-    position: absolute;
-    left: 0px;
-    
-    
-  }
-
-div.foot {
-    
-    
-    position: absolute;
-    width: 240px;
-    height: 345px;
-    top: 635px;
-    left: 176px;
-    right: 30px;
-   
-    
+.ilustration {
+    text-align: center;
+    margin-top: 1rem;
 }
 
-p.nam {
-    text-align: left;
+.ilustration img {
+    display: block;
+    width: 100%;
+}
+
+.rights{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+
+.lakmiFooter{
+    display: flex;
+    padding: 2rem 0;
+    align-items: center;
+}
+
+
+.bold {
+    font-weight: 800 !important;
+}
+
+.lakmiLogo{
+    margin-right: 2rem;
+    max-width: 100%;
+}
+           
+.lakmiInfo p{
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
-    font-size: 10px;
-             }
-div.foot2 {
-    
-    
-    position: absolute;
-    width: 240px;
-    height: 60px;
-    top: 645px;
-    left: 176px;
-    right: 30px;
-   
-    
+    font-size: .55rem;
 }
-p.pues {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 800;
-    font-size: 9px;
-             }
-p.dir {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    font-size: 9px;
-             }
+
+.lakmiInfo p:first-child{
+    margin: 0;
+    font-size: .7rem;
+}
+
+.lakmiInfo p:nth-child(2){
+    margin-bottom: .7rem;
+    font-size: .7rem;
+}

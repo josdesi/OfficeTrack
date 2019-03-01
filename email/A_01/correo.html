@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="estilo.css" rel="stylesheet">
-     
     <title>Document</title>
 </head>
+
 <body>
-    <div class="preloader">
-            <div class="logo" >
-                <img class="ico" src="logoi.svg" width="236" height="56">
-            </div>
-        <div class="preloader2">
-                <div class="texto">
-                    <p class="tex1">
-                        Querido Usuario<br><br><br>
-
-                        Gracias por su interés y registrarse con nosotros<br><br>
-                        
-                        
-                        Estamos felices de que esté aquí<br><br><br>
-                        
-                        Para validar su cuenta, haga click en el siguiente enlace<br><br>
-                        
-                        Enlace.enlac.com<br><br>
-                        
-                        Este correo contiene información privada e intransferible para su cuenta, no lo comparta. <br>Si tiene alguna pregunta o sugerencia, comuníquese con nosotros enviando un correo a <br><br>
-                        
-                        OfficeTrack@lakmisystems.com.mx <br><br>
-                        
-                        ¡Disfrute!<br><br>
-                        
-                        Sinceramente,<br><br>
-                        Equipo de Ofice Track<br><br>
-                    </p>
-                    </div>
-                    <div class="rsoc">
-                            <img class="ico1" src="fb.svg" width="40" height="40">
-                            <img class="ico2" src="in.svg" width="40" height="40">
-                            <img class="ico3" src="tw.svg" width="40" height="40">
-                    </div>
-                    <div class="txt2">
-                            <p class="pol">Políticas de privacidad</p>
-                    </div>
-                    <div class="txt3">
-                            <p class="cop">Copyright ® Lakmi Systems 2019</p>
-                        </div>
-                    <div class="ilu">
-                                <img class="ilus" src="edif.svg" width="360" height="200">
-                                
-                    </div>  
-                    <div class="sep">
-                            <img class="ilus2" src="sep.svg" width="500" height="200">
-                            
-                    </div>   
-                    <div class="log">
-                            <img class="log2" src="logo.svg" width="120" height="40">
-                            
-                    </div>   
-
-                    <div class="foot">
-                            <p class="nam">Jossue Desiderio Hernández González</p>
-                    </div>   
-                    
-                    <div class="foot2">
-                            <p class="pues">Líder de Proyecto </p>
-                            <p class="dir">Benjamín Franklin #186, Col. Escandón
-                                <br> Delegación Miguel Hidalgo, C.P. 11800</p>
-                        </div>
-                    </div>
+    <div class="emailWraper">
+        <div class="emailHeader">
+            <img class="ico" src="logoi.svg" width="236" height="56">
         </div>
+        <div class="emailBody">
+            <div class="message">
+                <h2>
+                    !Bienvenido {{usuario}}!
+                </h2>
+                <p>
+                    Gracias por confiar en OfficeTrack para encontrar tu especio de trabajo.
+                </p>
+                <p>
+                    Por favor, haz clic en el siguiente enlace para confirmar tu cuenta.
+                </p>
+                <p>
+                    <a href="{{dinamic_link}}">Confirmar cuenta</a>
+                </p>
+                <p>
+                    Si tienes alguna duda o sugerencia, comunicate con nosotros al correo:
+                </p>
+                <p>
+                    officetrack@lakmisystems.com.mx
+                </p>
+                <br>
+                <p>
+                    Este correo contiene información privada e intransferible para tu cuenta, no lo compartas.
+                </p>
+            </div>
+        </div>
+
+        <div class="emailFooter">
+            <div class="redessociales">
+                <img class="ico1" src="fb.svg" width="40" height="40">
+                <img class="ico2" src="in.svg" width="40" height="40">
+                <img class="ico3" src="tw.svg" width="40" height="40">
+            </div>
+            
+            <div class="ilustration">
+                <img src="edif.svg" width="360" height="200">
+                <img src="sep.svg" width="500">
+            </div>
+            <div class="rights">
+                    <a href="">Políticas de privacidad</a>
+                    <span class="cop">Copyright ® Lakmi Systems 2019</span>
+                </div>
+            <div class="lakmiFooter">
+                <img class="lakmiLogo" src="logo.svg" width="120" height="40">
+                <div class="lakmiInfo">
+                    <p class="nam">Jossue Desiderio Hernández González</p>
+                    <p class="bold">Líder de Proyecto </p>
+                    <p class="dir">Benjamín Franklin #186, Col. Escandón</p>
+                    <p class="dir"> Delegación Miguel Hidalgo, C.P. 11800</p>
+                </div>
+            </div>
+
+        </div>
+
+
+
     </div>
+    </div>
+    <style id="estilo"></style>
 </body>
+
 </html>
