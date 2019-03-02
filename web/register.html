@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Crear cuenta</title>
     <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/style.css" rel="stylesheet">
     <!-- Validation Script -->
     <script src="validations.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,6 +29,8 @@
 </head>
 
 <body>
+
+
 
     <div class="main-wrapper">
         <!-- ============================================================== -->
@@ -58,64 +60,88 @@
                     <!-- Form -->
                     <div class="row">
                         <div class="col-12">
-                            <div id="registerFormComponent">
-                                <form v-on:submit.prevent="onSubmitEventListener" class="form-horizontal m-t-20"
-                                    action="index.html">
-                                    <div class="form-group row ">
-                                        <div class="col-12 ">
-                                            <input v-model="username" id="username"
-                                                oninput="onUsernameChange(event)"
-                                                class="form-control form-control-lg" type="text" required
-                                                placeholder="Nombre de usuario">
-                                        </div>
+                            <div submit="return false" id="registerFormComponent" novalidate>
+                                <div class="form-group">
+                                    <input v-model="username.value"
+                                        v-bind:class="{ invalid : invalidUsernameError && username.validationMessage }"
+                                        v-on:input.prevent="username.validationMessage = true" id="username"
+                                        class="form-control form-control-lg" type="text" required
+                                        placeholder="Nombre de usuario">
+                                    <label v-if="invalidUsernameError && username.validationMessage"
+                                        class="invalid-text">{{invalidUsernameError}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="email.value"
+                                        v-bind:class="{ invalid : invalidEmailError && email.validationMessage }"
+                                        v-on:change.prevent="email.validationMessage = true" id="email"
+                                        class="form-control form-control-lg" type="email" required
+                                        placeholder="Correo electrónico">
+                                    <label v-if="invalidEmailError && email.validationMessage"
+                                        class="invalid-text">{{invalidEmailError}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="password.value"
+                                        v-on:change.prevent="password.validationMessage = true"
+                                        v-bind:class="{ invalid : invalidPasswordError && password.validationMessage }"
+                                        id="password" class="form-control form-control-lg" type="password" required
+                                        placeholder="Contraseña" minlength="6">
+                                    <label v-if="invalidPasswordError && password.validationMessage"
+                                        class="invalid-text">{{invalidPasswordError}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="passwordConfirmation.value"
+                                        v-bind:class="{ invalid : invalidPasswordConfirmationError && passwordConfirmation.validationMessage }"
+                                        v-on:input.prevent="passwordConfirmation.validationMessage = true"
+                                        class="form-control form-control-lg" type="password" required
+                                        pattern="[A-Za-z0-9_-]{1,15}" placeholder="Confirmar contraseña" minlength="6">
+                                    <label
+                                        v-if="invalidPasswordConfirmationError && passwordConfirmation.validationMessage"
+                                        class="invalid-text">{{invalidPasswordConfirmationError}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input v-model="termsAndConditions.value" type="checkbox"
+                                            class="custom-control-input" id="customCheck1" required>
+                                        <label class="custom-control-label" for="customCheck1">Acepto <a
+                                                href="javascript:void(0)">Términos y condiciones</a></label>
+                                        <label
+                                            v-if="termsAndConditions.validationMessage && termsAndConditions.value === false"
+                                            class="invalid-text">Debes aceptar los terminos y condiciones</label>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-12 ">
-                                            <input v-model="email" id="email" onchange="onEmailChange(event)"
-                                                class="form-control form-control-lg" type="email" required
-                                                placeholder="Correo electrónico">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-12 ">
-                                            <input v-model="password" id="password"
-                                                oninput="onPasswordChange(event)"
-                                                class="form-control form-control-lg" type="password" required
-                                                placeholder="Contraseña" minlength="6">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-12 ">
-                                            <input id="passwordConfirmation"
-                                                oninput="onPasswordConfirmationChange(event, 'password')"
-                                                class="form-control form-control-lg" type="password" required
-                                                pattern="[A-Za-z0-9_-]{1,15}" placeholder="Confirmar contraseña"
-                                                minlength="6">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-12 ">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1" required>
-                                                <label class="custom-control-label" for="customCheck1">Acepto <a
-                                                        href="javascript:void(0)">Términos y condiciones</a></label>
+                                </div>
+                                <div class="form-group">
+                                    <button v-if="waitingForResponse" class="btn btn-block btn-lg btn-info"
+                                        type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status"
+                                            aria-hidden="true"></span>
+                                        <span class="sr-only">Loading...</span>
+                                    </button>
+                                    <button v-on:click="onSubmitEventListener" v-else class="btn btn-block btn-lg btn-info ">Crear
+                                        cuenta</button>
+                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{modal.message}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-block btn-lg btn-info"
+                                                        data-dismiss="modal">Entiendo</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group text-center ">
-                                        <div class="col-xs-12 p-b-20 ">
-                                            <button class="btn btn-block btn-lg btn-info " type="submit ">Crear
-                                                cuenta</button>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-center">
+                                        ¿Ya tienes cuenta? <a href="login.html " class="text-info m-l-5 "><b>Iniciar
+                                                sesión</b></a>
                                     </div>
-                                    <div class="form-group m-b-0 m-t-10 ">
-                                        <div class="col-sm-12 text-center ">
-                                            ¿Ya tienes cuenta? <a href="login.html " class="text-info m-l-5 "><b>Iniciar
-                                                    sesión</b></a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -137,6 +163,29 @@
             <!-- ============================================================== -->
         </div>
     </div>
+
+    <style>
+        .invalid {
+            border-color: red !important;
+            border-style: solid !important;
+            border-width: 1.5 !important;
+            background-color: #FFEFF0 !important;
+        }
+
+        .valid {
+            border-color: #9fcbe1;
+            border-style: solid;
+            border-width: 1.5;
+            background-color: #ecf5f9;
+        }
+
+        .invalid-text {
+            font-size: .8rem;
+            margin: .5rem 0 0 0;
+            font-weight: unset !important;
+            color: red;
+        }
+    </style>
 
     <!-- ============================================================== -->
     <!-- Configuration files -->

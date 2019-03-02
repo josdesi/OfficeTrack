@@ -38,8 +38,8 @@ img {
     margin: 0 0 1rem 0;
 }
 
-.emailBody .message h2{
-    margin: 0 0 2rem 0;
+.emailBody .message h3{
+    margin: 1rem 0 2rem 0;
 }
 
 .emailBody .message p:last-child{
