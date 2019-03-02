@@ -1,219 +1,111 @@
 body {
     background-color: #e7f2f8;
-    margin: 0%;
-    padding: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+    margin: 0;
   }
 
-div.preloader {
+.emailWraper {
+    flex-direction: column;
     z-index: 99999;
     background: #e7f2f8;
-    
+    max-width: 35rem;    
+    min-width: 5rem;
+    margin: auto;
+    display: flex;
 }
 
-div.preloader {
-    width: 520px;
-    height: 100%;
-    position: relative;
-    top: 0;
-    left: 30%;
-    right: 30%;
-    
-}
-div.logo {
-    z-index: 99999;
-    background: #e7f2f8;
+.emailHeader {
+    width: 100%;
+    margin: .8rem 0;
+    text-align: center;
 }
 
-div.logo {
-    
-    
-    position: relative;
-    width: 236px;
-    height: 60px;
-    top: 8px;
-    left: 0;
-   
-    
+img {
+    vertical-align: middle;
 }
-div.preloader2 {
+
+.emailBody {
     z-index: 99999;
     background: #fff;
-    box-align: center;
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+    box-sizing: border-box;
+    border-radius: .5rem .5rem 0 0;
 }
 
-div.preloader2 {
-    
-    position: relative;
-    width: 520px;
-    height: 80%;
-    top: 5px;
-    right: 0;
-   
-    
-}
-div.texto {
-                            
-    position: relative;
-    width: 460px;
-    height: 330px;
-    top: 40px;
-    left: 30px;
-    right: 30px;
-    
-    
+.emailBody .message {
+    display: inline-block;
+    margin: 0 0 1rem 0;
 }
 
-p.tex1 {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-        }
+.emailBody .message h3{
+    margin: 1rem 0 2rem 0;
+}
+
+.emailBody .message p:last-child{
+    margin-bottom: 0;
+}
+
+.emailFooter {
+    background: #fff;
+    padding: 0 2.5rem;
+}
+
+.redessociales{
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.redessociales img{
+    margin-right: 1rem
+}
+
+.ilustration {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.ilustration img {
+    display: block;
+    width: 100%;
+}
+
+.rights{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
 
 
-div.rsoc {
-               
-    position: relative;
-    width: 175px;
-    height: 45px;
-    top: 0px;
-    left: 30px;
+.lakmiFooter{
+    display: flex;
+    padding: 2rem 0;
+    align-items: center;
+}
+
+
+.bold {
+    font-weight: 800 !important;
+}
+
+.lakmiLogo{
+    margin-right: 2rem;
+    max-width: 100%;
+}
            
-            
-        }
-img.ico1 {
-    position: relative;
-    left: 0px;
-            
-            
-    }
-        
-img.ico2 {
-    position: relative;
-    left: 10px;
-            
-            
-        }
-img.ico3 {
-    position: relative;
-    left: 20px;
-           
-            
-        }
-
-div.txt2 {
-                
-             
-    position: relative;
-    width: 200px;
-    height: 15px;
-    top: 10px;
-    left: 30px;
-    right: 30px;
-           
-            
-        }
-
-div.txt3 {
-                
-               
-    position: relative;
-    width: 200px;
-    height: 15px;
-    top: -15px;
-    left: 290px;
-    right: 30px;
-                   
-                    
-            }
-
- p.pol {
-        color:  #0f7cb3;
-        text-align: left;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 9px;
-        }
-            
- p.cop {
-        text-align: right;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 9px;
-        }
-
-div.ilu {
-                               
-position: relative;
-width: 350px;
-height: 205px;
-top:  5px;
-left: 70px;
-           
-            
-        }
-
-
-div.sep {
-                
-position: relative;
-width: 500px;
-height: 25px;
-top:  -10px;
-left: 10px;
-           
-            
-        }
-
-div.log {
-                
-               
-    position: relative;
-    width: 130px;
-    height: 50px;
-    top: 0px;
-    left: 30px;
-           
-            
-        }
-
-div.foot {
-               
-             
-    position: relative;
-    width: 240px;
-    height: 15px;
-    top: -60px;
-    left: 180px;
-    right: 30px;
-           
-            
-        }
-p.nam {
-    text-align: left;
+.lakmiInfo p{
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
-    font-size: 10px;
-        }
+    font-size: .55rem;
+}
 
-div.foot2 {
-                          
-    position: relative;
-    width: 240px;
-    height: 40px;
-    top: -75px;
-    left: 180px;
-    right: 30px;
-           
-            
-        }
+.lakmiInfo p:first-child{
+    margin: 0;
+    font-size: .7rem;
+}
 
-p.pues {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 800;
-    font-size: 9px;
-        }
-p.dir {
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    font-size: 9px;
-        }
+.lakmiInfo p:nth-child(2){
+    margin-bottom: .7rem;
+    font-size: .7rem;
+}

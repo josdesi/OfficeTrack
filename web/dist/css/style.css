@@ -12700,8 +12700,7 @@ Padding margin property
     padding: 20px;
     box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
     max-width: 400px;
-    width: 90%;
-    margin: 10% 0; }
+    width: 90%; }
     .auth-wrapper .auth-box .logo {
       text-align: center; }
     .auth-wrapper .auth-box.on-sidebar {

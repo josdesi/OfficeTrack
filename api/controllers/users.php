@@ -64,20 +64,17 @@ function createUser()
             empty($data->password)
         ) {
             $res->setCode("RSP_01");
-            $res->setResponse("Faltaron algunos datos");
-            throw new Exception("Body Request Error");
+            throw new Exception("Datos incompletos");
         } 
 
         if($userBusiness->findUserByEmail($data->email) !== null){
             $res->setCode("RSP_02");
-            $res->setResponse("Email existente");
-            throw new Exception("");
+            throw new Exception("Este correo ya se encuentra registrado");
         }
 
         if($userBusiness->findUserByUsername($data->username) !== null){
             $res->setCode("RSP_03");
-            $res->setResponse("Useario existente");
-            throw new Exception("");
+            throw new Exception("este useario ya existente");
         }
 
         $userAndDate = date("c") . $data->username;
@@ -91,12 +88,12 @@ function createUser()
 
         $userBusiness->createUser($userDTO);
 
-        $emailBusiness->sendConfirmEmail($data->email, $confirmationLink);
+        $emailBusiness->sendConfirmEmail($data->email, $data->username, $confirmationLink);
 
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
-        $res->setResponse("");
+        $res->setResponse("El registro se completo con exito. Hemos enviado un correo de confirmacion");
         echo json_encode($res);
 
     } catch (Exception $e) {
