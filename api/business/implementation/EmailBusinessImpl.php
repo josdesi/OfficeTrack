@@ -15,15 +15,31 @@ class EmailBusinessImpl
         $this->mail->isSMTP(); // Usar SMTP
         $this->mail->Host = 'mail.lakmisystems.com.mx'; // Server desde donde se enviara
         $this->mail->SMTPAuth = true; // Permitir autenticacion SMTP
-        $this->mail->Username = 'usuario@lakmisystems.com.mx'; // usuario SMTP
-        $this->mail->Password = 'contraseña'; // contraseña SMTP
+        $this->mail->Username = '@lakmisystems.com.mx'; // usuario SMTP
+        $this->mail->Password = ''; // contraseña SMTP
         $this->mail->SMTPSecure = 'tls'; // Habilitar encriptacion TLS
         $this->mail->Port = 587; // Puerto de conexion TCP
     }
 
-    public function sendConfirmEmail($email, $confirmationLink)
+    public function sendConfirmEmail($email, $username, $confirmationLink)
     {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+        $cssPath =  realpath("../../email/A_01/estilo.css"); //ruta de archivo css
+        $cssString = file_get_contents($cssPath);; //leer contenido de css
+
+        //Cargar archivo html
+        $htmlPath = realpath("../../email/A_01/correo.html");
+        $htmlString = file_get_contents($htmlPath);
+
+        // Username a mayusculas
+        $username = strtoupper ( $username );
+        
+        //reemplazar sección de plantilla html con el css cargado y mensaje creado
+        $incss = str_replace('<style id="estilo"></style>', "<style>$cssString</style>", $htmlString);
+        $inclink = str_replace('{{dinamic_link}}', $confirmationLink, $incss);
+        $body = str_replace('{{user_name}}', $username, $inclink);
+
 
         if ($email) {
             try {
@@ -33,12 +49,15 @@ class EmailBusinessImpl
                 // Destinatario
                 $this->mail->addAddress($email); // Añadir destinatario
 
-                // Contenido
+                //headers
                 $this->mail->isHTML(true); // formto HTML para el email
-                $this->mail->Subject = "Confirma tu cuenta";
-                $this->mail->Body = "<a href=$confirmationLink>Da click aqui para confirmar tu cuenta</a>";
+                $this->mail->CharSet = 'UTF-8';
 
-                return $this->mail->send();
+                // Contenido
+                $this->mail->Subject = "Confirma tu cuenta";
+                $this->mail->Body = $body;
+
+                $this->mail->send();
 
             } catch (Exception $e) {
                 echo $e;

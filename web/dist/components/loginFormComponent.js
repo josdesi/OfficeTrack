@@ -6,6 +6,17 @@ var loginFormComponent = new Vue({
     OnSubmitEventListener: undefined,
   },
   store,
+  computed: {
+    validUsername: function () {
+      return validateUsername(this.username);
+    },
+    validPasswor: function () {
+      return validatePassword(this.password);
+    },
+    validEmail: function () {
+      validateEmail(this.email)
+    }
+  },
   methods: {    
     onSubmitEventListener: function (ev) {
       let fields = {
