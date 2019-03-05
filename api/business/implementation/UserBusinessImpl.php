@@ -1,31 +1,33 @@
 <?php
 
-class UserBusinessImpl implements UserBusiness{
-         
-    public function createUser( $userDTO ){
-        
-        $database = new Database();
-        $db = $database->getConnection();        
-        $user = new User($db);
+class UserBusinessImpl implements UserBusiness
+{
 
-        $user->username = $userDTO->getUsername();
-        $user->password = $userDTO->getPassword();
-        $user->email = $userDTO->getEmail();
-        $user->emailToken = $userDTO->getEmailToken();
-
+    public function createUser($userDTO)
+    {
         try {
+            $database = new Database();
+            $db = $database->getConnection();
+            $user = new User($db);
+
+            $user->username = $userDTO->getUsername();
+            $user->password = $userDTO->getPassword();
+            $user->email = $userDTO->getEmail();
+            $user->emailToken = $userDTO->getEmailToken();
             $user->create();
+
             return $userDTO;
+
         } catch (Exception $e) {
             throw $e;
-            return null;
-        }        
+        }
     }
 
-    public function updateUser( $userDTO ){
-        
+    public function updateUser($userDTO)
+    {
+
         $database = new Database();
-        $db = $database->getConnection();     
+        $db = $database->getConnection();
         $user = new User($db);
 
         $user->id = $userDTO->getId();
@@ -38,60 +40,73 @@ class UserBusinessImpl implements UserBusiness{
         $user->email = $userDTO->getEmail();
         $user->email = $userDTO->getEmailToken();
         $user->email = $userDTO->getVerify();
-        
-        
+
         try {
             $user->update();
             return $userDTO;
         } catch (Exception $e) {
             throw $e;
             return null;
-        }  
+        }
     }
 
-    public function deleteUser( $userDTO ){
+    public function deleteUser($userDTO)
+    {
 
         $database = new Database();
-        $db = $database->getConnection();     
+        $db = $database->getConnection();
         $user = new User($db);
 
         $user->username = $userDTO->getUsername();
-        
+
         try {
             $user->delete();
             return true;
         } catch (Exception $e) {
             throw $e;
             return null;
-        }  
+        }
     }
 
-    public function verifyPassword( $username, $password){
+    public function verifyPassword($username, $password)
+    {
         $database = new Database();
         $db = $database->getConnection();
         $user = new User($db);
         return $user->verifyPassword($username, $password);
     }
 
-    public function confirmEmailToken($emailToken){
+    public function confirmEmailToken($emailToken)
+    {
         $database = new Database();
         $db = $database->getConnection();
         $user = new User($db);
         return $user->confirmEmailToken($emailToken);
     }
 
-    public function findUserByEmail($email){
-        $database = new Database();
-        $db = $database->getConnection();        
-        $user = new User($db);
-        return $user->findUserByEmail($email);
+    public function findUserByEmail($email)
+    {
+        try {
+            $database = new Database();
+            $db = $database->getConnection();
+            $user = new User($db);
+            return $user->findUserByEmail($email);
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
-    public function findUserByUsername($username){
-        $database = new Database();
-        $db = $database->getConnection();        
-        $user = new User($db);
-        return $user->findUserByUsername($username);
+    public function findUserByUsername($username)
+    {
+        try {
+            $database = new Database();
+            $db = $database->getConnection();
+            $user = new User($db);
+            return $user->findUserByUsername($username);
+        } catch (Exception $e) {
+            throw $e;
+
+        }
+
     }
 }
-?>

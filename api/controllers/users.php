@@ -105,7 +105,7 @@ function createUser()
         }
 
         try {
-            $emailBusiness->sendConfirmEmail($data->email, $data->username, $confirmationLink);
+            $emailBusiness->sendRegistryConfirmation($data->email, $data->username, $confirmationLink);
         } catch (Exception $th) {
             $res->setCode("RSP_05");
             $res->setMessage("Fallo en el envio de email");
