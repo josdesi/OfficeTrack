@@ -25,42 +25,42 @@ class EmailBusinessImpl
     {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
+        //Cargar estilos para el correo (.css)
         $cssPath =  realpath("../../email/A_01/estilo.css"); //ruta de archivo css
-        $cssString = file_get_contents($cssPath);; //leer contenido de css
+        $css = file_get_contents($cssPath);; //leer contenido de css
 
-        //Cargar archivo html
-        $htmlPath = realpath("../../email/A_01/correo.html");
-        $htmlString = file_get_contents($htmlPath);
+        //Cargar plantilla para el correo (.html)
+        $templatePath = realpath("../../email/A_01/correo.html");
+        $template = file_get_contents($templatePath);
 
-        // Username a mayusculas
+        //Cambiar username a mayusculas
         $username = strtoupper ( $username );
-        
-        //reemplazar sección de plantilla html con el css cargado y mensaje creado
-        $incss = str_replace('<style id="estilo"></style>', "<style>$cssString</style>", $htmlString);
-        $inclink = str_replace('{{dinamic_link}}', $confirmationLink, $incss);
-        $body = str_replace('{{user_name}}', $username, $inclink);
+
+        $emailBody = $template;
+
+        $emailBody = str_replace('<style id="estilo"></style>', "<style>$css</style>", $emailBody); //Remplaza CSS
+        $emailBody = str_replace('{{dinamic_link}}', $confirmationLink, $emailBody); // Remplaza Link de confirmación
+        $emailBody = str_replace('{{user_name}}', $username, $emailBody); // Remplaza Username
 
 
         if ($email) {
             try {
-                // Remitente
-                $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track');
-
-                // Destinatario
-                $this->mail->addAddress($email); // Añadir destinatario
+                //Destinatario-Remitente
+                $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track'); // Añade remitente
+                $this->mail->addAddress($email); // Añade destinatario
 
                 //headers
-                $this->mail->isHTML(true); // formto HTML para el email
-                $this->mail->CharSet = 'UTF-8';
+                $this->mail->isHTML(true); // Configura formato HTML para el email
+                $this->mail->CharSet = 'UTF-8'; // Configura chartset utf.8
 
                 // Contenido
-                $this->mail->Subject = "Confirma tu cuenta";
-                $this->mail->Body = $body;
+                $this->mail->Subject = "Confirma tu cuenta"; // Añade asunto
+                $this->mail->Body = $emailBody; // Añade el cuerpo del correo
 
                 $this->mail->send();
 
             } catch (Exception $e) {
-                echo $e;
+                throw new Exception("El mensaje no pudo ser enviado");                
             }
         }
     }
