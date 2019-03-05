@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2019 a las 00:11:09
+-- Tiempo de generación: 05-03-2019 a las 19:24:51
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `office_track`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `newsletter`
+--
+
+CREATE TABLE `newsletter` (
+  `userId` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `accept` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
