@@ -111,6 +111,12 @@ class User
         $stmt->bindParam(":email", $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$result){
+            throw new Exception("Error al buscar por email");
+            
+        }
+
         if ($result === false) {
             return null;
         } else {
@@ -146,6 +152,11 @@ class User
         $stmt->bindParam(":username", $username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$result){
+            throw new Exception("Error al buscar por email");            
+        }
+
         if ($result === false) {
             return null;
         } else {
