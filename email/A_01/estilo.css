@@ -18,7 +18,7 @@ body {
 .emailHeader {
     width: 100%;
     margin: .8rem 0;
-    text-align: center;
+    
 }
 
 img {
@@ -59,6 +59,7 @@ img {
 .redessociales img{
     margin-right: 1rem
 }
+
 
 .ilustration {
     text-align: center;
@@ -108,4 +109,38 @@ img {
 .lakmiInfo p:nth-child(2){
     margin-bottom: .7rem;
     font-size: .7rem;
+}
+
+a.buttonrecover{
+    border-style: solid;
+    background-color: white; 
+    border-radius: 8px;
+    clear: both;
+    color: #137eff;
+    font-weight:  bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 105%;
+    float: left;
+    line-height: 125%;
+    margin:10px 150px 20px;
+    padding: 15px 25px;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: none;
+    font-family: "Flexo-Demi",arial,sans-serif;
+}
+
+a.buttonrecover:hover{
+    background-color: white;
+    color: #006bec;
+    font-weight:  bold;
+    box-shadow: 0 0 2px #103159;
+}
+
+a.buttonrecover:active{
+    font-weight:  bold;
+    box-shadow: 0 0 2px #003F5B;
+    background-color: #F2F2F2;
+    color: #003F5B;
 }
