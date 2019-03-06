@@ -109,17 +109,23 @@ class User
         $stmt = $this->conn->prepare($query);
         $email = htmlspecialchars(strip_tags($email));
         $stmt->bindParam(":email", $email);
-        $stmt->execute();
+
+        $successfulQuery = $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result === false) {
-            return null;
-        } else {
-            $user = new UserDTO;
-            $user->setId($result["id"]);
-            $user->setEmail($result["email"]);
-            $user->setUsername($result["username"]);
-            return $user;
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
         }
+
+        if($result === false){
+            return null;
+        }
+
+        $user = new UserDTO;
+        $user->setId($result["id"]);
+        $user->setEmail($result["email"]);
+        $user->setUsername($result["username"]);
+        return $user;
     }
 
     public function confirmEmailToken($emailToken)
@@ -144,8 +150,13 @@ class User
         $stmt = $this->conn->prepare($query);
         $username = htmlspecialchars(strip_tags($username));
         $stmt->bindParam(":username", $username);
-        $stmt->execute();
+        $successfulQuery = $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
+
         if ($result === false) {
             return null;
         } else {

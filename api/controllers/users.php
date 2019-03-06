@@ -20,7 +20,6 @@ include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 include_once '../business/implementation/EmailBusinessImpl.php';
 
-
 require '../libs/PHPMailer/Exception.php';
 require '../libs/PHPMailer/PHPMailer.php';
 require '../libs/PHPMailer/SMTP.php';
@@ -64,41 +63,63 @@ function createUser()
             empty($data->password)
         ) {
             $res->setCode("RSP_01");
-            throw new Exception("Datos incompletos");
-        } 
-
-        if($userBusiness->findUserByEmail($data->email) !== null){
-            $res->setCode("RSP_02");
-            throw new Exception("Este correo ya se encuentra registrado");
+            $res->setMessage("Faltaron datos");
+            throw new Exception();
         }
 
-        if($userBusiness->findUserByUsername($data->username) !== null){
+        try {
+            $emailExist = $userBusiness->findUserByEmail($data->email) === null ? false : true;
+            $usernameExist = $userBusiness->findUserByUsername($data->username) === null ? false : true;
+        } catch (Exception $th) {
+            $res->setCode("RSP_06");
+            $res->setMessage("No fue posible verificar datos");
+            throw new Exception();
+        }
+
+        if ($emailExist) {
+            $res->setCode("RSP_02");
+            $res->setMessage("El correo ya se encuentra registrado");
+            throw new Exception();
+        }
+
+        if ($usernameExist) {
             $res->setCode("RSP_03");
-            throw new Exception("este useario ya existente");
+            $res->setMessage("El usuario ya esta siendo usado");
+            throw new Exception();
         }
 
         $userAndDate = date("c") . $data->username;
         $emailToken = md5($userAndDate);
         $confirmationLink = "http://localhost/api/controllers/confirm.php?token=$emailToken";
-        
-        $userDTO->setUsername($data->username);
-        $userDTO->setPassword($data->password);
-        $userDTO->setEmail($data->email);
-        $userDTO->setEmailToken($emailToken);
 
-        $userBusiness->createUser($userDTO);
+        try {
+            $userDTO->setUsername($data->username);
+            $userDTO->setPassword($data->password);
+            $userDTO->setEmail($data->email);
+            $userDTO->setEmailToken($emailToken);
+            $userBusiness->createUser($userDTO);
+        } catch (Exception $th) {
+            $res->setCode("RSP_04");
+            $res->setMessage("Fallo en la persistencia");
+            throw new Exception();
+        }
 
-        $emailBusiness->sendConfirmEmail($data->email, $data->username, $confirmationLink);
+        try {
+            $emailBusiness->sendRegistryConfirmation($data->email, $data->username, $confirmationLink);
+        } catch (Exception $th) {
+            $res->setCode("RSP_05");
+            $res->setMessage("Fallo en el envio de email");
+            throw new Exception();
+        }
 
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
-        $res->setResponse("El registro se completo con exito. Hemos enviado un correo de confirmacion");
-        echo json_encode($res);
+        $res->setResponse("");
 
     } catch (Exception $e) {
         http_response_code(201);
-        $res->setResponse($e->getMessage());
+    } finally {
         echo json_encode($res);
     }
 }
@@ -115,13 +136,13 @@ function updateUser()
 
     try {
 
-        if($userBusiness->findUserByEmail($userIdentity["email"]) === null){
+        if ($userBusiness->findUserByEmail($userIdentity["email"]) === null) {
             $res->setCode("RSP_02");
             $res->setMessage("Email no existente");
             throw new Exception("");
         }
 
-        if($userBusiness->findUserByUsername($userIdentity["username"]) === null){
+        if ($userBusiness->findUserByUsername($userIdentity["username"]) === null) {
             $res->setCode("RSP_03");
             $res->setMessage("Useario no existente");
             throw new Exception("");
@@ -173,7 +194,7 @@ function deleteUser()
             throw new Exception("Body Request Error");
         }
 
-        if($userBusiness->findUserByUsername($data->username) === null){
+        if ($userBusiness->findUserByUsername($data->username) === null) {
             $res->setCode("RSP_03");
             $res->setResponse("El usuario no existente");
             throw new Exception("");
