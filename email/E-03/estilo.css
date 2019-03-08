@@ -47,34 +47,35 @@ img {
 }
 
 .emailFooter {
-    background: #fff;
+    background-color: #ffffff; 
+    background-image: url("fondo.svg");
+    background-size: 210px; 
+    background-repeat: no-repeat;
+    background-position: 100% 0%; 
+    /* background: red; */
     padding: 0 2.5rem;
 }
 
 .redessociales{
+    /* background-color: red; */
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 .redessociales img{
+    margin-top: 3rem;
     margin-right: 1rem
 }
 
 
-.ilustration {
-    text-align: center;
-    margin-top: 1rem;
-}
 
-.ilustration img {
-    display: block;
-    width: 100%;
-}
 
 .rights{
+    /* background-color: blue; */
     display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
+    flex-direction: column;
+    margin: 3rem 0;
 }
 
 
@@ -123,7 +124,7 @@ a.buttonrecover{
     font-size: 105%;
     float: left;
     line-height: 125%;
-    margin:10px 140px 20px;
+    margin:10px 115px 35px;
     padding: 15px 25px;
     vertical-align: middle;
     text-align: center;
@@ -144,3 +145,65 @@ a.buttonrecover:active{
     background-color: #F2F2F2;
     color: #003F5B;
 }
+
+div.ico1 {
+    position: relative;
+    left: 0px;
+    width:  40px;
+    height: 40px; 
+    background-image: url("fb.svg");
+}
+div.ico2 {
+    position: relative;
+    left: 10px;
+    width:  40px;
+    height: 40px; 
+    background-image: url("in.svg");
+}
+div.ico3 {
+    position: relative;
+    left: 20px;
+    width:  40px;
+    height: 40px; 
+    background-image: url("tw.svg");
+       
+            
+        }
+div.ico1:hover {
+    position: relative;
+    left: 0px;
+    background-image: url("fba.svg");        
+            
+    }
+        
+div.ico2:hover {
+    position: relative;
+    left: 10px;
+    background-image: url("ina.svg");        
+            
+        }
+div.ico3:hover {
+    position: relative;
+    left: 20px;
+    background-image: url("twa.svg"); 
+            
+        }
+div.ico1:active {
+    position: relative;
+    left: 0px;
+    background-image: url("fbh.svg");        
+            
+    }
+        
+div.ico2:active {
+    position: relative;
+    left: 10px;
+    background-image: url("inh.svg");        
+            
+        }
+div.ico3:active {
+    position: relative;
+    left: 20px;
+    background-image: url("twh.svg"); 
+            
+        }

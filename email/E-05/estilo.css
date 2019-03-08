@@ -86,9 +86,7 @@ img {
     margin-bottom: 3rem;
 }
 
-strong{
-    color: #97cc04;
-}
+
 .emailFooter {
     background-color: #ffffff; 
     background-image: url("fondo.svg");
@@ -162,7 +160,7 @@ a.buttonrecover{
     cursor: pointer;
     float: left;
     line-height: 125%;
-    padding: 15px 25px;
+    padding: 15px 25px 45px;
     vertical-align: middle;
     text-align: center;
     font-family: 'Rubik', sans-serif;
@@ -184,9 +182,8 @@ a.buttonrecover:active{
 a.buttonrecover2{
     height: 16px;
     width: 140px;
-    background-color: white; 
+    background-color: #f67d34; 
     border-radius: 8px;
-    border-style: solid;
     text-decoration: none;
     cursor: pointer;
     float: left;
@@ -195,20 +192,18 @@ a.buttonrecover2{
     vertical-align: middle;
     text-align: center;
     font-family: 'Rubik', sans-serif;
-    color: #f67d34;
+    color:  white;
     font-size: 12px;
     font-weight: 400px;
 }
 
  a.buttonrecover2:hover{
-    color: #f45d01;
-    background-color: white;
+    background-color: #f45d01;
     box-shadow: 0 0 2px #103159;
 }
 
 a.buttonrecover2:active{
-    color: #b74601;
+  
     box-shadow: 0 0 2px #003F5B;
-    background-color: white;
-    background-color: #F2F2F2;
+    background-color: #b74601;
 }
