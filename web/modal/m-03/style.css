@@ -21,7 +21,7 @@ section{
     justify-content: flex-end;
     width: 602px;
     position: absolute;
-    /* background-color: red; */
+    /* background-color: green;  */
 }
 #dcopy{
     margin: 0 0 10px;
@@ -29,7 +29,7 @@ section{
     flex-wrap: wrap;
     width: 602px;
     height: 325px;
-    /* background-color: blue;  */
+    /* background-color: yellow;  */
 
   
 }
@@ -40,26 +40,28 @@ section{
 }
 
 #dtitle{
-    margin: 0;
+    margin-bottom: 45px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 602px;
-    height: 80px;
-    /* background-color: yellow;  */
+    height: 45px;
+    /* background-color: yellow;   */
 }
 #texto{
+    padding: 0%;
     display: flex;
     justify-content: center;
     width: 602px;
-    /* background-color: red; */
+    /* background-color: red;  */
     
 }
 #titulo{
+    
     font-family: 'Rubik', sans-serif;
-    font-size: 46px;
+    font-size: 42px;
     font-weight: 400;
-    color: #007db6;
+    color: #007db6; 
 }
 
 #news1{
@@ -67,7 +69,7 @@ section{
     justify-content: center;
     /* align-items: center; */
     flex-wrap: wrap;
-    /* background-color: red; */
+    /* background-color: blue;  */
     /* height: 80%; */
 }
 
@@ -79,9 +81,9 @@ section{
     display: flex;
     justify-content: center;
     width: 602px;
-    margin: 46px ;
-    height: 111px;
-    /* background-color: red; */
+    margin-top: 25px ;
+    height: 150px;
+    /* background-color: blue;  */
 }
 strong{
     font-family: 'Rubik', sans-serif;
@@ -109,7 +111,7 @@ p{
     align-items: center;
     width: 602px;
     height: 224px;
-    /* background-color: violet;  */
+    /* background-color: violet;   */
 }
 
 #bot{
