@@ -32,6 +32,13 @@ class Session
         $this->token = htmlspecialchars(strip_tags($this->token));
     }
 
+    public function delete(){
+        $query = "DELETE FROM" . $this->table_name . "WHERE userID=:userId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":userId", $userId);
+        $stmt->execute();
+    }
+
 }
 
 ?>
