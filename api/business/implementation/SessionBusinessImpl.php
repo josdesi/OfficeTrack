@@ -30,6 +30,18 @@ class SessionBusinessImpl implements SessionBusiness{
 
     public function deleteSession( $sessionDTO ){
         
+        $database = new Database();
+        $db = $database->getConnection();        
+        $session = new Session( $db );
+
+        $session->userId = $sessionDTO->getUserId();
+        $session->token = $sessionDTO->getToken();
+
+        try {
+            $session->delete();
+        } catch (Exception $e) {
+            throw $e;
+        }
     }    
 }
 ?>
