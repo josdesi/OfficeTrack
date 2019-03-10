@@ -47,34 +47,35 @@ img {
 }
 
 .emailFooter {
-    background: #fff;
+    background-color: #ffffff; 
+    background-image: url("fondo.svg");
+    background-size: 210px; 
+    background-repeat: no-repeat;
+    background-position: 100% 0%; 
+    /* background: red; */
     padding: 0 2.5rem;
 }
 
 .redessociales{
+    /* background-color: red; */
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
 }
 
 .redessociales img{
+    margin-top: 3rem;
     margin-right: 1rem
 }
 
 
-.ilustration {
-    text-align: center;
-    margin-top: 1rem;
-}
 
-.ilustration img {
-    display: block;
-    width: 100%;
-}
 
 .rights{
+    /* background-color: blue; */
     display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
+    flex-direction: column;
+    margin: 3rem 0;
 }
 
 
@@ -111,39 +112,7 @@ img {
     font-size: .7rem;
 }
 
-a.buttonrecover{
-    border-style: solid;
-    background-color: white; 
-    border-radius: 8px;
-    clear: both;
-    color: #137eff;
-    font-weight:  bold;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 105%;
-    float: left;
-    line-height: 125%;
-    margin:10px 120px 25px;
-    padding: 15px 25px;
-    vertical-align: middle;
-    text-align: center;
-    text-transform: none;
-    font-family: "Flexo-Demi",arial,sans-serif;
-}
 
-a.buttonrecover:hover{
-    background-color: white;
-    color: #006bec;
-    font-weight:  bold;
-    box-shadow: 0 0 2px #103159;
-}
-
-a.buttonrecover:active{
-    font-weight:  bold;
-    box-shadow: 0 0 2px #003F5B;
-    background-color: #F2F2F2;
-    color: #003F5B;
-}
 
 div.ico1 {
     position: relative;

@@ -1,0 +1,209 @@
+body {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #e7f2f8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+    margin: 0;
+  }
+
+.emailWraper {
+    flex-direction: column;
+    z-index: 99999;
+  
+    /* background-color: red; */
+    /* background: #e7f2f8; */
+    height: 560px;
+    width: 560px;
+    max-height: 35rem;
+    max-width: 35rem;  
+    min-width: 16rem;  
+    min-width: 5rem; 
+    margin: auto;
+    display: flex;
+}
+
+.emailHeader {
+    width: 100%;
+    margin: .8rem 0;
+    
+}
+
+img {
+    vertical-align: middle;
+}
+
+.emailBody {
+    z-index: 99999;
+    background: #fff;
+    /* background-color: red; */
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+    box-sizing: border-box;
+    border-radius: .5rem .5rem 0 0;
+}
+
+.emailBody .message {
+    display: inline-block;
+    margin: 0 0 1rem 0;
+}
+
+.emailBody .message h2{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #66b1d3;
+    margin: .5rem 0 1rem 0;
+}
+
+.emailBody .message h3{
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    margin: 0rem 0 0rem 0;
+}
+
+.emailBody .message p:last-child{
+    
+    margin-bottom: 0;
+}
+
+.emailBody .message .botones{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* background-color: blue; */
+    height: 60px;
+    margin: 2rem 0 0;
+}
+.emailBody .message p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color:  black;
+    margin-bottom: 3rem;
+}
+
+
+.emailFooter {
+    background-color: #ffffff; 
+    background-image: url("fondo.svg");
+    background-size: 230px; 
+    background-repeat: no-repeat;
+     background-position: 105% -60%; 
+    /* background: red; */
+    padding: 0 2.5rem;
+}
+
+.redessociales{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.redessociales img{
+    margin-top: 3rem;
+    margin-right: 1rem
+}
+
+
+
+.rights{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 0;
+}
+
+
+.lakmiFooter{
+    display: flex;
+    padding: 2rem 0;
+    align-items: center;
+}
+
+
+.bold {
+    font-weight: 800 !important;
+}
+
+.lakmiLogo{
+    margin-right: 2rem;
+    max-width: 100%;
+}
+           
+.lakmiInfo p{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: .55rem;
+}
+
+.lakmiInfo p:first-child{
+    margin: 0;
+    font-size: .7rem;
+}
+
+.lakmiInfo p:nth-child(2){
+    margin-bottom: .7rem;
+    font-size: .7rem;
+}
+
+a.buttonrecover{
+    height: 16px;
+    width: 140px;
+    background-color: #97cc04; 
+    border-radius: 8px;
+    clear: both;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    line-height: 125%;
+    padding: 15px 25px 45px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    color: white;
+    font-size: 12px;
+    font-weight: 400px;
+}
+
+ a.buttonrecover:hover{
+    background-color: #719903;
+    box-shadow: 0 0 2px #103159;
+}
+
+a.buttonrecover:active{
+    box-shadow: 0 0 2px #003F5B;
+    background-color: #4c6602;
+}
+
+a.buttonrecover2{
+    height: 16px;
+    width: 140px;
+    background-color: #f67d34; 
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+    line-height: 125%;
+    padding: 15px 25px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    color:  white;
+    font-size: 12px;
+    font-weight: 400px;
+}
+
+ a.buttonrecover2:hover{
+    background-color: #f45d01;
+    box-shadow: 0 0 2px #103159;
+}
+
+a.buttonrecover2:active{
+  
+    box-shadow: 0 0 2px #003F5B;
+    background-color: #b74601;
+}
