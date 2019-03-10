@@ -17,6 +17,8 @@ include_once '../business/UserBusiness.php';
 include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 
+require_once('../vendor/autoload.php');
+
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($requestMethod) {

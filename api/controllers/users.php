@@ -20,9 +20,7 @@ include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 include_once '../business/implementation/EmailBusinessImpl.php';
 
-require '../libs/PHPMailer/Exception.php';
-require '../libs/PHPMailer/PHPMailer.php';
-require '../libs/PHPMailer/SMTP.php';
+require_once('../vendor/autoload.php');
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
