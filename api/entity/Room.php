@@ -30,7 +30,11 @@ class Room
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":typeRoomId", $this->typeRoomId);
 
-        return $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al eliminar");
+        }
     }
 
     public function update(){
@@ -45,7 +49,12 @@ class Room
         $stmt = $this->conn->prepare($query);
         $roomKey = htmlspecialchars(strip_tags($this->roomKey));
         $stmt->bindParam(":roomKey",$roomKey);
-        $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al eliminar");
+        }
+        
         if($stmt->rowCount()===1){
             return true;
         }else{
