@@ -4,6 +4,7 @@ class SessionDTO
 {
     private $userId;
     private $token;
+    private $sessionType;
 
     public function getUserId(){
         return $this->userId;
@@ -19,6 +20,14 @@ class SessionDTO
 
     public function setToken($token){
         $this->token = $token;
+    }
+
+    public function getSessionType(){
+        return $this->sessionType;
+    }
+
+    public function setSessionType($sessionType){
+        $this->sessionType = $sessionType;
     }
 }  
 

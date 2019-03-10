@@ -1,7 +1,7 @@
 <?php
 class UserDTO implements JsonSerializable {
  
-    private $id;
+    private $userId;
     private $username;
     private $password;
     private $name;
@@ -12,11 +12,11 @@ class UserDTO implements JsonSerializable {
     private $verify;
     private $emailToken;
 
-    public function getId(){
+    public function getUserId(){
         return $this->id;
     }
 
-    public function setId($id){
+    public function setUserId($id){
         $this->id = $id;
     }
 

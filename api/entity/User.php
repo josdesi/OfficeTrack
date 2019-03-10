@@ -46,7 +46,11 @@ class User
         $stmt->bindParam(":emailToken", $this->emailToken);
         $stmt->bindParam(":verify", $this->verify);
 
-        return $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
 
     }
 
@@ -77,7 +81,11 @@ class User
         $stmt->bindParam(":emailToken", $this->emailToken);
         $stmt->bindParam(":verify", $this->verify);
 
-        return $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
     }
 
     public function delete()
@@ -89,8 +97,13 @@ class User
         $stmt = $this->conn->prepare($query);
         $username = htmlspecialchars(strip_tags($this->username));
         $stmt->bindParam(":username", $username);
-        $stmt->execute();
-        if ($stmt->rowCount() === 1) {
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
+
+        if ($stmt->rowCount() !== 1) {
             return true;
         } else {
             return null;
@@ -105,7 +118,7 @@ class User
 
     public function findUserByEmail($email)
     {
-        $query = "SELECT id, username, email  FROM users WHERE email=:email";
+        $query = "SELECT userId, username, email  FROM users WHERE email=:email";
         $stmt = $this->conn->prepare($query);
         $email = htmlspecialchars(strip_tags($email));
         $stmt->bindParam(":email", $email);
@@ -122,7 +135,7 @@ class User
         }
 
         $user = new UserDTO;
-        $user->setId($result["id"]);
+        $user->setUserId($result["userId"]);
         $user->setEmail($result["email"]);
         $user->setUsername($result["username"]);
         return $user;
@@ -135,18 +148,24 @@ class User
         $stmt = $this->conn->prepare($query);
         $emailToken = htmlspecialchars(strip_tags($emailToken));
         $stmt->bindParam(":emailToken", $emailToken);
-        $stmt->execute();
+        $successfulQuery = $stmt->execute();
+        
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
+
         $affected = $stmt->rowCount();
-        if ($affected !== 1) {
-            return null;
-        } else {
+
+        if ($affected === 1) {
             return true;
+        } else {
+            return null;
         }
     }
 
     public function findUserByUsername($username)
     {
-        $query = "SELECT id, username, email FROM users WHERE username=:username";
+        $query = "SELECT userId, username, email FROM users WHERE username=:username";
         $stmt = $this->conn->prepare($query);
         $username = htmlspecialchars(strip_tags($username));
         $stmt->bindParam(":username", $username);
@@ -161,7 +180,7 @@ class User
             return null;
         } else {
             $user = new UserDTO;
-            $user->setId($result["id"]);
+            $user->setUserId($result["userId"]);
             $user->setEmail($result["email"]);
             $user->setUsername($result["username"]);
             return $user;

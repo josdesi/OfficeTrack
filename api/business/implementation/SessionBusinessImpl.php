@@ -10,6 +10,7 @@ class SessionBusinessImpl implements SessionBusiness{
 
         $session->userId = $sessionDTO->getUserId();
         $session->token = $sessionDTO->getToken();
+        $session->sessionType = $sessionDTO->getSessionType();
         
         try {
             $session->create();
@@ -31,11 +32,11 @@ class SessionBusinessImpl implements SessionBusiness{
     public function deleteSession( $sessionDTO ){
         
         $database = new Database();
-        $db = $database->getConnection();        
+        $db = $database->getConnection();
         $session = new Session( $db );
 
         $session->userId = $sessionDTO->getUserId();
-        $session->token = $sessionDTO->getToken();
+        $session->sessionType = $sessionDTO->getSessionType();
 
         try {
             $session->delete();
