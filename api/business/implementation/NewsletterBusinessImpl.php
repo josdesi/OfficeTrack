@@ -9,10 +9,10 @@ class NewsletterBusinessImpl implements NewsletterBusiness
             $database = new Database();
             $db = $database->getConnection();
 
-            //Crea una entidad Newsletter y se le pasa la conexión a la base de dastos
+            //Crea una entidad Newsletter y pasa la conexión a la base de dastos
             $newsletter = new Newsletter($db);
 
-            //Obtener los valores del NewsletterDTO
+            //Obtener los valores desde el NewsletterDTO que se pasa como parametro
             $newsletterId = $newsletterDTO->getNewsletterId();
             $email = $newsletterDTO->getEmail();
             $status = $newsletterDTO->getStatus();
@@ -32,34 +32,6 @@ class NewsletterBusinessImpl implements NewsletterBusiness
 
     }    
 
-    public function delete($newsletterDTO)
-    {
-        try {
-            //Conecta a la base de datos
-            $database = new Database();
-            $db = $database->getConnection();
-
-            //Crea una entidad Newsletter y se le pasa la conexión a la base de dastos
-            $newsletter = new Newsletter($db);
-
-            //Obtener los valores del NewsletterDTO
-            $newsletterId = $newsletterDTO->getNewsletterId();
-
-            if (
-                empty($newsletterId)
-            ) {
-                throw new Exception("Es necesario el id para poder eleminar el registro", 1);
-            } else {
-                //Establece valores de la entidad Newsletter
-                $newsletter->newsletterId = $newsletterId;
-
-                //Elimina la fila con el mismo id en la tabla newsletter
-                $newsletter->delete();
-            }
-        } catch (Exception $e) {
-            throw $e;
-        }
-    }
     public function update($newsletterDTO)
     {
         try {
@@ -95,7 +67,34 @@ class NewsletterBusinessImpl implements NewsletterBusiness
         }
     }
 
+    public function delete($newsletterDTO)
+    {
+        try {
+            //Conecta a la base de datos
+            $database = new Database();
+            $db = $database->getConnection();
 
+            //Crea una entidad Newsletter y se le pasa la conexión a la base de dastos
+            $newsletter = new Newsletter($db);
+
+            //Obtener los valores del NewsletterDTO
+            $newsletterId = $newsletterDTO->getNewsletterId();
+
+            if (
+                empty($newsletterId)
+            ) {
+                throw new Exception("Es necesario el id para poder eleminar el registro", 1);
+            } else {
+                //Establece valores de la entidad Newsletter
+                $newsletter->newsletterId = $newsletterId;
+
+                //Elimina la fila con el mismo id en la tabla newsletter
+                $newsletter->delete();
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 
     public function findByEmail($email)
     {

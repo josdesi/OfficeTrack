@@ -74,10 +74,10 @@ class Newsletter
 
     public function findByEmail($email)
     {
-        $query = "SELECT newsletterId, email, status, newsletterToken FROM " . $this->table_name . " WHERE email=:email";
+        $query = "SELECT newsletterId, email, status, newsletterToken, created, modified FROM " . $this->table_name . " WHERE email=:email";
         $stmt = $this->conn->prepare($query);
 
-        $this->sanitizeProperties();
+        $email = htmlspecialchars(strip_tags($email));
 
         $stmt->bindParam(":email", $email);
 
@@ -98,6 +98,8 @@ class Newsletter
         $newletter->setEmail($result["email"]);
         $newletter->setStatus($result["status"]);
         $newletter->setNewsletterTokens($result["newsletterToken"]);
+        $newletter->setCreated($result["created"]);
+        $newletter->setModified($result["modified"]);
         
         return $newletter;
     }
@@ -105,7 +107,7 @@ class Newsletter
     
     public function findByNewsletterToken($newsletterToken)
     {
-        $query = "SELECT newsletterId, email, status, newsletterToken  FROM " . $this->table_name . " WHERE newsletterToken=:newsletterToken";
+        $query = "SELECT newsletterId, email, status, newsletterToken, created, modified  FROM " . $this->table_name . " WHERE newsletterToken=:newsletterToken";
 
         $stmt = $this->conn->prepare($query);
 
@@ -130,6 +132,8 @@ class Newsletter
         $newletter->setEmail($result["email"]);
         $newletter->setStatus($result["status"]);
         $newletter->setNewsletterToken($result["newsletterToken"]);
+        $newletter->setCreated($result["created"]);
+        $newletter->setModified($result["modified"]);
 
         return $newletter;
     }

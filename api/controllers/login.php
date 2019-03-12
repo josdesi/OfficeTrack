@@ -5,23 +5,29 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+//Conexion a la base de datos
 include_once '../config/database.php';
 
+//Entidades
 include_once '../entity/User.php';
 include_once '../entity/Session.php';
 
+//DTO's
 include_once '../dto/UserDTO.php';
 include_once '../dto/SessionDTO.php';
 include_once '../dto/ResponseDTO.php';
 
+//Interfaces de businesses
 include_once '../business/UserBusiness.php';
 include_once '../business/sessionBusiness.php';
 
+//Businesses
 include_once '../business/implementation/UserBusinessImpl.php';
 include_once '../business/implementation/TokenBusinessImpl.php';
 include_once '../business/implementation/sessionBusinessImpl.php';
 
-require_once('../vendor/autoload.php');
+//Librerias desde composer
+require_once '../vendor/autoload.php';
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
@@ -52,7 +58,7 @@ function login()
         (
             empty($data->username) ||
             empty($data->password) ||
-            empty($data->sessionType) 
+            empty($data->sessionType)
         ) {
             $res->setCode("RSP_??");
             $res->setMessage("Faltaron algunos datos");
@@ -61,7 +67,7 @@ function login()
 
         //Recuperar usuario por nombre de usuario
         try {
-            $userDTO = $userBusinessImpl->findUserByUsername($data->username);
+            $userDTO = $userBusinessImpl->findByUsername($data->username);
         } catch (Exception $th) {
             $res->setCode("RSP_??");
             $res->setMessage("No fue posible comprobar la informacion");
@@ -76,7 +82,9 @@ function login()
         }
 
         //Comprobar que la contraseña sea la correcta
-        if(!($userBusinessImpl->verifyPassword($data->username, $data->password))) {
+        $passwordFormDB = $userDTO->getPassword();
+        $passwordIsCorrect = $userBusinessImpl->verifyPassword($passwordFormDB, $data->password);
+        if (!$passwordIsCorrect) {
             $res->setCode("RSP_??");
             $res->setMessage("Contraseña incorrecta");
             throw new Exception("");
@@ -90,7 +98,7 @@ function login()
             $sessionDTO->setUserId($userId);
             $sessionDTO->setSessionType($sessionType);
 
-            $sessionBusinessImpl->deleteSession($sessionDTO);
+            $sessionBusinessImpl->delete($sessionDTO);
         } catch (Exception $th) {
             $res->setCode("RSP_??");
             $res->setMessage("No fue posible cerrar sesión");
@@ -116,13 +124,13 @@ function login()
             $userId = $userDTO->getUserId();
             $sessionType = $data->sessionType;
 
-            $sessionDTO->setToken($sessionToken);
-            $sessionDTO->setUserId($userId);            
+            $sessionDTO->setSessionToken($sessionToken);
+            $sessionDTO->setUserId($userId);
             $sessionDTO->setSessionType($sessionType);
 
-            $sessionBusinessImpl->createSession($sessionDTO);
+            $sessionBusinessImpl->create($sessionDTO);
 
-        } catch (Exception $th ) {
+        } catch (Exception $th) {
             $res->setCode("RSP_??");
             $res->setMessage("Error durante la persistencia");
             throw new Exception();
@@ -135,6 +143,8 @@ function login()
         $res->setCode("RSP_00");
         $res->setMessage("Autorizado");
         echo json_encode($res);
+        header("Location: http://localhost/web/main.html");
+        die();
 
     } catch (Exception $e) {
         http_response_code(201);

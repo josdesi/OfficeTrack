@@ -87,7 +87,7 @@ function updateNewsletter()
             throw new Exception("Token no valido");
         }
 
-        //Cambiar el status de la subscripción en la base de datos
+        //Cambiar el status de la subscripción en el DTO y en la base de datos
         try {
             $newsletterDTO->setStatus(true);
             $newsletterBusinessImpl->update($newsletterDTO);

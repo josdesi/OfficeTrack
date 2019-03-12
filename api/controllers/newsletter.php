@@ -39,7 +39,7 @@ switch ($requestMethod) {
 
 function createNewsletter()
 {
-
+    
     $res = new ResponseDTO();
     $emailBusiness = new EmailBusinessImpl();
     $NewsletterBusinessImpl = new NewsletterBusinessImpl();
@@ -75,7 +75,7 @@ function createNewsletter()
         $userAndDate = date("c") . $data->email;
         $newsletterToken = md5($userAndDate);
 
-        //Registrar newsletter en base de datos
+        //Crea newsletter en base de datos
         try {
             
             $newsletterDTO = new NewsletterDTO();
@@ -90,7 +90,7 @@ function createNewsletter()
             throw new Exception();
         }
 
-        //Enviar email de confirmación
+        //Envia email de confirmación
         try {
             $emailBusiness->sendNewsletterConfirmation($data->email, $newsletterToken);
         } catch (Exception $th) {
@@ -99,7 +99,7 @@ function createNewsletter()
             throw new Exception();
         }
 
-        //Enviar respuesta correcta
+        //Envia respuesta OK
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
