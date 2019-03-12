@@ -2,7 +2,9 @@
 
 interface NewsletterBusiness {
 
-   public function createNewsletter( $roomDTO );
+   public function create( $newsletterDTO );
+   public function update( $newsletterDTO );
+   public function findByNewsletterToken( $newsletterToken );
    
 }
 ?>

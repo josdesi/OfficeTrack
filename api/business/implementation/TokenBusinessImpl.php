@@ -1,43 +1,30 @@
 <?php
 
-include_once '../libs/php-jwt-master/src/BeforeValidException.php';
-include_once '../libs/php-jwt-master/src/ExpiredException.php';
-include_once '../libs/php-jwt-master/src/SignatureInvalidException.php';
-include_once '../libs/php-jwt-master/src/JWT.php';
 use \Firebase\JWT\JWT;
 
 class TokenBusinessImpl
 {
-    public function createToken($userDTO)
+    public function createSessionToken($userDTO,$sessionType)
     {
-        $token = array(
-            "id" => $userDTO->getId(),
-            "username" => $userDTO->getUsername(),
-            "name" => $userDTO->getEmail(),
-            "fatherSurname" => $userDTO->getfatherSurname(),
-            "motherSurname" => $userDTO->getmotherSurname(),
+        $payload = array(
+            "data" => array(
+                "sessionType"=> $sessionType,
+                "userId" => $userDTO->getUserId(),
+                "username" => $userDTO->getUsername(),
+                "name" => $userDTO->getEmail(),
+                "fatherSurname" => $userDTO->getfatherSurname(),
+                "motherSurname" => $userDTO->getmotherSurname(),
+            )
         );
-        return JWT::encode($token, "example_key");
+        return JWT::encode($payload, "example_key");
     }
 
-    public function validateToken($jwt)
+    public function decodeSessionToken($token)
     {
         try {
-            $decoded = JWT::decode($jwt, "example_key", array('HS256'));
-            return true;
+            return $decoded = JWT::decode($token, "example_key", array('HS256'));
         } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    public function decodeToken($jwt)
-    {
-        try {
-            $decoded = JWT::decode($jwt, "example_key", array('HS256'));
-            $decoded = (array) $decoded;
-            return $decoded;
-        } catch (Exception $e) {
-            return false;
+            throw new Exception("Token invalido");            
         }
     }
 }

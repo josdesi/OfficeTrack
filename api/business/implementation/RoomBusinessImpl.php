@@ -1,61 +1,132 @@
 <?php
 
-class RoomBusinessImpl implements RoomBusiness{
-         
-    public function createRoom( $roomDTO ){
-        
-        $database = new Database();
-        $db = $database->getConnection();        
-        $room = new Room($db);
+class RoomBusinessImpl implements RoomBusiness
+{
 
-        $room->roomName = $roomDTO->getRoomName();
-        $room->roomKey = $roomDTO->getRoomKey();
-        $room->typeRoomId = $roomDTO->getTypeRoomId();
-        
-        try {
+    public function create($roomDTO)
+    {
+        try
+        {
+            //Conecta a la base de datos
+            $database = new Database();
+            $db = $database->getConnection();
+
+            //Crea una entidad Room y pasa la conexión a la base de dastos
+            $room = new Room($db);
+
+            //Obtener los valores desde el RoomDTO que se pasa como parametro
+            $roomName = $roomDTO->getRoomName();
+            $roomKey = $roomDTO->getRoomKey();
+            $description = $roomDTO->getDescription();
+            $roomTypeId = $roomDTO->getRoomTypeId();
+
+            //Establece valores de la entidad Room
+            $room->roomName = $roomName;
+            $room->roomKey = $roomKey;
+            $room->description = $description;
+            $room->roomTypeId = $roomTypeId;
+
+            //Crea una fila en la tabla rooms basado en los valores de la entidad
             $room->create();
-            return $roomDTO;
         } catch (Exception $e) {
             throw $e;
-            return null;
-        }        
-    }
-    
-    public function updateRoom( $roomDTO ){
-        
+        }
     }
 
-    public function deleteRoom( $roomDTO ){
-        $database = new Database();
-        $db = $database->getConnection();     
-        $room = new Room($db);
-
-        $room->roomKey = $roomDTO->getRoomKey();
-        
+    public function update($roomDTO)
+    {
         try {
-            $room->delete();
-            return true;
+            //Conecta a la base de datos
+            $database = new Database();
+            $db = $database->getConnection();
+
+            //Crea una entidad Room y pasa la conexión a la base de dastos
+            $room = new Room($db);
+
+            //Obtener los valores desde el RoomDTO que se pasa como parametro
+            $roomId = $roomDTO->getRoomId();
+            $roomName = $roomDTO->getRoomName();
+            $roomKey = $roomDTO->getRoomKey();
+            $description = $roomDTO->getDescription();
+            $roomTypeId = $roomDTO->getRoomTypeId();
+
+            if (
+                empty($roomId)
+            ) {
+                throw new Exception("Es necesario el roomId para poder actualizar el registro", 1);
+            } else {
+                //Establece valores de la entidad Room
+                $room->roomId = $roomId;
+                $room->roomName = $roomName;
+                $room->roomKey = $roomKey;
+                $room->description = $description;
+                $room->roomTypeId = $roomTypeId;
+
+                //Actualiza la fila con el mismo id en la tabla rooms
+                $room->update();
+            }
         } catch (Exception $e) {
             throw $e;
-            return null;
-        }  
+        }
     }
 
-    public function findRoomByRoomkey($roomKey){
-        $database = new Database();
-        $db = $database->getConnection();        
-        $room = new Room($db);
+    public function delete($roomDTO)
+    {
+        try {
+            //Conecta a la base de datos
+            $database = new Database();
+            $db = $database->getConnection();
 
-        return $room->findRoomByRoomKey($roomKey);
+            //Crea una entidad Room y pasa la conexión a la base de dastos
+            $room = new Room($db);
+
+            //Obtener los valores desde el RoomDTO que se pasa como parametro
+            $roomId = $roomDTO->getRoomId();
+
+            if (
+                empty($roomId)
+            ) {
+                throw new Exception("Es necesario el roomId para poder eleminar el registro", 1);
+            } else {
+                //Establece valores de la entidad Room
+                $room->roomId = $roomId;
+
+                //Elimina la fila con el mismo id en la tabla rooms
+                $room->delete();
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
-    public function findRoomByRoomName($roomName){
-        $database = new Database();
-        $db = $database->getConnection();        
-        $room = new Room($db);
+    public function findByRoomkey($roomKey)
+    {
+        try {
+            $database = new Database();
+            $db = $database->getConnection();
 
-        return $room->findRoomByRoomName($roomName);
+            //Crea una entidad Room y pasa la conexión a la base de dastos
+            $room = new Room($db);
+
+            return $room->findByRoomKey($roomKey);
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
-    
+
+    public function findByRoomName($roomName)
+    {
+        try {
+            $database = new Database();
+            $db = $database->getConnection();
+
+            //Crea una entidad Room y pasa la conexión a la base de dastos
+            $room = new Room($db);
+
+            return $room->findByRoomName($roomName);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
 }
-?>

@@ -2,12 +2,12 @@
 
 interface UserBusiness {
 
-   public function createUser( $userDTO );
-   public function updateUser( $userDTO );
-   public function deleteUser( $userDTO );
-   public function findUserByEmail( $email );
-   public function findUserByUsername( $username );
-   public function verifyPassword( $username, $password);
+   public function create( $userDTO );
+   public function update( $userDTO );
+   public function delete( $userDTO );
+   public function findByEmail( $email );
+   public function findByUsername( $username );
+   public function verifyPassword( $passwordFromDB, $passwordFromClient);
    
 }
 ?>
