@@ -1,49 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <title>Document</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <section>
-        <div id="card">
-            <div id="news1">
-                <div id="cerrar">
-                    <img id="close" src="close.svg" alt="" >
-                </div>
-                <div id="dcopy">
-                    <div id="dicon">  
-                        <img src="iconmodal.svg" alt="" width="143">
-                    </div> 
-                    <div id="dtitle">
-                        <h1 id="titulo">Muchas gracias</h1>
-                    </div>
-                    <div id="texto">
-                        <p>
-                             
-                            
-                            Ti suscripción a nuestro boletín ha sido confirmada<br><br>
 
-                            
+<div class="container">
+  <h2>M-06</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-                        
-                        </p>
-                    </div>    
-            </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+          <div id="dicon">  
+                <img src="iconmodal.svg" alt="" width="150">
+            </div> 
+        </div>
+        <div class="modal-body" style="border-color:white">
+                
+                    
+                        <div id="dtitle">
+                            <h1 id="titulo">Muchas gracias</h1>
+                        </div>
+                        <div id="texto">
+                            <p>
+                                 
+                                
+                                    Tu suscripción a nuestro boletín ha sido confirmada
+    
+                            
+                            </p>
+                        </div>    
+                
+        </div>
+        <div class="modal-footer"style="border-color:white">
                 <div id="boton">
-                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="submit"
-                            name="action"> <img src="iconobotmod.svg" alt="" width="46px"> <h3>Aceptar</h3></button>
+                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="button"
+                            name="action"> <img src="iconobotmod.svg" alt="" width="46px" data-dismiss="modal"> <h3>Aceptar</h3></button>
                         <br>
                         
-                    </div>
                 </div>
-            </form>
         </div>
+      </div>
+      
     </div>
-    </section>
+  </div>
+  
+</div>
+
+
+    
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
