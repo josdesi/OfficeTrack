@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2019 a las 19:24:51
+-- Tiempo de generación: 12-03-2019 a las 21:45:34
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.1
 
@@ -29,9 +29,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `newsletter` (
-  `userId` int(11) NOT NULL,
+  `newsletterId` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `accept` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `newsletterToken` text NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -59,8 +60,9 @@ CREATE TABLE `rooms` (
 --
 
 CREATE TABLE `sessions` (
+  `sessionId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `token` text NOT NULL,
+  `sessionToken` text NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `sessionType` varchar(13) NOT NULL
@@ -73,7 +75,7 @@ CREATE TABLE `sessions` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` text NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -92,20 +94,38 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indices de la tabla `newsletter`
+--
+ALTER TABLE `newsletter`
+  ADD PRIMARY KEY (`newsletterId`);
+
+--
 -- Indices de la tabla `rooms`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`roomId`);
 
 --
+-- Indices de la tabla `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`sessionId`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `newsletter`
+--
+ALTER TABLE `newsletter`
+  MODIFY `newsletterId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `rooms`
@@ -114,10 +134,16 @@ ALTER TABLE `rooms`
   MODIFY `roomId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `sessions`
+--
+ALTER TABLE `sessions`
+  MODIFY `sessionId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
