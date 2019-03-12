@@ -23,16 +23,7 @@ section{
     position: absolute;
     /* background-color: green;  */
 }
-#dcopy{
-    margin: 0 0 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 602px;
-    height: 325px;
-    /* background-color: yellow;  */
 
-  
-}
 #close{
     height: 32px;
     margin-top: 20px;
@@ -40,26 +31,26 @@ section{
 }
 
 #dtitle{
-    margin-bottom: 45px;
+    margin-bottom: 3vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 602px;
-    height: 45px;
+    text-align: center;
     /* background-color: yellow;   */
 }
 #texto{
     padding: 0%;
     display: flex;
     justify-content: center;
-    width: 602px;
+    text-align: center;
+    margin-bottom: 5vh;
     /* background-color: red;  */
     
 }
 #titulo{
     
     font-family: 'Rubik', sans-serif;
-    font-size: 42px;
+    font-size: 46px;
     font-weight: 400;
     color: #007db6; 
 }
@@ -80,9 +71,8 @@ section{
 #dicon{
     display: flex;
     justify-content: center;
-    width: 602px;
-    margin-top: 25px ;
-    height: 150px;
+    margin-top: 25px;
+    
     /* background-color: blue;  */
 }
 strong{
@@ -109,9 +99,6 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 602px;
-    height: 224px;
-    /* background-color: violet;   */
 }
 
 #bot{

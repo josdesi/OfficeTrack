@@ -23,16 +23,7 @@ section{
     position: absolute;
     /* background-color: green;  */
 }
-#dcopy{
-    margin: 0 0 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 602px;
-    height: 325px;
-    /* background-color: yellow;  */
 
-  
-}
 #close{
     height: 32px;
     margin-top: 20px;
@@ -40,19 +31,19 @@ section{
 }
 
 #dtitle{
-    margin-bottom: 45px;
+    margin-bottom: 3vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 602px;
-    height: 45px;
+    text-align: center;
     /* background-color: yellow;   */
 }
 #texto{
     padding: 0%;
     display: flex;
     justify-content: center;
-    width: 602px;
+    text-align: center;
+    margin-bottom: 5vh;
     /* background-color: red;  */
     
 }
@@ -80,9 +71,8 @@ section{
 #dicon{
     display: flex;
     justify-content: center;
-    width: 602px;
-    margin-top: 25px ;
-    height: 150px;
+    margin-top: 25px;
+    
     /* background-color: blue;  */
 }
 strong{
@@ -107,18 +97,15 @@ p{
 
 #boton{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 602px;
-    height: 224px;
-    /* background-color: violet;   */
+    padding-left: 8%;
+    padding-right: 8%;
 }
 
 #bot{
     
     margin-bottom: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
@@ -137,7 +124,6 @@ h3{
     color: white; 
     margin: 5px 25px ;
 }
-
 
 h4{
     font-family: 'Rubik', sans-serif;
