@@ -6,7 +6,6 @@ loginFormComponent.
                 if (response.status === 200) {
                     let bearerToken = response.headers.authorization.replace('Bearer ', '')
                     sessions.saveBearerToken(bearerToken)
-                    location.href = "main.html"
                 }
             })
         })

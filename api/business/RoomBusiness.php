@@ -2,11 +2,11 @@
 
 interface RoomBusiness {
 
-   public function createRoom( $roomDTO );
-   public function updateRoom( $roomDTO );
-   public function deleteRoom( $roomDTO );
-   public function findRoomByRoomName( $roomName );
-   public function findRoomByRoomKey( $roomKey );
+   public function create( $roomDTO );
+   public function update( $roomDTO );
+   public function delete( $roomDTO );
+   public function findByRoomName( $roomName );
+   public function findByRoomKey( $roomKey );
    
 }
 ?>

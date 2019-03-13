@@ -21,47 +21,86 @@ class EmailBusinessImpl
         $this->mail->Port = 587; // Puerto de conexion TCP
     }
 
-    public function sendConfirmEmail($email, $username, $confirmationLink)
+    public function sendRegistryConfirmation($email, $username, $confirmationLink)
     {
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        try {
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        $cssPath =  realpath("../../email/A_01/estilo.css"); //ruta de archivo css
-        $cssString = file_get_contents($cssPath);; //leer contenido de css
+            //Cargar estilos para el correo (.css)
+            $cssPath = realpath("../../email/A_01/estilo.css"); //ruta de archivo css
+            $css = file_get_contents($cssPath); //leer contenido de css
 
-        //Cargar archivo html
-        $htmlPath = realpath("../../email/A_01/correo.html");
-        $htmlString = file_get_contents($htmlPath);
+            //Cargar plantilla para el correo (.html)
+            $templatePath = realpath("../../email/A_01/correo.html");
+            $template = file_get_contents($templatePath);
 
-        // Username a mayusculas
-        $username = strtoupper ( $username );
-        
-        //reemplazar sección de plantilla html con el css cargado y mensaje creado
-        $incss = str_replace('<style id="estilo"></style>', "<style>$cssString</style>", $htmlString);
-        $inclink = str_replace('{{dinamic_link}}', $confirmationLink, $incss);
-        $body = str_replace('{{user_name}}', $username, $inclink);
+            //Cambiar username a mayusculas
+            $username = strtoupper($username);
 
+            $emailBody = $template;
 
-        if ($email) {
-            try {
-                // Remitente
-                $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track');
+            $emailBody = str_replace('<style id="estilo"></style>', "<style>$css</style>", $emailBody); //Remplaza CSS
+            $emailBody = str_replace('{{dinamic_link}}', $confirmationLink, $emailBody); // Remplaza Link de confirmación
+            $emailBody = str_replace('{{user_name}}', $username, $emailBody); // Remplaza Username
 
-                // Destinatario
-                $this->mail->addAddress($email); // Añadir destinatario
+            //Agrega destinatario-Remitente
+            $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track'); // Añade remitente
+            $this->mail->addAddress($email); // Añade destinatario
 
-                //headers
-                $this->mail->isHTML(true); // formto HTML para el email
-                $this->mail->CharSet = 'UTF-8';
+            //headers
+            $this->mail->isHTML(true); // Configura formato HTML para el email
+            $this->mail->CharSet = 'UTF-8'; // Configura chartset utf.8
 
-                // Contenido
-                $this->mail->Subject = "Confirma tu cuenta";
-                $this->mail->Body = $body;
+            // Contenido
+            $this->mail->Subject = "Confirma tu cuenta"; // Añade asunto
+            $this->mail->Body = $emailBody; // Añade el cuerpo del correo
 
-                $this->mail->send();
+            $this->mail->send();
 
-            } catch (Exception $e) {
-                echo $e;
-            }
+        } catch (Exception $e) {
+            throw new Exception("El mensaje no pudo ser enviado");
+        }
+    }
+
+    public function sendNewsletterConfirmation($email, $newsletterToken)
+    {
+        try {
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+            $subscribeLink = "http://localhost/api/controllers/confirmNewsletter.php?token=$newsletterToken&confirm=true";
+            $unsubscribeLink = "http://localhost/api/controllers/confirmNewsletter.php?token=$newsletterToken&confirm=false";
+
+            //Cargar estilos para el correo (.css)
+            $cssPath = realpath("../../email/E-05/estilo.css"); //ruta de archivo css
+            $css = file_get_contents($cssPath); //leer contenido de css
+
+            //Cargar plantilla para el correo (.html)
+            $templatePath = realpath("../../email/E-05/correo.html");
+            $template = file_get_contents($templatePath);
+
+            $emailBody = $template;
+
+            $emailBody = str_replace('<style id="estilo"></style>', "<style>$css</style>", $emailBody); //Remplaza CSS
+            $emailBody = str_replace('{{subscribe_link}}', $subscribeLink, $emailBody); // Remplaza Link de confirmación
+            $emailBody = str_replace('{{unsubscribe_link}}', $unsubscribeLink, $emailBody); // Remplaza Link de cancelacion
+
+            //Agrega destinatario-Remitente
+            $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track'); // Añade remitente
+            $this->mail->addAddress($email); // Añade destinatario
+
+            //headers
+            $this->mail->isHTML(true); // Configura formato HTML para el email
+            $this->mail->CharSet = 'UTF-8'; // Configura chartset utf.8
+
+            // Contenido
+            $this->mail->Subject = "Subscripción al newsletter"; // Añade asunto
+            $this->mail->Body = $emailBody; // Añade el cuerpo del correo
+
+            $this->mail->send();
+
+        } catch (Exception $e) {
+            echo $e;
+            throw new Exception("El mensaje no pudo ser enviado");
         }
     }
 

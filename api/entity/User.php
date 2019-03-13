@@ -7,7 +7,7 @@ class User
     private $table_name = "users";
 
     // Propiedades del objeto
-    public $id;
+    public $userId;
     public $username;
     public $password;
     public $name;
@@ -15,10 +15,10 @@ class User
     public $motherSurname;
     public $phone;
     public $email;
+    public $verify;
+    public $emailToken;
     public $created;
     public $modified;
-    public $emailToken;
-    public $verify;
 
     public function __construct($db)
     {
@@ -27,162 +27,237 @@ class User
 
     public function create()
     {
-        $query = "INSERT INTO
-                    " . $this->table_name . "
-                SET
-                    username=:username, password=:password, email=:email, created=now(), modified=now(), emailToken=:emailToken, verify=:verify";
+        $query = "INSERT INTO " . $this->table_name . " SET
+                    username=:username, password=:password, name=:name, fatherSurname=:fatherSurname, motherSurname=:motherSurname, phone=:phone, email=:email, verify=:verify, emailToken=:emailToken, created=now(), modified=now()";
 
         $stmt = $this->conn->prepare($query);
 
         // sanitize
         $this->sanitizeProperties();
 
-        $passwordHash = $this->generatePasswordHash($this->password);
-
         // bind values
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $passwordHash);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":emailToken", $this->emailToken);
-        $stmt->bindParam(":verify", $this->verify);
-
-        return $stmt->execute();
-
-    }
-
-    public function update()
-    {
-        $query = "UPDATE
-                    " . $this->table_name . "
-                SET
-                username=:username, password=:password, name=:name, fatherSurname=:fatherSurname, motherSurname=:motherSurname , phone=:phone, email=:email, modified=now(), emailToken=:emailToken, verify=:verify
-                    WHERE id=:id";
-
-        $stmt = $this->conn->prepare($query);
-
-        // sanitize
-        $this->sanitizeProperties();
-
-        $passwordHash = $this->generatePasswordHash($this->password);
-
-        // bind values
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":password", $passwordHash);
+        $stmt->bindParam(":password", $this->password);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":fatherSurname", $this->fatherSurname);
         $stmt->bindParam(":motherSurname", $this->motherSurname);
         $stmt->bindParam(":phone", $this->phone);
         $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":emailToken", $this->emailToken);
         $stmt->bindParam(":verify", $this->verify);
+        $stmt->bindParam(":emailToken", $this->emailToken);
 
-        return $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("No fue posible crear el registro en la tabla users");
+        }
+
+    }
+
+    public function update()
+    {
+        $query = "UPDATE " . $this->table_name . " SET
+                    username=:username, password=:password, name=:name, fatherSurname=:fatherSurname, motherSurname=:motherSurname, phone=:phone, email=:email, verify=:verify, emailToken=:emailToken, created=now(), modified=now()
+                    WHERE userId=:userId";
+
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $this->sanitizeProperties();
+
+        // bind values
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":username", $this->username);
+        $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":fatherSurname", $this->fatherSurname);
+        $stmt->bindParam(":motherSurname", $this->motherSurname);
+        $stmt->bindParam(":phone", $this->phone);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":verify", $this->verify);
+        $stmt->bindParam(":emailToken", $this->emailToken);
+
+        $successfulQuery = $stmt->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("No fue posible actualizar el registro en la tabla users");
+        }
     }
 
     public function delete()
     {
 
-        $query = "DELETE FROM
-                 " . $this->table_name . "
-                 WHERE username=:username";
-        $stmt = $this->conn->prepare($query);
-        $username = htmlspecialchars(strip_tags($this->username));
-        $stmt->bindParam(":username", $username);
-        $stmt->execute();
-        if ($stmt->rowCount() === 1) {
-            return true;
-        } else {
-            return null;
+        $query = "DELETE FROM " . $this->table_name . " WHERE userId=:userId";
+
+        $statement = $this->conn->prepare($query);
+
+        $this->sanitizeProperties();
+
+        $statement->bindParam(":userId", $this->userId);
+
+        $successfulQuery = $statement->execute();
+
+        if (!$successfulQuery) {
+            throw new Exception("No fue posible eleminar el registro en la tabla users");
         }
+
     }
 
-    public function verifyPassword($username, $password)
+   public function findByEmail($email)
     {
-        $userPasswordHash = $this->getUserPasswordHash($username);
-        return password_verify($password, $userPasswordHash);
-    }
-
-    public function findUserByEmail($email)
-    {
-        $query = "SELECT id, username, email  FROM users WHERE email=:email";
+        $query = "SELECT userId, username, password, name, fatherSurname, motherSurname, phone, email, verify, emailToken, created, modified FROM " . $this->table_name . " WHERE email=:email";
         $stmt = $this->conn->prepare($query);
+
         $email = htmlspecialchars(strip_tags($email));
+
         $stmt->bindParam(":email", $email);
-        $stmt->execute();
+
+        $successfulQuery = $stmt->execute();
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
+
         if ($result === false) {
             return null;
-        } else {
-            $user = new UserDTO;
-            $user->setId($result["id"]);
-            $user->setEmail($result["email"]);
-            $user->setUsername($result["username"]);
-            return $user;
         }
+
+        $user = new UserDTO;
+        $user->setUserId($result["userId"]);
+        $user->setUsername($result["username"]);
+        $user->setPassword($result["password"]);
+        $user->setName($result["name"]);
+        $user->setFatherSurname($result["fatherSurname"]);
+        $user->setMotherSurname($result["motherSurname"]);
+        $user->setPhone($result["phone"]);
+        $user->setEmail($result["email"]);
+        $user->setVerify($result["verify"]);
+        $user->setEmailToken($result["emailToken"]);
+        $user->setCreated($result["created"]);
+        $user->setModified($result["modified"]);
+        
+        return $user;
     }
 
-    public function confirmEmailToken($emailToken)
+    public function findByUsername($username)
     {
-        $query = "UPDATE " . $this->table_name . " SET verify=1 WHERE emailToken=:emailToken;";
-
+        $query = "SELECT userId, username, password, name, fatherSurname, motherSurname, phone, email, verify, emailToken, created, modified FROM " . $this->table_name . " WHERE username=:username";
         $stmt = $this->conn->prepare($query);
+
+        $username = htmlspecialchars(strip_tags($username));
+
+        $stmt->bindParam(":username", $username);
+
+        $successfulQuery = $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por username");
+        }
+
+        if ($result === false) {
+            return null;
+        }
+
+        $user = new UserDTO;
+        $user->setUserId($result["userId"]);
+        $user->setUsername($result["username"]);
+        $user->setPassword($result["password"]);
+        $user->setName($result["name"]);
+        $user->setFatherSurname($result["fatherSurname"]);
+        $user->setMotherSurname($result["motherSurname"]);
+        $user->setPhone($result["phone"]);
+        $user->setEmail($result["email"]);
+        $user->setVerify($result["verify"]);
+        $user->setEmailToken($result["emailToken"]);
+        $user->setCreated($result["created"]);
+        $user->setModified($result["modified"]);
+        
+        return $user;
+    }    
+
+    public function findByUserId($userId)
+    {
+        $query = "SELECT userId, username, password, name, fatherSurname, motherSurname, phone, email, verify, emailToken, created, modified FROM " . $this->table_name . " WHERE userId=:userId";
+        $stmt = $this->conn->prepare($query);
+
+        $userId = htmlspecialchars(strip_tags($userId));
+
+        $stmt->bindParam(":userId", $userId);
+
+        $successfulQuery = $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por userId");
+        }
+
+        if ($result === false) {
+            return null;
+        }
+
+        $user = new UserDTO;
+        $user->setUserId($result["userId"]);
+        $user->setUsername($result["username"]);
+        $user->setPassword($result["password"]);
+        $user->setName($result["name"]);
+        $user->setFatherSurname($result["fatherSurname"]);
+        $user->setMotherSurname($result["motherSurname"]);
+        $user->setPhone($result["phone"]);
+        $user->setEmail($result["email"]);
+        $user->setVerify($result["verify"]);
+        $user->setEmailToken($result["emailToken"]);
+        $user->setCreated($result["created"]);
+        $user->setModified($result["modified"]);
+        
+        return $user;
+    }
+
+    public function findByEmailToken($emailToken)
+    {
+        $query = "SELECT userId, username, password, name, fatherSurname, motherSurname, phone, email, verify, emailToken, created, modified FROM " . $this->table_name . " WHERE emailToken=:emailToken";
+        $stmt = $this->conn->prepare($query);
+
         $emailToken = htmlspecialchars(strip_tags($emailToken));
+
         $stmt->bindParam(":emailToken", $emailToken);
-        $stmt->execute();
-        $affected = $stmt->rowCount();
-        if ($affected !== 1) {
-            return null;
-        } else {
-            return true;
-        }
-    }
 
-    public function findUserByUsername($username)
-    {
-        $query = "SELECT id, username, email FROM users WHERE username=:username";
-        $stmt = $this->conn->prepare($query);
-        $username = htmlspecialchars(strip_tags($username));
-        $stmt->bindParam(":username", $username);
-        $stmt->execute();
+        $successfulQuery = $stmt->execute();
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$successfulQuery) {
+            throw new Exception("Error al buscar por email");
+        }
+
         if ($result === false) {
             return null;
-        } else {
-            $user = new UserDTO;
-            $user->setId($result["id"]);
-            $user->setEmail($result["email"]);
-            $user->setUsername($result["username"]);
-            return $user;
         }
-    }
 
-    // Private methods
-
-    private function getUserPasswordHash($username)
-    {
-        $query = "SELECT password FROM users WHERE username=:username";
-        $stmt = $this->conn->prepare($query);
-        $username = htmlspecialchars(strip_tags($username));
-        $stmt->bindParam(":username", $username);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result === false) {
-            return null;
-        } else {
-            return $result["password"];
-        }
-    }
-
-    private function generatePasswordHash($password)
-    {
-        $password = htmlspecialchars(strip_tags($password));
-        return password_hash($password, PASSWORD_BCRYPT);
+        $user = new UserDTO;
+        $user->setUserId($result["userId"]);
+        $user->setUsername($result["username"]);
+        $user->setPassword($result["password"]);
+        $user->setName($result["name"]);
+        $user->setFatherSurname($result["fatherSurname"]);
+        $user->setMotherSurname($result["motherSurname"]);
+        $user->setPhone($result["phone"]);
+        $user->setEmail($result["email"]);
+        $user->setVerify($result["verify"]);
+        $user->setEmailToken($result["emailToken"]);
+        $user->setCreated($result["created"]);
+        $user->setModified($result["modified"]);
+        
+        return $user;
     }
 
     private function sanitizeProperties()
     {
-        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->userId = htmlspecialchars(strip_tags($this->userId));
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->name = htmlspecialchars(strip_tags($this->name));
