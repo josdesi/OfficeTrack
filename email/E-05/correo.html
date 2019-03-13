@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="modal/modal.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -52,7 +55,93 @@
 
     </div>
     </div>
-    <style id="estilo"></style>
+    <!-- Modal m-07-->
+  <div class="modal fade" id="m-07" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+          <div class="mdicon">  
+                <img src="modal/iconcancel.svg" alt="" width="150">
+            </div> 
+        </div>
+        <div class="modal-body" style="border-color:white">
+                
+                    
+                        <div class="mtitle">
+                            <h1 id="titulo">Registro cancelado</h1>
+                        </div>
+                        <div id="texto">
+                            <p class="modp">
+                                 
+                                
+                                    Tu registro a la suscripción ha sido cancelado con éxito
+    
+                            
+                            </p>
+                        </div>    
+                
+        </div>
+        <div class="modal-footer"style="border-color:white">
+                <div class="botonm">
+                        <button id="botm07" class="btn btn-block btn-lg btn-danger" type="button"
+                            name="action"> <img src="modal/iconcheck.svg" alt="" width="46px" data-dismiss="modal"> <h3 class="mod">Aceptar</h3></button>
+                        <br>
+                        
+                </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal m-07-->
+
+   <!-- Modal m-06-->
+   <div class="modal fade" id="m-06" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+          <div class="mdicon">  
+                <img src="modal/icongcheck.svg" alt="" width="150">
+            </div> 
+        </div>
+        <div class="modal-body" style="border-color:white">
+                
+                    
+                        <div class="mtitle">
+                            <h1 id="titulo">Muchas gracias</h1>
+                        </div>
+                        <div id="texto">
+                            <p class="modp">
+                                 
+                                
+                                Tu suscripción a nuestro boletín ha sido confirmada
+    
+                            
+                            </p>
+                        </div>    
+                
+        </div>
+        <div class="modal-footer"style="border-color:white">
+                <div class="botonm">
+                        <button id="botm06" class="btn btn-block btn-lg btn-danger" type="button"
+                            name="action"> <img src="modal/iconcheckg.svg" alt="" width="46px" data-dismiss="modal"> <h3 class="mod">Aceptar</h3></button>
+                        <br>
+                        
+                </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal m-06-->
 </body>
 
 </html>

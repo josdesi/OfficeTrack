@@ -1,0 +1,128 @@
+
+
+.mtitle{
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    /* background-color: yellow;   */
+}
+#texto{
+    padding: 0%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5vh;
+    /* background-color: red;  */
+    
+}
+#titulo{
+    
+    font-family: 'Rubik', sans-serif;
+    font-size: 46px;
+    font-weight: 400;
+    color: #007db6; 
+}
+
+
+
+
+
+
+
+.mdicon{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    
+    /* background-color: blue;  */
+}
+strong{
+    font-family: 'Rubik', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #007db6;
+}
+
+p.modp{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #66b1d3;
+    text-align: center;
+}
+
+
+
+
+
+
+.botonm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#botm05{
+    
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    width: 220px;
+    border-radius: 40px; 
+    border:none;
+    background-color: #007db6;
+   
+}
+
+#botm06{
+    
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    width: 220px;
+    border-radius: 40px; 
+    border:none;
+    background-color: #007db6;
+   
+}
+#botm07{
+    
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    width: 220px;
+    border-radius: 40px; 
+    border:none;
+    background-color: #007db6;
+   
+}
+
+#botm08{
+    
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    width: 220px;
+    border-radius: 40px; 
+    border:none;
+    background-color: #007db6;
+   
+}
+
+h3.mod{
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: white; 
+    margin: 5px 25px ;
+}
