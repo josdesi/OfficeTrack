@@ -6,7 +6,7 @@ registerFormComponent.
             users.createUser(username, email, password, function (response, fields) {
                 registerFormComponent.waitingForResponse = false;
                 $("#modal").modal('show')
-                console.log(response)
+                console.log("respuesta del peticion createUser", response)
                 if(response.status === 200){
                     registerFormComponent.modal.title = "Su registro se ha completado con exito"
                     registerFormComponent.modal.message = response.data.response

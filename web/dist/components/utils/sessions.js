@@ -12,7 +12,8 @@ var sessions = new Vue({
         login(username, password, callback) {
             let context = {
                 username,
-                password
+                password,
+                sessionType:'web'
             }
             axios({
                 method: 'post',
