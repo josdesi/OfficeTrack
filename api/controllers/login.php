@@ -143,8 +143,6 @@ function login()
         $res->setCode("RSP_00");
         $res->setMessage("Autorizado");
         echo json_encode($res);
-        header("Location: http://localhost/web/main.html");
-        die();
 
     } catch (Exception $e) {
         http_response_code(201);
