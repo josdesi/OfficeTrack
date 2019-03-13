@@ -5,17 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="modal.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="estilo.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="emailWraper">
-        <div class="emailHeader">
+    <div id="emailW">
+        <div id="emailH">
             <img class="ico" src="logoi.svg" width="236" height="56">
         </div>
-        <div class="emailBody">
-            <div class="message">
+        <div id="emailB">
+            <div id="mes">
                 <h3>
                     BIENVENIDO {{user_name}}
                 </h3>
@@ -26,7 +31,7 @@
                     Por favor, haz clic en el siguiente botón para confirmar tu cuenta.
                 </p>
                 <p>
-                    <a class="buttonrecover" href="{{dinamic_link}}">Confirmar registro</a>
+                    <a class="buttonrecover" href="{{dinamic_link}}" >Confirmar registro</a>
                 </p><br>
                 <p>
                     Si tienes alguna duda o sugerencia, comunicate con nosotros al correo:
@@ -41,7 +46,7 @@
             </div>
         </div>
 
-        <div class="emailFooter">
+        <div id="emailF">
             <div class="redessociales">
                 <img class="ico1" src="fb.svg" width="40" height="40">
                 <img class="ico2" src="in.svg" width="40" height="40">
@@ -62,7 +67,54 @@
 
     </div>
     </div>
-    <style id="estilo"></style>
+<!-- Modal m-02-->
+
+<div class="modal fade" id="m-02" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-color:white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+          <div id="dicon">  
+                <img src="iconmodal.svg" alt="" width="150">
+            </div> 
+        </div>
+        <div class="modal-body" style="border-color:white">
+                
+                    
+                        <div id="dtitle">
+                            <h1 id="titulo">Registro exitoso</h1>
+                        </div>
+                        <div id="texto">
+                            <p>
+                                 
+                                
+                                    Tu cuenta ha sido validada, Gracias por confiar en nosotros <br>
+                                    para encontrar tu espacio de trabajo.
+    
+                            
+                            </p>
+                        </div>    
+                
+        </div>
+        <div class="modal-footer"style="border-color:white">
+                <div id="boton">
+                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="button"
+                            name="action"> <img src="iconobotmod.svg" alt="" width="46px" data-dismiss="modal"> <h3 class="mod">Aceptar</h3></button>
+                        <br>
+                        
+                </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<!-- Modal m-02-->
+
 </body>
 
 </html>

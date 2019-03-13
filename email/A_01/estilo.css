@@ -5,17 +5,17 @@ body {
     margin: 0;
   }
 
-.emailWraper {
+#emailW {
     flex-direction: column;
     z-index: 99999;
     background: #e7f2f8;
-    max-width: 35rem;    
+    max-width: 45rem;    
     min-width: 5rem;
     margin: auto;
     display: flex;
 }
 
-.emailHeader {
+#emailH {
     width: 100%;
     margin: .8rem 0;
     
@@ -25,7 +25,7 @@ img {
     vertical-align: middle;
 }
 
-.emailBody {
+#emailB {
     z-index: 99999;
     background: #fff;
     padding: 2.5rem 2.5rem 1rem 2.5rem;
@@ -33,20 +33,20 @@ img {
     border-radius: .5rem .5rem 0 0;
 }
 
-.emailBody .message {
+#emailB .mes {
     display: inline-block;
     margin: 0 0 1rem 0;
 }
 
-.emailBody .message h3{
+#emailB .mes h3{
     margin: 1rem 0 2rem 0;
 }
 
-.emailBody .message p:last-child{
+#emailB .mes p:last-child{
     margin-bottom: 0;
 }
 
-.emailFooter {
+#emailF {
     background: #fff;
     padding: 0 2.5rem;
 }
