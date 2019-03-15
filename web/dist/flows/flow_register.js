@@ -8,11 +8,9 @@ registerFormComponent.
                 $("#modal").modal('show')
                 console.log("respuesta del peticion createUser", response)
                 if(response.status === 200){
-                    registerFormComponent.modal.title = "Su registro se ha completado con exito"
-                    registerFormComponent.modal.message = response.data.response
+                    $("#m-01").modal("show")
                 } else {
-                    registerFormComponent.modal.title = "No se pudo completar el registro"
-                    registerFormComponent.modal.message = response.data.response
+                    $("#m-01").modal("show")
                 }
             })
         })

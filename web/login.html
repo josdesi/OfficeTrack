@@ -18,12 +18,9 @@
     <title>Iniciar Sesión</title>
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
-    <link href="dist/css/valida.css" rel="stylesheet">
     <!-- Custom modals CSS -->
     <link href="dist/css/modal.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-      <!-- Validation Script -->
-    <script src="validations.js"></script>
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,15 +60,15 @@
                     <!-- Form -->
                     <div class="row">
                         <div class="col-12">
-                            <div id="loginFormComponent">
-                                <form v-on:submit.prevent="onSubmitEventListener" action=""
+                            <div id="">
+                                <form v-on:submit.prevent="onSubmitEventListener" id="loginFormComponent" action=""
                                     class="form-horizontal m-t-20" id="loginform" action="index.html">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="ti-user" id="ius"></i></span>
                                         </div>
-                                        <input v-model="username" type="text" id="username"class="form-control form-control-lg"
+                                        <input v-model="username" type="text" id="username" name="username" class="form-control form-control-lg"
                                             placeholder="Nombre de usuario" aria-label="Username"
                                             aria-describedby="basic-addon1" pattern="[A-Za-z0-9_-]{1,15}"
                                               required >
@@ -81,13 +78,13 @@
                                             <span class="input-group-text" id="basic-addon2"><i
                                                     class="ti-pencil" id="pen"></i></span>
                                         </div>
-                                        <input v-model="password" type="password" id="pswd" class="form-control form-control-lg" placeholder="Password" aria-label="Password"
+                                        <input v-model="password" type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password"
                                             aria-describedby="basic-addon1" minlength="6" required>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <input type="checkbox" name="checkbox" class="custom-control-input" id="customCheck1">
                                                 <label class="custom-control-label" for="customCheck1">Recordar</label>
                                                 <a href="javascript:void(0)" id="to-recover"
                                                     class="text-dark float-right"><i class="fa fa-lock m-r-5"></i>
@@ -235,12 +232,19 @@
     <!-- All Required js -->
     <!-- ============================================================== -->
     <script src="assets/libs/jquery/dist/jquery.min.js "></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
     <!-- ============================================================== -->
     <!-- Vue -->
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Validaciones -->
+    <!-- ============================================================== -->
+    <script src="validations/customMethods.js"></script>
+    <script src="validations/loginValidations.js"></script>
 
 
     <!-- ============================================================== -->

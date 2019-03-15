@@ -4,237 +4,134 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        img {
-            border-radius: 8px;
-        }
-    </style>
     <meta name="description" content="">
     <meta name="author" content="">
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Crear cuenta</title>
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Custom CSS -->
-    <link href="dist/css/style.css" rel="stylesheet">
-    <!-- Custom modals CSS -->
     <link href="dist/css/modal.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <!-- Validation Script -->
-    <script src="validations.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link href="dist/css/spinners.css" rel="stylesheet">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i"
+        rel="stylesheet">
 </head>
 
 <body>
-
-
-
-    <div class="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
-            </div>
+    <!-- SPINNER DE CARGAR -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
-            style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
-            <div class="auth-box">
-                <div>
-                    <div class="logo">
-                        <span class="db"><img src="assets/images/logo-icon-text.png" alt="logo"
-                                class="light-logo" /></span>
-                        <h5 class="font-medium m-b-20"></h5>
+    </div>
+
+    <!-- IMAGEN DE FONDO -->
+    <div class="position-fixed vw-100 vh-100" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center">
+    </div>
+
+
+    <div class="row align-items-center justify-content-center vh-100 vw-100 no-gutters">
+
+        <!-- CAJA -->
+        <div class="col bg-white p-4 justify-content-center rounded-lg" style="max-width: 400px;">
+
+            <!-- LOGO -->
+            <div class="text-center mb-4">
+                <img src="assets/images/logo-icon-text.png" alt="logo" class="rounded-lg" />
+            </div>
+
+
+            <!-- FORMULATIO -->
+            <form v-on:submit="onSubmitEventListener" id="registerFormComponent">
+                <!-- NOMBRE DE USUARIO -->
+                <div class="form-group">
+                    <input v-model="username" id="username" name="username" class="form-control form-control-lg"
+                        type="text" placeholder="Nombre de usuario">
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <input v-model="email" id="email" name="email" class="form-control form-control-lg"
+                        type="email" placeholder="Correo electrónico">
+                </div>
+
+                <!-- CONTRASEÑA -->
+                <div class="form-group">
+                    <input v-model="password" id="password" name="password" class="form-control form-control-lg"
+                        type="password" placeholder="Contraseña">
+                </div>
+
+                <!-- CONFIRMACION DE CONTRASEÑA -->
+                <div class="form-group">
+                    <input v-model="passwordConfirmation" id="password_confiramtion" name="password_confiramtion"
+                        class="form-control form-control-lg" type="password" required
+                        placeholder="Confirmar contraseña">
+                </div>
+
+                <!-- TERMINOS Y CONDICIONES -->
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input v-model="termsAndConditions" type="checkbox" class="custom-control-input"
+                            id="terms" name="terms">
+                        <label class="custom-control-label" for="terms">Acepto <a href="javascript:void(0)">Términos y
+                                condiciones</a></label>
                     </div>
-                    <!-- Form -->
+                </div>
+
+                <!-- BOTONES -->
+                <div class="form-group">
+                    <!-- Boton crear cuenta -->
+                    <button class="btn btn-block btn-lg btn-primary" data-toggle="modal">Crear
+                        cuenta</button>
+                </div>
+            </form>
+
+            <!-- ¿YA TIENES UNA CUENTA? -->
+            <p class="text-center m-0">
+                ¿Ya tienes cuenta?
+                <a href="login.html" class="text-info m-l-5 ">
+                    <b>Iniciar sesión</b>
+                </a>
+            </p>
+
+        </div>
+    </div>
+
+    <!-- Modal m-01 -->
+    <div id="m-01" class="modal modal-font" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <div class="row">
-                        <div class="col-12">
-                            <div submit="return false" id="registerFormComponent" novalidate>
-                                <div class="form-group">
-                                    <input v-model="username.value"
-                                        v-bind:class="{ invalid : invalidUsernameError && username.validationMessage }"
-                                        v-on:input.prevent="username.validationMessage = true" id="username"
-                                        class="form-control form-control-lg" type="text" required
-                                        placeholder="Nombre de usuario">
-                                    <label v-if="invalidUsernameError && username.validationMessage"
-                                        class="invalid-text">{{invalidUsernameError}}</label>
-                                </div>
-                                <div class="form-group">
-                                    <input v-model="email.value"
-                                        v-bind:class="{ invalid : invalidEmailError && email.validationMessage }"
-                                        v-on:change.prevent="email.validationMessage = true" id="email"
-                                        class="form-control form-control-lg" type="email" required
-                                        placeholder="Correo electrónico">
-                                    <label v-if="invalidEmailError && email.validationMessage"
-                                        class="invalid-text">{{invalidEmailError}}</label>
-                                </div>
-                                <div class="form-group">
-                                    <input v-model="password.value"
-                                        v-on:change.prevent="password.validationMessage = true"
-                                        v-bind:class="{ invalid : invalidPasswordError && password.validationMessage }"
-                                        id="password" class="form-control form-control-lg" type="password" required
-                                        placeholder="Contraseña" minlength="6">
-                                    <label v-if="invalidPasswordError && password.validationMessage"
-                                        class="invalid-text">{{invalidPasswordError}}</label>
-                                </div>
-                                <div class="form-group">
-                                    <input v-model="passwordConfirmation.value"
-                                        v-bind:class="{ invalid : invalidPasswordConfirmationError && passwordConfirmation.validationMessage }"
-                                        v-on:input.prevent="passwordConfirmation.validationMessage = true"
-                                        class="form-control form-control-lg" type="password" required
-                                        pattern="[A-Za-z0-9_-]{1,15}" placeholder="Confirmar contraseña" minlength="6">
-                                    <label
-                                        v-if="invalidPasswordConfirmationError && passwordConfirmation.validationMessage"
-                                        class="invalid-text">{{invalidPasswordConfirmationError}}</label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input v-model="termsAndConditions.value" type="checkbox"
-                                            class="custom-control-input" id="customCheck1" required>
-                                        <label class="custom-control-label" for="customCheck1">Acepto <a
-                                                href="javascript:void(0)">Términos y condiciones</a></label>
-                                        <label
-                                            v-if="termsAndConditions.validationMessage && termsAndConditions.value === false"
-                                            class="invalid-text">Debes aceptar los terminos y condiciones</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <button v-if="waitingForResponse" class="btn btn-block btn-lg btn-info"
-                                        type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status"
-                                            aria-hidden="true"></span>
-                                        <span class="sr-only">Loading...</span>
-                                    </button>
-                                    <button v-on:click="onSubmitEventListener" v-else class="btn btn-block btn-lg btn-info ">Crear
-                                        cuenta</button>
-                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="false">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    {{modal.message}}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-block btn-lg btn-info"
-                                                        data-dismiss="modal">Entiendo</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12 text-center">
-                                        ¿Ya tienes cuenta? <a href="login.html " class="text-info m-l-5 "><b>Iniciar
-                                                sesión</b></a>
-                                    </div>
-                                </div>
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Registro exitoso</h1>
+                            <p>En breve recibirás un correo para activar tu cuenta</p>
+                            <p class="m-0">Si no recibiste un correo de activación</p>
+                            <P>haz <a href="">clic aquí</a> para reenviar</p>
+                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
+                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Modal m-01 -->
-  <div class="modal fade" id="m-01" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="border-color:white">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <div id="dicon">  
-                <img src="assets/images/modals/miconcheck.svg" alt="" width="150">
-            </div> 
-        </div>
-        <div class="modal-body" style="border-color:white">
-                
-                    
-                        <div id="dtitle">
-                            <h1 id="titulo">Registro exitoso</h1>
-                        </div>
-                        <div id="texto">
-                            <p>
-                                 
-                                
-                                En breve recibirás un correo para activar tu cuenta<br><br>
-    
-                                Si no recibiste un correo de activación<br>
-                                haz  <a href="">clic aquí</a>  para reenviar
-    
-                            
-                            </p>
-                        </div>    
-                
-        </div>
-        <div class="modal-footer"style="border-color:white">
-                <div id="boton">
-                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="button"
-                            name="action"> <img src="assets/images/modals/miconcheckbot.svg" alt="" width="46px" data-dismiss="modal"> <h3>Aceptar</h3></button>
-                        <br>
-                        
-                </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-<!--/ Modal m-01 -->
-            <!-- ============================================================== -->
-            <!-- Login box.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper scss in scafholding.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper scss in scafholding.scss -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right Sidebar -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right Sidebar -->
-            <!-- ============================================================== -->
         </div>
     </div>
-
-    <style>
-        .invalid {
-            border-color: red !important;
-            border-style: solid !important;
-            border-width: 1.5 !important;
-            background-color: #FFEFF0 !important;
-        }
-
-        .valid {
-            border-color: #9fcbe1;
-            border-style: solid;
-            border-width: 1.5;
-            background-color: #ecf5f9;
-        }
-
-        .invalid-text {
-            font-size: .8rem;
-            margin: .5rem 0 0 0;
-            font-weight: unset !important;
-            color: red;
-        }
-    </style>
 
     <!-- ============================================================== -->
     <!-- Configuration files -->
@@ -244,9 +141,10 @@
 
 
     <!-- ============================================================== -->
-    <!-- All Required js -->
+    <!-- jQuery AND jQuery Validate -->
     <!-- ============================================================== -->
     <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
 
     <!-- ============================================================== -->
@@ -254,6 +152,12 @@
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
+
+    <!-- ============================================================== -->
+    <!-- Validaciones -->
+    <!-- ============================================================== -->
+    <script src="validations/customMethods.js"></script>
+    <script src="validations/registerValidations.js"></script>
 
     <!-- ============================================================== -->
     <!-- Vuex -->
@@ -299,9 +203,16 @@
     <script src="dist/flows/flow_register.js"></script>
 
 
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js "></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
+    <!-- ============================================================== -->
+    <!-- Bootstrap -->
+    <!-- ============================================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->
