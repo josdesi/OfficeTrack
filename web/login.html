@@ -16,10 +16,15 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Iniciar Sesión</title>
+     <!-- Bootstrap styles -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/style.min.css" rel="stylesheet"> 
     <!-- Custom modals CSS -->
     <link href="dist/css/modal.css" rel="stylesheet">
+     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -176,51 +181,31 @@
     </div>
     
     <!-- Modal m-03 -->
-  <div class="modal fade" id="m-03" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="border-color:white">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- <h4 class="modal-title">Modal Header</h4> -->
-          <div id="dicon">  
-                <img src="assets/images/modals/repass.svg" alt="" width="150">
-            </div> 
-        </div>
-        <div class="modal-body" style="border-color:white">
-                
-                    
-                        <div id="dtitle">
-                            <h1 id="titulo">Restablecer contraseña</h1>
-                        </div>
-                        <div id="texto">
-                            <p>
-                                 
-                                
-                                    El correo con las instrucciones para reestablecer <br>
-                                    tu contraseña ya ha sido enviado, <br>
-                                        revisa tu bandeja de entrada
-    
-                            
-                            </p>
-                        </div>    
-                
-        </div>
-        <div class="modal-footer"style="border-color:white">
-                <div id="boton">
-                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="button"
-                            name="action"> <img src="assets/images/modals/miconcheckbot.svg" alt="" width="46px" data-dismiss="modal"> <h3>Aceptar</h3></button>
-                        <br>
-                        
+   <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col d-flex flex-column align-items-center justify-content-center">
+                        <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
+                        <h1 class="mb-4">Restablecer contraseña</h1>
+                        <p>El correo con las instrucciones para reestablecer</p>
+                        <p class="m-0">tu contraseña ya ha sido enviado,</p>
+                        <P>revisa tu bandeja de entrada</p>
+                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                            <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                            <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                        </button>
+                    </div>
                 </div>
+            </div>
         </div>
-      </div>
-      
     </div>
-  </div>
-  
-
+</div>
 <!-- Modal m-03 -->
     <!-- ============================================================== -->
     <!-- Configuration files -->

@@ -5,64 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="estilo.css" rel="stylesheet">
-    <title>Document</title>
+     <!-- Favicon icon -->
+     <link rel="icon" type="image/png" sizes="16x16" href="../../web/assets/images/favicon.png">
+     <title>Correo</title>
+      <!-- Bootstrap styles -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+     <!-- Custom CSS -->
+     <link href="estilo.css" rel="stylesheet">
+     <!-- Custom modals CSS -->
+     <link href="modal.css" rel="stylesheet">
+      <!-- fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="emailWraper">
-        <div class="emailHeader">
-            <img class="ico" src="logoi.svg" width="236" height="56">
-        </div>
-        <div class="emailBody">
-            <div class="message">
-                <h3>
-                    BIENVENIDO {{user_name}}
-                </h3>
-                <p>
-                    Gracias por confiar en nosotros para encontrar tu espacio de trabajo.
-                </p>
-                <p>
-                    Por favor, haz clic en el siguiente botón para confirmar tu cuenta.
-                </p>
-                <p>
-                    <a class="buttonrecover" href="{{dinamic_link}}">Confirmar registro</a>
-                </p><br>
-                <p>
-                    Si tienes alguna duda o sugerencia, comunicate con nosotros al correo:
-                </p>
-                <p>
-                    officetrack@lakmisystems.com.mx
-                </p>
-                <br>
-                <p>
-                    Este correo contiene información privada e intransferible para tu cuenta, no lo compartas.
-                </p>
-            </div>
-        </div>
-
-        <div class="emailFooter">
-            <div class="redessociales">
-                <img class="ico1" src="fb.svg" width="40" height="40">
-                <img class="ico2" src="in.svg" width="40" height="40">
-                <img class="ico3" src="tw.svg" width="40" height="40">
-            </div>
-            
-            <div class="ilustration">
-                <img src="edif.svg" width="360" height="200">
-                <img src="sep.svg" width="500">
-            </div>
-            <div class="rights">
-                    <a href="">Políticas de privacidad</a>
-                    <span class="cop">Copyright ® Lakmi Systems 2019</span>
+    <div class="container-fluid">
+        
+        <div class="row row1 justify-content-md-center">
+            <div class="col-12 col-md-5 ">
+                    
+                <div class="row">
+                    <div class="col1 p-0 my-3 col d-flex flex-column justify-content-start align-items-start ">
+                    <img class="ico" src="logoi.svg" width="236" height="56">
+                    </div>
                 </div>
-         
+
+                    <div class="row">
+                            <div class="col2  py-5 px-5 col d-flex flex-column align-items-start justify-content-center">
+                                    
+                                <h1 class="mt-3 mb-4">
+                                    BIENVENIDO {{user_name}}
+                                </h1>
+                                                       
+                                     
+                                <p>
+                                    Gracias por confiar en nosotros para encontrar tu espacio de trabajo.
+                                </p>
+                                <p>
+                                    Por favor, haz clic en el siguiente botón para confirmar tu cuenta.
+                                </p>
+
+                                
+                                    <div class="buttond" >
+                                        <p>
+                                            <a class="buttonrecover btn btn-outline-primary align-items-center px-4 py-3 my-2 rounded-lg justify-content-center "  href="{{dinamic_link}}" >Confirmar registro</a>
+                                        </p>
+                                    </div>
+                                
+                                <p>
+                                    Si tienes alguna duda o sugerencia, comunicate con nosotros al correo:
+                                </p>
+                                <p>
+                                    officetrack@lakmisystems.com.mx
+                                </p>
+                                            
+                                <p>
+                                    Este correo contiene información privada e intransferible para tu cuenta, no lo compartas.
+                                </p>
+                                        
+                                   
+                            
+                                    
+                                <div class="redessociales mt-3">
+                                    <img class="ico1" src="fb.svg" width="45" height="45">
+                                    <img class="ico2" src="in.svg" width="45" height="45">
+                                    <img class="ico3" src="tw.svg" width="45" height="45">
+                                </div>
+                                        
+                                <div class="ilustration">
+                                    <img src="edif.svg" width="360" height="200">
+                                    <img src="sep.svg" width="500">
+                                </div>
+                                <div class="rights mt-2">
+                                    <a href="">Políticas de privacidad</a>
+                                    <span class="cop">Copyright ® Lakmi Systems 2019</span>
+                                </div>
+                                    
+                            </div>
+                    </div>
+            </div>
+        </div>
+           
+           
+        
+    
+<!-- Modal m-02-->
 
 
-
+<div id="m-02" class="modal modal-font" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col d-flex flex-column align-items-center justify-content-center">
+                        <img src="iconmodal.svg" class="mt-4 mb-4" width="150">
+                        <h1 class="mb-4">Registro exitoso</h1>
+                        <p>Tu cuenta ha sido validada, Gracias por confiar en nosotros</p>
+                        <p class="m-0">para encontrar tu espacio de trabajo.</p>
+                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                            <img src="iconobotmod.svg" width="46px">
+                            <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    <style id="estilo"></style>
+</div>
+<!-- Modal m-02-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

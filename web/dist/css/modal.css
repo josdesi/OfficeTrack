@@ -17,3 +17,14 @@
     color: #66b1d3;
     text-align: center;
 }
+
+.btn-modal{
+    background-color: #007db6;
+    border-color: #007db6;
+}
+
+.btn-modal:hover{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}

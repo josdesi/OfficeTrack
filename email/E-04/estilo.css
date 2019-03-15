@@ -1,177 +1,43 @@
 body {
     background-color: #e7f2f8;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: .9rem;
     margin: 0;
+    padding: 0;
   }
+  
 
-.emailWraper {
-    flex-direction: column;
-    z-index: 99999;
-    background: #e7f2f8;
-    max-width: 35rem;    
-    min-width: 5rem;
-    margin: auto;
-    display: flex;
-}
-
-.emailHeader {
-    width: 100%;
-    margin: .8rem 0;
-    
-}
-
-img {
-    vertical-align: middle;
-}
-
-.emailBody {
-    z-index: 99999;
-    background: #fff;
-    padding: 2.5rem 2.5rem 1rem 2.5rem;
-    box-sizing: border-box;
-    border-radius: .5rem .5rem 0 0;
-}
-
-.emailBody .message {
-    display: inline-block;
-    margin: 0 0 1rem 0;
-}
-
-.emailBody .message h3{
-    margin: 1rem 0 2rem 0;
-}
-
-.emailBody .message p:last-child{
-    margin-bottom: 0;
-}
-
-.emailFooter {
-    background-color: #ffffff; 
+  .col2{
+    background-color: white;
     background-image: url("fondo.svg");
     background-size: 210px; 
     background-repeat: no-repeat;
-    background-position: 100% 0%; 
-    /* background: red; */
-    padding: 0 2.5rem;
-}
+    background-position: 105% 105%; 
+  }
+ 
+  h1{
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+  }
 
-.redessociales{
-    /* background-color: red; */
+ 
+
+  .redessociales{
     display: flex;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .redessociales img{
-    margin-top: 3rem;
     margin-right: 1rem
 }
 
 
 
 
+
 .rights{
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    margin: 3rem 0;
+    display: block;
+    /* flex-wrap: wrap;
+    justify-content:flex-start; */
+    width: 100%;
 }
-
-
-.lakmiFooter{
-    display: flex;
-    padding: 2rem 0;
-    align-items: center;
-}
-
-
-.bold {
-    font-weight: 800 !important;
-}
-
-.lakmiLogo{
-    margin-right: 2rem;
-    max-width: 100%;
-}
-           
-.lakmiInfo p{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    font-size: .55rem;
-}
-
-.lakmiInfo p:first-child{
-    margin: 0;
-    font-size: .7rem;
-}
-
-.lakmiInfo p:nth-child(2){
-    margin-bottom: .7rem;
-    font-size: .7rem;
-}
-
-
-
-div.ico1 {
-    position: relative;
-    left: 0px;
-    width:  40px;
-    height: 40px; 
-    background-image: url("fb.svg");
-}
-div.ico2 {
-    position: relative;
-    left: 10px;
-    width:  40px;
-    height: 40px; 
-    background-image: url("in.svg");
-}
-div.ico3 {
-    position: relative;
-    left: 20px;
-    width:  40px;
-    height: 40px; 
-    background-image: url("tw.svg");
-       
-            
-        }
-div.ico1:hover {
-    position: relative;
-    left: 0px;
-    background-image: url("fba.svg");        
-            
-    }
-        
-div.ico2:hover {
-    position: relative;
-    left: 10px;
-    background-image: url("ina.svg");        
-            
-        }
-div.ico3:hover {
-    position: relative;
-    left: 20px;
-    background-image: url("twa.svg"); 
-            
-        }
-div.ico1:active {
-    position: relative;
-    left: 0px;
-    background-image: url("fbh.svg");        
-            
-    }
-        
-div.ico2:active {
-    position: relative;
-    left: 10px;
-    background-image: url("inh.svg");        
-            
-        }
-div.ico3:active {
-    position: relative;
-    left: 20px;
-    background-image: url("twh.svg"); 
-            
-        }
