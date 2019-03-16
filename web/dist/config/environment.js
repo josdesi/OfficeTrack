@@ -9,6 +9,8 @@ var env = {
     /** Local **/
    loginURL: 'http://localhost/api/controllers/login.php',
    usersURL: 'http://localhost/api/controllers/users.php',
+   logoutURL: 'http://localhost/api/controllers/logout.php',
    serverURL: 'http://localhost:9091',
+   
 
 };

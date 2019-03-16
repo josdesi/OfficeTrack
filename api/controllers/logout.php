@@ -92,8 +92,6 @@ function logout()
         $res->setCode("RSP_00");
         $res->setMessage("La sesión se ha cerrado correctamente");
         echo json_encode($res);
-        header("Location: http://localhost/web/login.html");
-        die();
 
     } catch (Exception $e) {
         http_response_code(201);
