@@ -1,7 +1,7 @@
 logoutTopBarElement.onClickLogout(function () {
-    sessions.logout(function (response,token) {
+    sessions.logout(function (response) {
         if (response.status === 200){
-            sessions.resetStateStore(token)
+            store.dispatch('resetStore')
             location.href='login.html'
         }
     })

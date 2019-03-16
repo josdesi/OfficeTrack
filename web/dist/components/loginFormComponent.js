@@ -14,7 +14,6 @@ var loginFormComponent = new Vue({
         username: this.username,
         password: this.password,
       }
-      console.log("parametro fields de registerForm.OnSubmitEventListener()",fields)
       if (
         $("#loginFormComponent").valid()
       ) {
