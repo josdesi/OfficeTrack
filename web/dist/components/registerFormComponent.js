@@ -4,13 +4,8 @@ var registerFormComponent = new Vue({
     username: '',
     email: '',
     password:'',
-    passwordConfirmation: '',
     termsAndConditions: false,
     OnSubmitEventListener: undefined,
-    waitingForResponse: false,
-    modal:{
-      message: '',
-    }
   },
   store,
   computed: {
@@ -20,9 +15,9 @@ var registerFormComponent = new Vue({
       ev.preventDefault();
       ev.stopPropagation();
       let fields = {
-        username: this.username.value,
-        email: this.email.value,
-        password: this.password.value,
+        username: this.username,
+        email: this.email,
+        password: this.password,
       }      
       if (
         $("#registerFormComponent").valid()

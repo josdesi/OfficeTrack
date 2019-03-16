@@ -5,36 +5,23 @@ var URL_LOGOUT = env.logoutURL;
 
 var sessions = new Vue({
     el: "#component_register",
-    data: {
-
-    },
     store,
     methods: {
-        login(username, password, callback) {
-            let context = {
-                username,
-                password,
-                sessionType:'web'
-            }
+        login(fields, callback, callbackOnFails) {
             axios({
                 method: 'post',
                 url: URL_LOGIN,
-                data: context,
+                data: fields,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
                 .then(function (response) {
-                    console.log("Respuesta del mentodo session.login()", response)
-                    callback(response, context)
+                    callback(response, fields)
                 })
-                .catch(error => console.error(error))
+                .catch(callbackOnFails)
         },
-        saveBearerToken(token){
-            this.$store.dispatch('saveBearerToken', token)
-        },
-        logout(callback){
-            this.$store.dispatch('InitialiseStore')
+        logout(callback, callbackOnFails) {
             let tokenActive = this.$store.getters.getBearerToken;
             axios({
                 method: 'post',
@@ -44,14 +31,10 @@ var sessions = new Vue({
                     'Authorization': 'Bearer ' + tokenActive,
                 }
             })
-            .then(function (response){
-                console.log("Respuesta del método session.logout()", response)
-                callback(response, tokenActive)
-            })
-            .catch(error => console.error(error))
+                .then(function (response) {
+                    callback(response, tokenActive)
+                })
+                .catch(callbackOnFails)
         },
-        resetStateStore(token){
-            this.$store.dispatch('resetStore', token);
-        }
     }
 })
