@@ -31,7 +31,7 @@ var mutations = (function (a, b) {
     state.userInfo.motherSurname = '';
     state.session.bearerToken = '';
   },
-  initialiseStore(state) {
+  initialise_Store(state) {
     // Check if the ID exists
     if (localStorage.getItem('store')) {
       // Replace the state object with the stored item
@@ -51,6 +51,9 @@ var actions = (function (a, b) {
 })({
   resetStore: (context, payload) => {
     context.commit("RESET_STORE", payload);
+  },
+  InitialiseStore(context){
+    context.commit("initialise_Store");
   }
 }, actions);
 
@@ -66,3 +69,4 @@ store.subscribe((mutation, state) => {
   // Store the state object as a JSON string
   localStorage.setItem('store', JSON.stringify(state));
 });
+

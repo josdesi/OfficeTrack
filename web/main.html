@@ -219,7 +219,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Preferencias</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="#" @click="logoutEvaluate" id="logoutTopBarElement">
                                         <i class="fa fa-power-off m-r-5 m-l-5"></i> Salir</a>
                                     <div class="dropdown-divider"></div>
                                 </div>
@@ -366,6 +366,61 @@
     <script src="dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="dist/js/custom.min.js"></script>
+
+    <!-- Modal m-03 -->
+    <!-- ============================================================== -->
+    <!-- Configuration files -->
+    <!-- ============================================================== -->
+    <script src="dist/config/environment.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Vue -->
+    <!-- ============================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Vuex -->
+    <!-- ============================================================== -->
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js "></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Axios -->
+    <!-- ============================================================== -->
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Actions -->
+    <!-- ============================================================== -->
+    <script src="dist/vuex/actions/sessionActions.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Store -->
+    <!-- ============================================================== -->
+    <script src="dist/vuex/store-common.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Utils -->
+    <!-- ============================================================== -->
+    <script src="dist/components/utils/sessions.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Vue component -->
+    <!-- ============================================================== -->
+    <script src="dist/components/logoutTopBarElement.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Flows -->
+    <!-- ============================================================== -->
+    <script src="dist/flows/flow_logout.js"></script>
+
 </body>
 
 </html>
