@@ -42,11 +42,11 @@
     <div class="row align-items-center justify-content-center vh-100 vw-100 no-gutters">
 
         <!-- CAJA -->
-        <div class="col bg-white p-4 justify-content-center rounded-lg" style="max-width: 400px;">
+        <div class="col bg-white ml-3 mr-3 p-4 justify-content-center rounded-lg" style="max-width: 21.9rem;">
 
             <!-- LOGO -->
             <div class="text-center mb-4">
-                <img src="assets/images/logo.svg" alt="logo" class="rounded-lg" width="190px"/>
+                <img src="assets/images/logo.svg" alt="logo" class="rounded-lg" style="max-width: 11.8rem;"/>
             </div>
 
 
@@ -54,26 +54,26 @@
             <form v-on:submit="onSubmitEventListener" id="registerFormComponent">
                 <!-- NOMBRE DE USUARIO -->
                 <div class="form-group">
-                    <input v-model="username" id="username" name="username" class="form-control form-control-lg"
+                    <input v-model="username" id="username" name="username" class="form-control"
                         type="text" placeholder="Nombre de usuario">
                 </div>
 
                 <!-- EMAIL -->
                 <div class="form-group">
-                    <input v-model="email" id="email" name="email" class="form-control form-control-lg"
+                    <input v-model="email" id="email" name="email" class="form-control"
                         type="email" placeholder="Correo electrónico">
                 </div>
 
                 <!-- CONTRASEÑA -->
                 <div class="form-group">
-                    <input v-model="password" id="password" name="password" class="form-control form-control-lg"
+                    <input v-model="password" id="password" name="password" class="form-control"
                         type="password" placeholder="Contraseña">
                 </div>
 
                 <!-- CONFIRMACION DE CONTRASEÑA -->
                 <div class="form-group">
                     <input v-model="passwordConfirmation" id="password_confiramtion" name="password_confiramtion"
-                        class="form-control form-control-lg" type="password" required
+                        class="form-control" type="password" required
                         placeholder="Confirmar contraseña">
                 </div>
 
@@ -90,7 +90,7 @@
                 <!-- BOTONES -->
                 <div class="form-group">
                     <!-- Boton crear cuenta -->
-                    <button class="btn btn-block btn-lg btn-primary" data-toggle="modal">Crear
+                    <button class="btn btn-block btn-primary" data-toggle="modal">Crear
                         cuenta</button>
                 </div>
             </form>
@@ -139,7 +139,6 @@
     <script src="dist/config/environment.js"></script>
 
 
-
     <!-- ============================================================== -->
     <!-- jQuery AND jQuery Validate -->
     <!-- ============================================================== -->
@@ -158,6 +157,7 @@
     <!-- ============================================================== -->
     <script src="validations/customMethods.js"></script>
     <script src="validations/registerValidations.js"></script>
+
 
     <!-- ============================================================== -->
     <!-- Vuex -->
