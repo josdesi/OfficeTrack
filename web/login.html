@@ -50,12 +50,12 @@
     <div class="position-fixed vw-100 vh-100" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center">
     </div>
 
+    
+    <div class="auth-wrapper auth-box row  align-items-center justify-content-center vh-100 vw-100 no-gutters">
 
-    <div class="auth-wrapper row align-items-center justify-content-center vh-100 vw-100 no-gutters">
-
-       <div class="auth-box">
+        <div>
        <!-- CAJA -->
-        <div id="loginform" class="col bg-white p-4 justify-content-center rounded-lg" style="max-width: 400px;">
+        <div id="loginform" class="col bg-white p-4 justify-content-center rounded-lg" style="min-width: 400px; max-width: 400px;">
 
             <!-- LOGO -->
             <div class="text-center mb-4">
@@ -109,7 +109,7 @@
             <!-- Redes Sociales -->                    
             <div class="form-group">
                     <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                            <div class="col-md-12 m-t-10 text-center">
                             <a href="javascript:void(0)" class="btn  btn-facebook"
                                 data-toggle="tooltip" title=""
                                 data-original-title="Iniciar sesión con Facebook"> <i
@@ -137,7 +137,7 @@
                          
                         <!-- Back Button --> 
                         <div class="backb">
-                            <a href="login.html"> <img src="assets/images/backbutton.svg" width="35px" height="35px"></a> 
+                            <a href="javascript:void(0)" id="to-recover1"><img src="assets/images/backbutton.svg" width="35px" height="35px"></a> 
                         </div>
                         <!-- LOGO -->
                             <div class="text-center mb-4">
@@ -169,7 +169,7 @@
                         
                     </div>
 
-                </div>
+                </div>       
     </div>         
             <!-- ============================================================== -->
             <!-- Login box.scss -->
@@ -186,7 +186,7 @@
             <!-- ============================================================== -->
             <!-- Right Sidebar -->
             <!-- ============================================================== -->
-       
+    
     
     <!-- Modal m-03 -->
    <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog">
@@ -299,6 +299,18 @@
         $('#to-recover').on("click", function () {
             $("#loginform").slideUp();
             $("#recoverform").fadeIn();
+        });
+    </script>
+
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+        // ==============================================================
+        // Login and Recover Password
+        // ==============================================================
+        $('#to-recover1').on("click", function () {
+            $("#recoverform").slideUp();
+            $("#loginform").fadeIn();
         });
     </script>
     <script src="main.js"></script>
