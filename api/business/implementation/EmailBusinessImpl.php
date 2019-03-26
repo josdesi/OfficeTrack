@@ -104,4 +104,45 @@ class EmailBusinessImpl
         }
     }
 
+    public function sendRecoverPassword($email, $username, $emailToken){
+        try {
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+            $recoverLink = "http://localhost/web/changepass.html?token=$emailToken";
+
+            //Cargar estilos para el correo (.css)
+            $cssPath = realpath("../../email/E-03/estilo.css"); //ruta de archivo css
+            $css = file_get_contents($cssPath); //leer contenido de css
+
+            //Cargar plantilla para el correo (.html)
+            $templatePath = realpath("../../email/E-03/correo.html");
+            $template = file_get_contents($templatePath);
+
+            //Cambiar username a mayusculas
+            $username = strtoupper($username);
+
+            $emailBody = $template;
+
+            $emailBody = str_replace('<style id="estilo"></style>', "<style>$css</style>", $emailBody); //Remplaza CSS
+            $emailBody = str_replace('{{dinamic_link}}', $recoverLink, $emailBody); // Remplaza Link de confirmación
+            $emailBody = str_replace('{{user_name}}', $username, $emailBody); // Remplaza Username
+
+            //Agrega destinatario-Remitente
+            $this->mail->setFrom('erasmo.mendoza@lakmisystems.com.mx', 'Office Track'); // Añade remitente
+            $this->mail->addAddress($email); // Añade destinatario
+
+            //headers
+            $this->mail->isHTML(true); // Configura formato HTML para el email
+            $this->mail->CharSet = 'UTF-8'; // Configura chartset utf.8
+
+            // Contenido
+            $this->mail->Subject = "Recuperar contraseña"; // Añade asunto
+            $this->mail->Body = $emailBody; // Añade el cuerpo del correo
+
+            $this->mail->send();
+
+        } catch (Exception $e) {
+            throw new Exception("El mensaje no pudo ser enviado,");
+        }
+    }
+
 }

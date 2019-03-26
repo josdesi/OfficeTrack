@@ -27,4 +27,22 @@ class TokenBusinessImpl
             throw new Exception("Token invalido");            
         }
     }
+
+    public function createRecoverToken($userEmail, $tokenType){
+        $payload = array(
+            "data" => array(
+                "tokenType"=> $tokenType,
+                "email" => $userEmail,
+            )
+        );
+        return JWT::encode($payload, "example_key");
+    }
+
+    public function decodeRecoverToken($token){
+        try {
+            return $decoded = JWT::decode($token, "example_key", array('HS256'));
+        } catch (Exception $e) {
+            throw new Exception("Token invalido");            
+        }   
+    }
 }
