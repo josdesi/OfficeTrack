@@ -103,15 +103,54 @@ h3{
     justify-content: center;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 990px) {
+    #card{
+        background-size: 250px;
+        background-position: 106% 106%;
+         }
+    #dcopy {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        }  
+    #dcopy p{
+            text-align: center;
+            font-size: 26px;
+        }  
+        strong {
+            font-size: 26px;
+        }
+    #card{
+        height: auto;
+    }
+
+    #dicon{
+        height: 140px;
+        width: 140px;
+    }
+
+
+    #rmail{
+        width: 60vw;
+        }
+    }
+
+@media only screen and (max-width: 640px) {
+    #card{
+        background-size: 150px;
+        background-position: 104% 104%;
+    }
+    #dicon{
+        display: none;
+    }
     
-#card{
-    height: auto;
-}
+    #rmail{
+        width: 80vw;
+    }
+    #dcopy p{
+        font-size: 24px;
+    }
 
-#dicon{
-    height: 140px;
-    width: 140px;
-}
-
-}
+    strong {
+        font-size: 24px;
+    }
+    }
