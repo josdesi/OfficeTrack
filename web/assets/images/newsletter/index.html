@@ -13,24 +13,14 @@
          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  
      <!-- Custom CSS -->
-     <link href="dist/css/landing.css" rel="stylesheet">
+     <link href="style.css" rel="stylesheet">
      <!-- Custom modals CSS -->
-     <link href="dist/css/modal.css" rel="stylesheet">
+     <link href="modal/modal.css" rel="stylesheet">
       <!-- fonts -->
      <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 </head>
 
 <body>
-
-    
-        <!-- SPINNER DE CARGAR
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div> -->
-
     <section>
         <div id="card">
             <div id="dtitle">
@@ -39,7 +29,7 @@
             <div id="news1">
                 <div id="dcopy">
                     <div id="dicon">
-                        <img src="assets/images/newsletter/iconnews.svg" alt="" width="78">
+                        <img src="iconnews.svg" alt="" width="78">
                     </div>
                     <p><strong>Suscríbete</strong> si quieres recibir nuestra
                         <br>información mas relevante y destacada
@@ -59,7 +49,7 @@
                             </div>
                             <div class="boton">
                                 <button v-on:click="onSubmitEventListener" id="bot" class="btn btn-block btn-lg btn-danger" type="submit" name="action">
-                                    <img src="assets/images/newsletter/iconboton.svg" alt="" width="46px">
+                                    <img src="iconboton.svg" alt="" width="46px">
                                     <h3>Suscribirse</h3>
                                 </button>
                                 <br>
@@ -85,11 +75,11 @@
                     </button>
                     <div class="row">
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/iconmodal.svg" class="mt-4 mb-4" width="150">
+                            <img src="modal/iconmodal.svg" class="mt-4 mb-4" width="150">
                             <h1 class="mb-4">Muchas gracias</h1>
                             <p>Te has suscrito correctamente a nuestro boletín <br> En breve recibiras la confirmación por correo electrónico.</p>
                             <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
-                                <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                <img src="modal/iconcheck.svg" width="46px">
                                 <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                             </button>
                         </div>
@@ -115,12 +105,12 @@
                     </button>
                     <div class="row">
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/iconmodal1.svg" class="mt-4 mb-4" width="150">
+                            <img src="modal/iconmodal1.svg" class="mt-4 mb-4" width="150">
                             <h1 class="mb-4">Suscripción cancelada</h1>
                             <p>El correo electrónico ingresado <br>
                                 ya se encuentra registrado.</p>
                             <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
-                                <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                <img src="modal/iconcheck.svg" width="46px">
                                 <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                             </button>
                         </div>
@@ -148,7 +138,7 @@
                 background-color: #ecf5f9;
             }
         </style>
-        <!-- ============================================================== -->
+    <!-- ============================================================== -->
     <!-- Vue -->
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
