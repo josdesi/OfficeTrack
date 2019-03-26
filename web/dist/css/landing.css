@@ -1,21 +1,18 @@
 
 #card{
-    padding: 30px ;
-    height: 768px;
-    background-color: white;
+    padding-top: 30px ;
+    padding-bottom: 30px ;
+    height: auto;
+    background-color: white; 
     background-image: url("../../assets/images/newsletter/newsback.svg");
     background-size: 347px;
     background-repeat: no-repeat;
-    background-position: 94% 90%;
+    background-position: 104% 120%;
     border-radius: 16px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
-
-#dtitle{
-    margin-left: 25px;
-}
 #titulo{
     font-family: 'Rubik', sans-serif;
     font-size: 36px;
@@ -23,20 +20,12 @@
     color: #66b1d3;
 }
 
-#news1{
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    flex-wrap: wrap;
-    /* background-color: red; */
-    /* height: 80%; */
-}
 
 #rmail{
     
     border-style: solid;
     border-color: #007db6;
-    width: 696px;
+    width: 46vw;
     height: 68px;
     box-sizing:border-box; -moz-box-sizing:border-box; /* Firefox */ -webkit-box-sizing:border-box; /* Safari */
     padding: 20px 20px 20px;
@@ -55,10 +44,7 @@
     color: #f89d66;
 }
 
-#dicon{
-    margin: 20px 10px;
-    height: 77px;
-}
+
 strong{
     font-family: 'Rubik', sans-serif;
     font-size: 28px;
@@ -73,49 +59,25 @@ strong{
     color: #66b1d3;
 }
 
-#dcopy{
-    margin: 0 0 10px;
-    display: flex;
-    align-items: flex-end;
-     width: 696px;
-     height: 150px;
-    /* background-color: blue; */
-
+#news{
+    margin-top: 10vh;
 }
 
-#form1{
-    display: flex;
-  
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 190px;
-    width: 696px;
-    /* background-color: blue; */
-}
+
 
 #never{
-    
     margin: 0;
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
     font-weight: 300;
     color: #99cbe2;
-    height: 16PX;
 }
 
-.correo{
-    margin: 0;
-    height: 90px;
-    /* background-color: white; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
+
 
 #bot{
-    margin: 80px 0 ;
+    margin-top: 60px;
+    margin-bottom: 30px;
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
@@ -133,4 +95,23 @@ h3{
     font-weight: 300;
     color: white; 
     margin: 5px 30px;
+}
+
+.alinea{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 960px) {
+    
+#card{
+    height: auto;
+}
+
+#dicon{
+    height: 140px;
+    width: 140px;
+}
+
 }
