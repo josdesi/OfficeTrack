@@ -15,157 +15,100 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Crear cuenta</title>
+    <title>Cambiar Contraseña</title>
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Custom CSS -->
-    <link href="dist/css/style.css" rel="stylesheet">
-    <!-- Custom modals CSS -->
     <link href="dist/css/modal.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <!-- Validation Script -->
-    <script src="validations.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link href="dist/css/spinners.css" rel="stylesheet">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i"
+        rel="stylesheet">
 </head>
 
 <body>
-
-
-
-    <div class="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="lds-ripple">
-                <div class="lds-pos"></div>
-                <div class="lds-pos"></div>
-            </div>
+    <!-- SPINNER DE CARGAR -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
-            style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
-            <div class="auth-box">
-                <div>
-                    <div class="logo">
-                        <span class="db"><img src="assets/images/logo.svg" alt="logo" width="190px"
-                                class="light-logo" /></span>
-                        <h5 class="font-medium m-b-20"></h5>
-                        
-                        <span>Cambiar contraseña</span>
-                    </div>
-                    <!-- Form -->
-                    <div class="row row m-t-20">
-                        <div class="col-12">
-                            <div submit="return false" id="registerFormComponent" novalidate>
-                               
-                                <div class="form-group">
-                                    <input v-model="password.value"
-                                        v-on:change.prevent="password.validationMessage = true"
-                                        v-bind:class="{ invalid : invalidPasswordError && password.validationMessage }"
-                                        id="password" class="form-control form-control-lg" type="password" required
-                                        placeholder="Ingrese su nueva contraseña" minlength="6">
-                                    <label v-if="invalidPasswordError && password.validationMessage"
-                                        class="invalid-text">{{invalidPasswordError}}</label>
-                                </div>
-                                <div class="form-group">
-                                    <input v-model="passwordConfirmation.value"
-                                        v-bind:class="{ invalid : invalidPasswordConfirmationError && passwordConfirmation.validationMessage }"
-                                        v-on:input.prevent="passwordConfirmation.validationMessage = true"
-                                        class="form-control form-control-lg" type="password" required
-                                        pattern="[A-Za-z0-9_-]{1,15}" placeholder="Confirme su nueva contraseña" minlength="6">
-                                    <label
-                                        v-if="invalidPasswordConfirmationError && passwordConfirmation.validationMessage"
-                                        class="invalid-text">{{invalidPasswordConfirmationError}}</label>
-                                </div>
-                               
-                               
-                                <div class="form-group">
-                                    <button v-if="waitingForResponse" class="btn btn-block btn-lg btn-info"
-                                        type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status"
-                                            aria-hidden="true"></span>
-                                        <span class="sr-only">Loading...</span>
-                                    </button>
-                                    <button v-on:click="onSubmitEventListener" v-else class="btn btn-block btn-lg btn-info ">Cambiar contraseña</button>
-                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="false">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">{{modal.title}}</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    {{modal.message}}
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-block btn-lg btn-info"
-                                                        data-dismiss="modal">Entiendo</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Modal m-04-->
-  <div class="modal fade" id="m-04" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="border-color:white">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- <h4 class="modal-title">Modal Header</h4> -->
-          <div id="dicon">  
-                <img src="assets/images/modals/repass.svg" alt="" width="150">
-            </div> 
-        </div>
-        <div class="modal-body" style="border-color:white">
-                
-                    
-                        <div id="dtitle">
-                            <h1 id="titulo">Muchas gracias</h1>
-                        </div>
-                        <div id="texto">
-                            <p>
-                                 
-                                
-                                    Tu contraseña ha sido recuperada satisfactoriamente
-    
-                            
-                            </p>
-                        </div>    
-                
-        </div>
-        <div class="modal-footer"style="border-color:white">
-                <div id="boton">
-                        <button id="bot" class="btn btn-block btn-lg btn-danger" type="button"
-                            name="action"> <img src="assets/images/modals/miconcheckbot.svg" alt="" width="46px" data-dismiss="modal"> <h3>Aceptar</h3></button>
-                        <br>
-                        
-                </div>
-        </div>
-      </div>
-      
     </div>
-  </div>
-  
+
+    <!-- IMAGEN DE FONDO -->
+    <div class="position-fixed vw-100 vh-100" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center">
+    </div>
+    <div class="row align-items-center justify-content-center vh-100 vw-100 no-gutters">
+
+        <!-- CAJA -->
+        <div class="col bg-white ml-3 mr-3 p-4 justify-content-center rounded-lg" style="max-width: 21.9rem;">
+
+            <!-- LOGO -->
+            <div class="text-center mb-4">
+                <img src="assets/images/logo.svg" alt="logo" class="rounded-lg" style="max-width: 11.8rem;"/>
+                <br> <span class="mt-4">Cambiar Contraseña</span>
+            </div>
+
+                    
+                    <!-- FORMULATIO -->
+            <form v-on:submit="onSubmitEventListener" id="registerFormComponent">
+                
+                <!-- NUEVA CONTRASEÑA -->
+                <div class="form-group">
+                    <input v-model="password" id="password" name="password" class="form-control"
+                        type="password" placeholder="Nueva Contraseña">
+                </div>
+
+                <!-- CONFIRMACION DE CONTRASEÑA -->
+                <div class="form-group">
+                    <input id="password_confiramtion" name="password_confiramtion"
+                        class="form-control" type="password" required
+                        placeholder="Confirmar Contraseña">
+                </div>
+
+
+                <!-- BOTONES -->
+                <div class="form-group">
+                    <!-- Boton crear cuenta -->
+                    <button class="btn btn-block btn-primary" data-toggle="modal">Rescuperar contraseña</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+   <!-- Modal m-04 -->
+   <div id="m-04" class="modal modal-font" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col d-flex flex-column align-items-center justify-content-center">
+                        <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
+                        <h1 class="mb-4">Muchas gracias</h1>
+                        <p>Tu contraseña ha sido recuperada satisfactoriamente</p>
+                        
+                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                            <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                            <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- Modal m-04-->
+
+<!-- Modal m-04 -->
+
+ 
             <!-- ============================================================== -->
             <!-- Login box.scss -->
             <!-- ============================================================== -->
@@ -181,8 +124,7 @@
             <!-- ============================================================== -->
             <!-- Right Sidebar -->
             <!-- ============================================================== -->
-        </div>
-    </div>
+     
 
     <style>
         .invalid {
