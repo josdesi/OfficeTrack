@@ -70,3 +70,4 @@ store.subscribe((mutation, state) => {
   localStorage.setItem('store', JSON.stringify(state));
 });
 
+store.dispatch('InitialiseStore')

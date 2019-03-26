@@ -8,12 +8,7 @@ var users = new Vue({
 
     },
     methods: {
-        createUser: function (username, email, password, callback) {
-            let fields = {
-                username,
-                email,
-                password
-            }
+        createUser: function (fields, callback, callbackOnFail) {
             axios({
                 method: 'post',
                 url: URL_USERS,
@@ -23,10 +18,9 @@ var users = new Vue({
                 }
             })
                 .then(function (response) {
-                    console.log("Respuesta del mentodo users.createUser()", response)
                     callback(response, fields)
                 })
-                .catch(error => console.error(error))
+                .catch(callbackOnFail)
         },
     }
 })
