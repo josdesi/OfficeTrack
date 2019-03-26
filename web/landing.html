@@ -32,45 +32,52 @@
     </div> -->
 
     <section>
-        <div id="card">
-            <div id="dtitle">
-                <h1 id="titulo">NEWSLETTER</h1>
-            </div>
-            <div id="news1">
-                <div id="dcopy">
-                    <div id="dicon">
-                        <img src="assets/images/newsletter/iconnews.svg" alt="" width="78">
-                    </div>
-                    <p><strong>Suscríbete</strong> si quieres recibir nuestra
-                        <br>información mas relevante y destacada
-                    </p>
-                </div>
 
-                <div id="newsletterFormComponent">
-                    <form class="col-12" action="index.html">
-                        <div id="form1">
-                            <div class="correo">
-                                <input 
-                                v-on:change.prevent="email.validationMessage = true"
-                                v-model="email.value"
-                                v-bind:class="{ invalid : invalidEmailError && email.validationMessage }"
-                                type="email" required placeholder="Correo electrónico" id="rmail"/>
-                                <label id="never" for="">NUNCA ENVIAMOS SPAM</label>
-                            </div>
-                            <div class="boton">
-                                <button v-on:click="onSubmitEventListener" id="bot" class="btn btn-block btn-lg btn-danger" type="submit" name="action">
+            <div class="container" id="card">
+                <!-- Titulo -->
+                <div class="row" id="dtitle">
+                    <div class="col-12 ml-3">
+                        <h1 id="titulo">NEWSLETTER</h1>
+                    </div>
+                </div>
+                <!-- Copy -->
+                <div class="row alinea" id="news">
+                        <div class="col-lg-1 offset-1 alinea">
+                            <img src="assets/images/newsletter/iconnews.svg" id="dicon" alt="" width="78" height="78">
+                        </div>
+                        <div class="col-12 col-lg-7 alinea" id="dcopy">
+                            <p><strong>Suscríbete</strong> si quieres recibir nuestra
+                            información mas relevante y destacada
+                            </p>
+                        </div>
+                </div>
+                <!-- Input correo -->
+                <div class="row justify-content-center ">
+                        <div class="col-12 col-lg-8 alinea">
+                                <form  action="index.html">
+                                    <input v-on:change.prevent="email.validationMessage = true"
+                                    v-model="email.value"v-bind:class="{ invalid : invalidEmailError && email.validationMessage }" type="email" required placeholder="Correo electrónico" id="rmail"/>
+                                
+                        </div>
+                        <div class="col-12 col-lg-8  alinea" >
+                            <label id="never" >NUNCA ENVIAMOS SPAM</label>
+                        </div>
+                <!-- Boton -->
+                        <div class="col-12 col-lg-8  alinea" >
+                                    <div class="boton">
+                                    <button v-on:click="onSubmitEventListener" id="bot" class="btn btn-block btn-lg btn-danger" type="submit" name="action">
                                     <img src="assets/images/newsletter/iconboton.svg" alt="" width="46px">
                                     <h3>Suscribirse</h3>
-                                </button>
-                                <br>
-                            </div>                            
+                                    </button>
+                                    <br>
+                                    </div>                            
+                                </form>      
                         </div>
-                    </form>
                 </div>
+                            
             </div>
-        </div>
+                      
     </section>
-
       
 
     <!-- Modal m-05-->
