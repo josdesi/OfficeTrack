@@ -1,5 +1,7 @@
 
-#card{
+#cart{
+    margin-top: 60px;
+    margin-bottom: 40px;
     padding-top: 30px ;
     padding-bottom: 30px ;
     height: auto;
@@ -12,6 +14,26 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#carsm{
+    padding: 0;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    height: auto;
+    background-color: #d5eb9b; 
+    border-radius: 16px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+#sm1{
+    margin: 0;
+    background-color: white; 
+    background-image: url("../../assets/images/newsletter/smback.svg");
+    background-size: 178px;
+    background-repeat: no-repeat;
+    background-position: -6% -6%;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 #titulo{
     font-family: 'Rubik', sans-serif;
@@ -103,10 +125,216 @@ h3{
     justify-content: center;
 }
 
+.alineat{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center
+} 
+
+.alinea2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#newsletter{
+    background-color: #f2f2f2;
+    height: auto;
+    padding-top: 4vh;
+    padding-bottom: 3vh;
+}
+
+#sabermas{
+    background-color: white;
+    height: auto;
+    padding-top: 3vh;
+    padding-bottom: 4vh;
+}
+
+.navb{
+    position: sticky;
+    z-index: 3;
+    top:0;
+    align-items:  center;
+    background-color: #003f5b;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 10px 50px;
+    }
+
+.footer{
+    align-items:  center;
+    background-color: #003f5b;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 10px 50px;
+    }
+
+.footer p{
+    margin: auto 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: white; 
+}
+
+.footer img{
+    margin-left: 20px;
+}
+.liga {
+    margin-left:20px; 
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+#carouselExampleCaptions{
+    height: 92vh;
+    
+}
+
+.carousel-item{
+    height: 92vh;
+}
+
+.carousel-item img{
+    height: 92vh;
+    
+    overflow: hidden;
+}
+
+#herodiv{
+    background-color: rgba(0, 0, 0, .55);
+    height: 92vh;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    z-index: 2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+
+#herotitle{
+    position: relative;
+    top: 50%;
+}
+
+#herotitle h2{
+    margin:auto;
+    font-family: 'Rubik', sans-serif;
+    font-size: 33px;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+}
+
+#herotitle h3{
+    margin: 20px auto;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+}
+
+#both{
+    margin: 60px auto 30px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    width:  306px;
+    border-radius: 40px; 
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+    background-color: none !important;
+   
+}
+
+#herotitle h4{
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 300 !important;
+    color: white; 
+    margin: auto 15px;
+}
+
+#sminfo1 div div:nth-child(1) p{
+    margin-top: 12vh;
+    margin-bottom: 3vh;
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    font-weight: 400 !important;
+    color: #007db6; 
+}
+
+#sminfo1 div div:nth-child(2) p{
+    margin-bottom: 6vh;
+    font-family: 'Rubik', sans-serif;
+    font-size: 28px;
+    line-height : 28px;
+    font-weight: 300 !important;
+    color: #66b1d3; 
+}
+
+#sminfo1 div div:nth-child(3) a{
+    margin-bottom: 12vh;
+    font-family: 'Rubik', sans-serif;
+    font-size: 26px;
+    font-weight: 300 !important;
+    color: #66b1d3; 
+}
+
+#sminfo1 div div:first-child {
+    padding: 0;
+    margin-top: 10vh;
+
+}
+
+#sminfo2 p{
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 300 !important;
+    color: #4c6602; 
+}
+
+#botsm2, #botsm1{
+    margin: 0;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    width: 198px;
+    border-radius: 40px; 
+    border:none;
+    background-color: #007db6;
+   
+}
+
+#botsm2 h4 , #botsm1 h4{
+    margin: auto;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 300 !important;
+    color: white; 
+}
 @media only screen and (max-width: 990px) {
-    #card{
+
+    #cart{
         background-size: 250px;
         background-position: 106% 106%;
+        height: auto;
          }
     #dcopy {
         margin-bottom: 20px;
@@ -119,9 +347,7 @@ h3{
         strong {
             font-size: 26px;
         }
-    #card{
-        height: auto;
-    }
+    
 
     #dicon{
         height: 140px;
@@ -132,10 +358,26 @@ h3{
     #rmail{
         width: 60vw;
         }
+    
+    #herotitle h2{
+        font-size: 24px;
+    }
+    
+    #herotitle h3{
+        margin: 10px auto;
+        font-size: 16px;
     }
 
+    #sminfo2{
+        padding: 35px 0;
+    }
+
+    #sminfo2 img{
+        margin: 10px 0;
+    }
+}
 @media only screen and (max-width: 640px) {
-    #card{
+    #cart{
         background-size: 150px;
         background-position: 104% 104%;
     }
@@ -153,4 +395,17 @@ h3{
     strong {
         font-size: 24px;
     }
+    
+
+    #herotitle h2{
+        font-size: 20px;
     }
+    
+    #herotitle h3{
+        display: none;
+    }
+    #herotitle{
+        position: relative;
+        top: 60%;
+    }
+}
