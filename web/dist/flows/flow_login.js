@@ -1,6 +1,9 @@
 loginFormComponent.
     onSubmit(
         function (fields) {
+            $('#submit-login').prop('disabled', true);
+            $('#submit-login').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
             fields = { ...fields, sessionType: 'web' }
             sessions.login(
                 fields,
@@ -9,11 +12,17 @@ loginFormComponent.
                         let bearerToken = response.headers.authorization.replace('Bearer ', '')
                         store.dispatch('saveBearerToken', bearerToken)
                         location.href = "main.html"
-                    }else{
-                        $("#m-03").modal("show")
+                        $('#submit-login').prop('disabled', false);
+                        $('#submit-login').html('Iniciar sesión');
+                    } else {
+                        $("#m-xx").modal("show")
+                        $('#submit-login').prop('disabled', false);
+                        $('#submit-login').html('Iniciar sesión');
                     }
                 },
                 function () {
-                    $("#m-03").modal("show")
+                    $("#m-xx").modal("show")
+                    $('#submit-login').prop('disabled', false);
+                    $('#submit-login').html('Iniciar sesión');
                 })
         })

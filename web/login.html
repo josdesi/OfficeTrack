@@ -104,8 +104,8 @@
                     </div>
                     <!-- BOTONES -->
                     <div class="form-group">
-                        <!-- Boton crear cuenta -->
-                        <button class="btn btn-block btn-lg btn-info" data-toggle="modal">Iniciar sesión</button>
+                        <!-- Boton iniciar sesión -->
+                        <button id="submit-login" class="btn btn-block btn-lg btn-info" data-toggle="modal">Iniciar sesión</button>
                     </div>
 
                     <!-- Redes Sociales -->
@@ -150,7 +150,7 @@
 
 
                 <!-- Form -->
-                <form id="recoverPasswordFormComponent" v-on:click="onSubmitEventListener" class="col-12" >
+                <form id="recoverPasswordFormComponent" v-on:submit="onSubmitEventListener" class="col-12" >
 
                     <!-- email -->
                     <div class="form-group">
@@ -159,13 +159,9 @@
 
 
                     <!-- pwd -->
-                    <div class="row m-t-20">
-                        <div class="col-12">
-                            <button class="btn btn-block btn-lg btn-danger" type="submit"
-                                name="">Recuperar</button>
-                            <br>
-
-                        </div>
+                    <div class="form-group">
+                        <!-- Boton crear recuperar cuenta -->
+                        <button id="submit-recover" class="btn btn-block btn-lg btn-danger">Recuperar</button>
                     </div>
                 </form>
 
@@ -191,7 +187,7 @@
 
 
     <!-- Modal m-03 -->
-    <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog">
+    <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="container-fluid">
@@ -208,6 +204,33 @@
                             <P>revisa tu bandeja de entrada</p>
                             <button
                                 class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-xx" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Algo salio mal</h1>
+                            <p>El correo con las instrucciones para reestablecer</p>
+                            <p class="m-0">tu contraseña ya ha sido enviado,</p>
+                            <P>revisa tu bandeja de entrada</p>
+                            <button
+                                class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal" data-dismiss="modal">
                                 <img src="assets/images/modals/miconcheckbot.svg" width="46px">
                                 <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                             </button>
@@ -304,8 +327,8 @@
         // Login and Recover Password
         // ==============================================================
         $('#to-recover').on("click", function () {
-            $("#loginform").slideUp();
-            $("#recoverform").fadeIn();
+            $("#loginform").hide();
+            $("#recoverform").show();
         });
     </script>
 
@@ -316,8 +339,8 @@
         // Login and Recover Password
         // ==============================================================
         $('#to-recover1').on("click", function () {
-            $("#recoverform").slideUp();
-            $("#loginform").fadeIn();
+            $("#recoverform").hide();
+            $("#loginform").show();
         });
     </script>
     <script src="main.js"></script>

@@ -90,7 +90,7 @@
                 <!-- BOTONES -->
                 <div class="form-group">
                     <!-- Boton crear cuenta -->
-                    <button class="btn btn-block btn-primary" data-toggle="modal">Crear
+                    <button id="submit-register" class="btn btn-block btn-primary" data-toggle="modal">Crear
                         cuenta</button>
                 </div>
             </form>
@@ -106,8 +106,31 @@
         </div>
     </div>
 
-    <!-- Modal m-01 -->
-    <div id="m-01" class="modal modal-font" tabindex="-1" role="dialog">
+    <!-- Modal m-01 (registro exitoso) -->
+    <div id="m-01" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Registro exitoso</h1>
+                            <p>En breve recibirás un correo para activar tu cuenta</p>
+                            <p class="m-0">Si no recibiste un correo de activación</p>
+                            <P>haz <a href="">clic aquí</a> para reenviar</p>
+                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5" onclick='window.location.href="login.html"'>
+                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal m-01 (Fallo en el registro) -->
+    <div id="m-xx" class="modal modal-font" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="container-fluid">
@@ -118,11 +141,11 @@
                     <div class="row">
                         <div class="col d-flex flex-column align-items-center justify-content-center">
                             <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Registro exitoso</h1>
+                            <h1 class="mb-4">Algo salio mal</h1>
                             <p>En breve recibirás un correo para activar tu cuenta</p>
                             <p class="m-0">Si no recibiste un correo de activación</p>
                             <P>haz <a href="">clic aquí</a> para reenviar</p>
-                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
+                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5" data-dismiss="modal">
                                 <img src="assets/images/modals/miconcheckbot.svg" width="46px">
                                 <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                             </button>

@@ -3,11 +3,9 @@ $(document).ready(function () {
         debug: true,
         rules: {
             username: {
-                usuario: true,
                 required: true,
             },
             password: {
-                contraseña: true,
                 required: true,
             },
         },

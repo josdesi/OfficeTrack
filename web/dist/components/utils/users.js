@@ -39,7 +39,7 @@ var users = new Vue({
                 .catch(() => callbackOnFail())
         },
         changePassword: function (fields, callback, callbackOnFail) {
-            let url = URL(window.location.href);
+            let url = new URL(window.location.href);
             let token = url.searchParams.get("token");
             axios({
                 method: 'post',
