@@ -10,6 +10,8 @@ var env = {
    loginURL: 'http://localhost/api/controllers/login.php',
    usersURL: 'http://localhost/api/controllers/users.php',
    logoutURL: 'http://localhost/api/controllers/logout.php',
+   recoverPasswordURL: 'http://localhost/api/controllers/recoverPassword.php',
+   changePasswordURL: 'http://localhost/api/controllers/changePassword.php',
    serverURL: 'http://localhost:9091',
    
 

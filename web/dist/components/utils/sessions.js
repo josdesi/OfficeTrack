@@ -19,7 +19,7 @@ var sessions = new Vue({
                 .then(function (response) {
                     callback(response, fields)
                 })
-                .catch(callbackOnFails)
+                .catch(()=>callbackOnFails())
         },
         logout(callback, callbackOnFails) {
             let tokenActive = this.$store.getters.getBearerToken;
@@ -34,7 +34,7 @@ var sessions = new Vue({
                 .then(function (response) {
                     callback(response, tokenActive)
                 })
-                .catch(callbackOnFails)
+                .catch(()=>callbackOnFails())
         },
     }
 })

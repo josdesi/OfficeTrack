@@ -3,7 +3,7 @@ var registerFormComponent = new Vue({
   data: {
     username: '',
     email: '',
-    password:'',
+    password: '',
     termsAndConditions: false,
     OnSubmitEventListener: undefined,
   },
@@ -18,12 +18,13 @@ var registerFormComponent = new Vue({
         username: this.username,
         email: this.email,
         password: this.password,
-      }      
+      }
       if (
         $("#registerFormComponent").valid()
-      ) {
+      ) {        
         this.OnSubmitEventListener(fields);
       }
+
     },
     onSubmit: function (callback) {
       this.OnSubmitEventListener = callback;

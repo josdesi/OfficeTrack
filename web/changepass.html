@@ -55,7 +55,7 @@
 
                     
                     <!-- FORMULATIO -->
-            <form v-on:submit="onSubmitEventListener" id="registerFormComponent">
+            <form v-on:submit="onSubmitEventListener" id="changePasswordFormComponent">
                 
                 <!-- NUEVA CONTRASEÑA -->
                 <div class="form-group">
@@ -69,7 +69,6 @@
                         class="form-control" type="password" required
                         placeholder="Confirmar Contraseña">
                 </div>
-
 
                 <!-- BOTONES -->
                 <div class="form-group">
@@ -156,16 +155,23 @@
 
 
 
-    <!-- ============================================================== -->
+     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
     <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
 
     <!-- ============================================================== -->
     <!-- Vue -->
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- ============================================================== -->
+    <!-- Validaciones -->
+    <!-- ============================================================== -->
+    <script src="validations/customMethods.js"></script>
+    <script src="validations/changePasswordValidations.js"></script>
 
 
     <!-- ============================================================== -->
@@ -196,7 +202,7 @@
     <!-- ============================================================== -->
     <!-- Vue component -->
     <!-- ============================================================== -->
-    <script src="dist/components/registerFormComponent.js"></script>
+    <script src="dist/components/changePasswordFormComponent.js"></script>
 
 
     <!-- ============================================================== -->
@@ -209,7 +215,7 @@
     <!-- ============================================================== -->
     <!-- Flows -->
     <!-- ============================================================== -->
-    <script src="dist/flows/flow_register.js"></script>
+    <script src="dist/flows/flow_changePassword.js"></script>
 
 
     <!-- Bootstrap tether Core JavaScript -->
