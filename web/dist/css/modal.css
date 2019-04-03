@@ -4,6 +4,7 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
     color: #007db6; 
+    line-height: 1;
 }
 
 .modal p{
@@ -16,6 +17,7 @@
     font-weight: 300;
     color: #66b1d3;
     text-align: center;
+    line-height: 20px;
 }
 
 .btn-modal{
