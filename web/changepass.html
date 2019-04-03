@@ -79,8 +79,10 @@
             
         </div>
     </div>
-   <!-- Modal m-04 -->
-   <div id="m-04" class="modal modal-font" tabindex="-1" role="dialog">
+  
+
+<!-- Modal m-05 -->
+<div id="m-05" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="container-fluid">
@@ -91,10 +93,12 @@
                 <div class="row">
                     <div class="col d-flex flex-column align-items-center justify-content-center">
                         <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
-                        <h1 class="mb-4">Muchas gracias</h1>
-                        <p>Tu contraseña ha sido recuperada satisfactoriamente</p>
-                        
-                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                        <h1 class="mb-4">Recuperar contraseña</h1>
+                        <p>El correo con las instrucciones para reestablecer</p>
+                        <p class="m-0">tu contraseña ya ha sido enviado,</p>
+                        <P>revisa tu bandeja de entrada</p>
+                        <button
+                            class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
                             <img src="assets/images/modals/miconcheckbot.svg" width="46px">
                             <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                         </button>
@@ -105,10 +109,8 @@
     </div>
 </div>
 
-<!-- Modal m-04 -->
-
-<!-- Modal m-04-1 -->
-<div id="m-04-1" class="modal modal-font" tabindex="-1" role="dialog">
+ <!-- Modal m-06 -->
+ <div id="m-06" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="container-fluid">
@@ -118,13 +120,13 @@
                 </button>
                 <div class="row">
                     <div class="col d-flex flex-column align-items-center justify-content-center">
-                        <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
-                        <h1 class="mb-4">Correo inválido</h1>
-                        <p>El correo electrónico ingresado no pertenece <br>
-                        a ninguna cuenta registrada</p>
-                        <P>Comprueba y vuelve a intentarlo</p>
-                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
-                            <img src="assets/images/modals/iconcheck.svg" width="46px">
+                        <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
+                        <h1 class="mb-4">Cambio exitoso</h1>
+                        <p>Tu contraseña ha sido restablecida con éxito.</p>
+                        
+                        <button
+                            class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                            <img src="assets/images/modals/miconcheckbot.svg" width="46px">
                             <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
                         </button>
                     </div>
@@ -134,7 +136,90 @@
     </div>
 </div>
 
-<!-- Modal m-04 -->
+
+     <!-- Modal m-00 Algo saliío mal} -->
+     <div id="m-00" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Fuera de servicio</h1>
+                            <p>Por el momento no es posible completar tu solicitud. <br>
+                            Por favor vuelve a intentarlo en unos minutos.</p>
+                            <button
+                                class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal" data-dismiss="modal">
+                                <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- m-07 link expirado -->
+    <div id="m-07" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Link expirado</h1>
+                            <p>El link ha expirado ¿Quieres recuperar tu contraseña?<br>
+                            Da <a href="">clic aquí</a> para obtener un nuevo link.</p>
+                            <button
+                                class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal" data-dismiss="modal">
+                                <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <!-- Modal m-08 Reenvío de e-mail -->
+    <div id="m-08" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-center">
+                            <img src="assets/images/modals/repass.svg" class="mt-4 mb-4" width="150">
+                            <h1 class="mb-4">Correo enviado</h1>
+                            <p>El correo con las instrucciones para reestablecer</p>
+                            <p class="m-0">tu contraseña ya ha sido enviado,</p>
+                            <P>revisa tu bandeja de entrada</p>
+                            
+                            <button
+                                class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
  
             <!-- ============================================================== -->
