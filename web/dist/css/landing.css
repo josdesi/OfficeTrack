@@ -43,7 +43,7 @@
 }
 
 
-#rmail{
+#email{
     
     border-style: solid;
     border-color: #007db6;
@@ -328,6 +328,15 @@ h3{
     font-size: 20px;
     font-weight: 300 !important;
     color: white; 
+}
+
+.invalid-feedback {
+    text-align: center;
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
 }
 @media only screen and (max-width: 990px) {
 
