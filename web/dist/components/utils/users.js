@@ -22,7 +22,7 @@ var users = new Vue({
                 .then(function (response) {
                     callback(response, fields)
                 })
-                .catch(callbackOnFail)
+                .catch(() => callbackOnFail())
         },
         recoverPassword: function (fields, callback, callbackOnFail) {
             axios({

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#registerFormComponent").validate({
+    $("#registerForm").validate({
         debug: true,
         rules: {
             username: {
