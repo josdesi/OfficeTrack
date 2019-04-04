@@ -42,11 +42,11 @@ function checkUser(){
     $userDTO = new UserDTO();
 
     //Inputs de la peticion
-    $data = json_decode(file_get_contents("php://input"));
+    $dataUser = $_GET['username'];
 
     try {
         //Confirma que la petición es correcta
-        if (  empty($data->username) ) {
+        if (  empty($dataUser) ) {
             $res->setCode("RSP_01");
             $res->setMessage("Faltaron datos");
             throw new Exception();
@@ -54,7 +54,7 @@ function checkUser(){
 
         //Busca usuario por username
         try {
-            $userDTO = $userBusinessImpl->findByUsername($data->username);
+            $userDTO = $userBusinessImpl->findByUsername($dataUser);
         } catch (Exception $th) {
             $res->setCode("RSP_06");
             $res->setMessage("No fue posible verificar existencia por username");

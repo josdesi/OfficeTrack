@@ -48,12 +48,12 @@ function checkEmail(){
     $userDTO = new UserDTO();
 
     //Inputs de la peticion
-    $data = json_decode(file_get_contents("php://input"));
+    $dataEmail = $_GET['email'];
 
     try {
 
         //Confirma que la petición es correcta
-        if ( empty($data->email) ) {
+        if ( empty($dataEmail) ) {
             $res->setCode("RSP_01");
             $res->setMessage("Faltaron datos");
             throw new Exception();
@@ -61,7 +61,7 @@ function checkEmail(){
 
         //Busca usuario por email
         try {
-            $userDTO = $userBusinessImpl->findByEmail($data->email);
+            $userDTO = $userBusinessImpl->findByEmail($dataEmail);
         } catch (Exception $th) {
             $res->setCode("RSP_06");
             $res->setMessage("No fue posible verificar existencia por email");
