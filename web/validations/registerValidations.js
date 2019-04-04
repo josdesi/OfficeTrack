@@ -5,7 +5,8 @@ $(document).ready(function () {
             username: {
                 usuario: true,
                 required: true,
-                minlength: 2
+                minlength: 2,
+                checkUser: true
             },
             password: {
                 contraseña: true,
@@ -21,6 +22,7 @@ $(document).ready(function () {
                 correo: true,
                 required: true,
                 email:false,
+                checkEmail: true
             },
             terms: {
                 required: true
@@ -30,7 +32,8 @@ $(document).ready(function () {
             username: {
                 minlength: "El nombre de usuario debe tener al menos 3 caracteres",
                 required: "Este campo es requerido",
-                usuario: "Introduce un nombre de usuario valido"
+                usuario: "Introduce un nombre de usuario valido",
+                checkUser: "El nombre de usuario ya se encuentra en uso"
             },
             password: {
                 required: "Este campo es requerido",
@@ -44,6 +47,7 @@ $(document).ready(function () {
             email: {
                 required: "Este campo es requerido",
                 correo: "Introduce un correo valido",
+                checkEmail: "El correo electronico ya esta registrado en una cuenta"
             },
             terms: "Debes aceptar los terminos y condiciones"
         },

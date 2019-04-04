@@ -155,29 +155,32 @@
                             </p>
                         </div>
                 </div>
+
+                
                 <!-- Input correo -->
+
+                <form id="newsLetterFormComponent" v-on:submit="onSubmitEventListener" >
                 <div class="row justify-content-center ">
                         <div class="col-12 col-lg-8 alinea">
-                                <form  action="index.html">
-                                    <input v-on:change.prevent="email.validationMessage = true"
-                                    v-model="email.value"v-bind:class="{ invalid : invalidEmailError && email.validationMessage }" type="email" required placeholder="Correo electrónico" id="rmail"/>
-                                
+                            <input v-model="email" id="email" name="email" 
+                            type="email" placeholder="Correo electrónico">
                         </div>
                         <div class="col-12 col-lg-8  alinea" >
                             <label id="never" >NUNCA ENVIAMOS SPAM</label>
                         </div>
                 <!-- Boton -->
                         <div class="col-12 col-lg-8  alinea" >
-                                    <div class="boton">
-                                    <button v-on:click="onSubmitEventListener" id="bot" class="btn btn-block btn-lg btn-danger" type="submit" name="action">
+                            <div class="boton">
+                                <button  id="bot" class="btn btn-block btn-lg btn-danger" >
                                     <img src="assets/images/newsletter/iconboton.svg" alt="" width="46px">
                                     <h3>Suscribirse</h3>
-                                    </button>
+                                </button>
                                     <br>
-                                    </div>                            
-                                </form>      
+                            </div>                            
+                                      
                         </div>
                 </div>
+            </form>
                             
             </div>
                       
@@ -193,9 +196,10 @@
         </div>
     </section>
 
-    <!-- Modal m-05-->
 
-    <div id="m-05" class="modal modal-font" tabindex="-1" role="dialog">
+    <!-- Modal m-09-->
+
+    <div id="m-09" class="modal modal-font" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="container-fluid">
@@ -219,13 +223,37 @@
         </div>
 </div>
 
+<!-- Modal m-10-->
+
+<div id="m-10" class="modal modal-font" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <div class="col d-flex flex-column align-items-center justify-content-center">
+                        <img src="assets/images/modals/iconmodal.svg" class="mt-4 mb-4" width="150">
+                        <h1 class="mb-4">Muchas gracias</h1>
+                        <p>Tu suscripción a nuestro boletín ha sido confirmada.</p>
+                        <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
+                            <img src="assets/images/modals/iconcheck.svg" width="46px">
+                            <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
    
-      <!-- Modal m-05-->
 
-       <!-- Modal m-08 -->
+<!-- Modal m-11 -->
 
 
-       <div id="m-08" class="modal modal-font" tabindex="-1" role="dialog">
+       <div id="m-11" class="modal modal-font" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="container-fluid">
@@ -237,8 +265,7 @@
                         <div class="col d-flex flex-column align-items-center justify-content-center">
                             <img src="assets/images/modals/iconmodal1.svg" class="mt-4 mb-4" width="150">
                             <h1 class="mb-4">Suscripción cancelada</h1>
-                            <p>El correo electrónico ingresado <br>
-                                ya se encuentra registrado.</p>
+                            <p>Tu suscripción ha sido cancelada con éxito</p>
                             <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal">
                                 <img src="assets/images/modals/iconcheck.svg" width="46px">
                                 <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
@@ -269,10 +296,38 @@
                 background-color: #ecf5f9;
             }
         </style>
-        <!-- ============================================================== -->
+    
+    <!-- ============================================================== -->
+    <!-- Configuration files -->
+    <!-- ============================================================== -->
+    <script src="dist/config/environment.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+    <!-- ============================================================== -->
     <!-- Vue -->
     <!-- ============================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Validaciones -->
+    <!-- ============================================================== -->
+    <script src="validations/customMethods.js"></script>
+    <script src="validations/newsletterValidations.js"></script>
+
+
+
+    <!-- ============================================================== -->
+    <!-- Vuex -->
+    <!-- ============================================================== -->
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js "></script>
+
 
     <!-- ============================================================== -->
     <!-- Axios -->
@@ -281,19 +336,47 @@
 
 
     <!-- ============================================================== -->
+    <!-- Actions -->
+    <!-- ============================================================== -->
+    <script src="dist/vuex/actions/sessionActions.js"></script>
+    <script src="dist/vuex/actions/userActions.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Store -->
+    <!-- ============================================================== -->
+    <script src="dist/vuex/store-common.js"></script>
+
+
+    <!-- ============================================================== -->
     <!-- Vue component -->
     <!-- ============================================================== -->
-    <script src="../web/dist/components/newsletterFormComponent.js"></script>
+    <script src="dist/components/newsLetterFormComponent.js"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Utils -->
+    <!-- ============================================================== -->
+    <script src="dist/components/utils/users.js"></script>
+    <script src="dist/components/utils/sessions.js"></script>
 
 
     <!-- ============================================================== -->
     <!-- Flows -->
     <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="dist/flows/flow_newsletter.js"></script>
+
+
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+
+
+
+
 </body>
 
 </html>
