@@ -80,14 +80,14 @@ function createUser()
             $userDTO = $userBusinessImpl->findByUsername($data->username);
         } catch (Exception $th) {
             
-            $res->setCode("RSP_06");
+            $res->setCode("RSP_03");
             $res->setMessage("No fue posible verificar existencia por userName");
             throw new Exception();
         }
 
         //Verifica si la busqueda por userName regreso algun valor
         if ($userDTO !== null) {
-            $res->setCode("RSP_02");
+            $res->setCode("RSP_06");
             $res->setMessage("El nombre de usuario ya esta en uso");
             throw new Exception();
         }
@@ -96,14 +96,14 @@ function createUser()
         try {
             $userDTO = $userBusinessImpl->findByEmail($data->email);
         } catch (Exception $th) {
-            $res->setCode("RSP_06");
+            $res->setCode("RSP_03");
             $res->setMessage("No fue posible verificar existencia por email");
             throw new Exception();
         }
 
         //Verifica si la busqueda por email regreso algun valor
         if ($userDTO !== null) {
-            $res->setCode("RSP_02");
+            $res->setCode("RSP_05");
             $res->setMessage("El correo ya esta osociado a una cuenta");
             throw new Exception();
         }
@@ -127,7 +127,7 @@ function createUser()
             $userBusinessImpl->create($userDTO);
 
         } catch (Exception $e) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_07");
             $res->setMessage("Error al persistir");
             throw new Exception();
         }
@@ -136,7 +136,7 @@ function createUser()
         try {
             $emailBusinessImpl->sendRegistryConfirmation($data->email, $data->username, $confirmationLink);
         } catch (Exception $th) {
-            $res->setCode("RSP_05");
+            $res->setCode("RSP_08");
             $res->setMessage("Fallo en el envio de email");
             throw new Exception();
         }
