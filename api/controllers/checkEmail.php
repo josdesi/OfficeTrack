@@ -24,7 +24,6 @@ include_once '../business/UserBusiness.php';
 
 //Businesses
 include_once '../business/implementation/UserBusinessImpl.php';
-include_once '../business/implementation/TokenBusinessImpl.php';
 include_once '../business/implementation/EmailBusinessImpl.php';
 
 //Librerias desde composer
@@ -33,8 +32,8 @@ require_once '../vendor/autoload.php';
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestMethod) {
-    case 'POST':
-        recoverPass();
+    case 'GET':
+        checkEmail();
         break;
 
     default:
@@ -42,20 +41,19 @@ switch ($requestMethod) {
         break;
 }
 
-function recoverPass(){
+function checkEmail(){
     $res = new ResponseDTO();
     $userBusinessImpl = new UserBusinessImpl();
-    $tokenBusinessImpl = new TokenBusinessImpl();
     $emailBusinessImpl = new EmailBusinessImpl();
     $userDTO = new UserDTO();
 
-    //Input de la peticion
-    $data = json_decode(file_get_contents("php://input"));
+    //Inputs de la peticion
+    $dataEmail = $_GET['email'];
 
     try {
 
         //Confirma que la petición es correcta
-        if ( empty($data->email) ) {
+        if ( empty($dataEmail) ) {
             $res->setCode("RSP_01");
             $res->setMessage("Faltaron datos");
             throw new Exception();
@@ -63,36 +61,25 @@ function recoverPass(){
 
         //Busca usuario por email
         try {
-            $userDTO = $userBusinessImpl->findByEmail($data->email);
+            $userDTO = $userBusinessImpl->findByEmail($dataEmail);
         } catch (Exception $th) {
-            $res->setCode("RSP_03");
+            $res->setCode("RSP_06");
             $res->setMessage("No fue posible verificar existencia por email");
             throw new Exception();
         }
 
         //Verifica si la busqueda por email regreso algun valor
-        if ($userDTO === null) {
-            $res->setCode("RSP_05");
-            $res->setMessage("El correo no esta asociado a una cuenta");
-            throw new Exception();
+        if ($userDTO !== null) {
+            $res->setCode("RSP_02");
+            $res->setMessage("El correo ya esta asociado a una cuenta");
+            $res->setResponse(true);
+        } else{
+            $res->setCode("RSP_00");
+            $res->setMessage("El correo esta disponible para registrar una nueva cuenta");
+            $res->setResponse(false);
         }
-
-        //Crea el token de confirmación de
-        $recoverToken = "Bearer " . $tokenBusinessImpl->createRecoverToken($data->email,'Recover Password');
-
-        //Envia email de confirmación
-        try {
-            $emailBusinessImpl->sendRecoverPassword($data->email, $userDTO->getUsername(), $recoverToken);
-        } catch (Exception $th) {
-            $res->setCode("RSP_08");
-            $res->setMessage("Fallo en el envio de email");
-            throw new Exception();
-        }
-
         //Establece respuesta OK
         http_response_code(200);
-        $res->setCode("RSP_00");
-        $res->setMessage("Respuesta exitosa");
 
     } catch (Exception $e) {
         http_response_code(201);

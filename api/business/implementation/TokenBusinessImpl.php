@@ -7,6 +7,7 @@ class TokenBusinessImpl
     public function createSessionToken($userDTO,$sessionType)
     {
         $payload = array(
+            "exp" => time() + 60*60*24,
             "data" => array(
                 "sessionType"=> $sessionType,
                 "userId" => $userDTO->getUserId(),
@@ -30,6 +31,7 @@ class TokenBusinessImpl
 
     public function createRecoverToken($userEmail, $tokenType){
         $payload = array(
+            "exp" => time() + 60*60*24,
             "data" => array(
                 "tokenType"=> $tokenType,
                 "email" => $userEmail,
