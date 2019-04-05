@@ -94,10 +94,10 @@ class Newsletter
         }
 
         $newletter = new NewsletterDTO;
-        $newletter->setNewsletterId($result["newslatterId"]);
+        $newletter->setNewsletterId($result["newsletterId"]);
         $newletter->setEmail($result["email"]);
         $newletter->setStatus($result["status"]);
-        $newletter->setNewsletterTokens($result["newsletterToken"]);
+        $newletter->setNewsletterToken($result["newsletterToken"]);
         $newletter->setCreated($result["created"]);
         $newletter->setModified($result["modified"]);
         

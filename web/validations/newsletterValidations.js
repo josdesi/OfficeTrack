@@ -6,7 +6,7 @@ $(document).ready(function () {
                 remote: {
                     url: 'http://localhost/api/controllers/newsletter.php',
                     method: "GET",
-                    contentType:  "application/json; charset=utf8",
+                    contentType: "application/json; charset=utf8",
                     dataType: "json",
                     data: {
                         "email": function () {
@@ -26,7 +26,7 @@ $(document).ready(function () {
             email: {
                 email: "Introduce un correo valido",
                 required: "Este campo es requerido",
-                remote : "Correo electrónico ya está suscrito"
+                remote: "Correo electronico ya esta suscrito"
             },
         },
         errorElement: "div",

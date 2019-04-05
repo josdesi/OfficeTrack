@@ -47,6 +47,7 @@ function createNewsletter()
     $res = new ResponseDTO();
     $emailBusiness = new EmailBusinessImpl();
     $NewsletterBusinessImpl = new NewsletterBusinessImpl();
+    $newsletterDTO = new NewsletterDTO();
 
     $data = json_decode(file_get_contents("php://input"));
 
@@ -119,6 +120,7 @@ function checkEmailNL(){
     $res = new ResponseDTO();
     $emailBusiness = new EmailBusinessImpl();
     $NewsletterBusinessImpl = new NewsletterBusinessImpl();
+    $newsletterDTO = new NewsletterDTO();
 
     //Inputs de la peticion
     $dataEmail = $_GET['email'];
