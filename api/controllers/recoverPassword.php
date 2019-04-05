@@ -65,14 +65,14 @@ function recoverPass(){
         try {
             $userDTO = $userBusinessImpl->findByEmail($data->email);
         } catch (Exception $th) {
-            $res->setCode("RSP_06");
+            $res->setCode("RSP_03");
             $res->setMessage("No fue posible verificar existencia por email");
             throw new Exception();
         }
 
         //Verifica si la busqueda por email regreso algun valor
         if ($userDTO === null) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_05");
             $res->setMessage("El correo no esta asociado a una cuenta");
             throw new Exception();
         }
@@ -84,7 +84,7 @@ function recoverPass(){
         try {
             $emailBusinessImpl->sendRecoverPassword($data->email, $userDTO->getUsername(), $recoverToken);
         } catch (Exception $th) {
-            $res->setCode("RSP_05");
+            $res->setCode("RSP_08");
             $res->setMessage("Fallo en el envio de email");
             throw new Exception();
         }
