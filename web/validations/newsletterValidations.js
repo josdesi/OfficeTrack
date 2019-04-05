@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#newsLetterFormComponent").validate({
+    $("#newsletterForm").validate({
         debug: true,
         rules: {
             email: {

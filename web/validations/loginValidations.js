@@ -1,5 +1,10 @@
 $(document).ready(function () {
-    $("#loginFormComponent").validate({
+    let url = new URL(window.location.href);
+    let correctUser = url.searchParams.get("correct_user") || null;
+    let correctPassword = url.searchParams.get("correct_password") || null;
+
+
+    let loginValidator = $("#loginForm").validate({
         debug: true,
         rules: {
             username: {
@@ -34,4 +39,20 @@ $(document).ready(function () {
             $(element).removeClass("is-invalid");
         }
     });
+
+
+    if (correctUser === 'false') {
+        loginValidator.showErrors({
+            "username": "No tenemos ninguna cuenta de usuario asociada a estos datos de accesos. ¿Quieres registrate con nosotros? Dirigete a Crear cuenta de usuario",
+        });
+    }
+
+    if (correctPassword === 'false') {
+        loginValidator.showErrors({
+            "password": "La contraseña es incorrecta. ¿No la recuerdas? dirigete a ¿Olvidaste tu contraseña?",
+        });
+    }
+
+
+
 });

@@ -1,4 +1,4 @@
-var changePasswordFormComponent = new Vue({
+var changePasswordForm = new Vue({
   el: "#changePasswordFormComponent",
   data: {
     password: '',

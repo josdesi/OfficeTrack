@@ -70,6 +70,7 @@ function confirmEmailToken()
         try {
             $userDTO = $userBusinessImpl->findByEmailToken($emailToken);
         } catch (Exception $th) {
+            header("Location: http://localhost/web/login.html?confirmed=false");
             $res->setCode("RSP_??");
             $res->setMessage("Token invalido. No tienes autorización");
             throw new Exception();
@@ -90,7 +91,7 @@ function confirmEmailToken()
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
         echo json_encode($res);
-        header("Location: http://localhost/web/modal/m-02/modal.html");
+        header("Location: http://localhost/web/login.html?confirmed=true");
         die();
 
     } catch (Exception $e) {

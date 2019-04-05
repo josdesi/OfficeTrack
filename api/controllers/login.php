@@ -76,7 +76,7 @@ function login()
 
         //Comprobar que el usuario exista
         if ($userDTO === null) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_05");
             $res->setMessage("El usuario no exite");
             throw new Exception("");
         }
@@ -85,7 +85,7 @@ function login()
         $passwordFormDB = $userDTO->getPassword();
         $passwordIsCorrect = $userBusinessImpl->verifyPassword($passwordFormDB, $data->password);
         if (!$passwordIsCorrect) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_06");
             $res->setMessage("Contraseña incorrecta");
             throw new Exception("");
         }

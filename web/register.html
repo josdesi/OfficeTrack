@@ -46,54 +46,64 @@
 
             <!-- LOGO -->
             <div class="text-center mb-4">
-                <img src="assets/images/logo.svg" alt="logo" class="rounded-lg" style="max-width: 11.8rem;"/>
+                <img src="assets/images/logo.svg" alt="logo" class="rounded-lg" style="max-width: 11.8rem;" />
             </div>
 
 
             <!-- FORMULATIO -->
-            <form v-on:submit="onSubmitEventListener" id="registerFormComponent">
-                <!-- NOMBRE DE USUARIO -->
-                <div class="form-group">
-                    <input v-model="username" id="username" name="username" class="form-control"
-                        type="text" placeholder="Nombre de usuario">
-                </div>
-
-                <!-- EMAIL -->
-                <div class="form-group">
-                    <input v-model="email" id="email" name="email" class="form-control"
-                        type="email" placeholder="Correo electrónico">
-                </div>
-
-                <!-- CONTRASEÑA -->
-                <div class="form-group">
-                    <input v-model="password" id="password" name="password" class="form-control"
-                        type="password" placeholder="Contraseña">
-                </div>
-
-                <!-- CONFIRMACION DE CONTRASEÑA -->
-                <div class="form-group">
-                    <input id="password_confiramtion" name="password_confiramtion"
-                        class="form-control" type="password" required
-                        placeholder="Confirmar contraseña">
-                </div>
-
-                <!-- TERMINOS Y CONDICIONES -->
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"
-                            id="terms" name="terms">
-                        <label class="custom-control-label" for="terms">Acepto <a href="javascript:void(0)">Términos y
-                                condiciones</a></label>
+            <div id="registerFormComponent">
+                <form id="registerForm" v-on:submit="onSubmitEventListener">
+                    <!-- NOMBRE DE USUARIO -->
+                    <div class="form-group">
+                        <input v-model="username" id="username" name="username" class="form-control" type="text"
+                            placeholder="Nombre de usuario">
                     </div>
-                </div>
 
-                <!-- BOTONES -->
-                <div class="form-group">
-                    <!-- Boton crear cuenta -->
-                    <button id="submit-register" class="btn btn-block btn-primary" data-toggle="modal">Crear
-                        cuenta</button>
-                </div>
-            </form>
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <input v-model="email" id="email" name="email" class="form-control" type="email"
+                            placeholder="Correo electrónico">
+                    </div>
+
+                    <!-- CONTRASEÑA -->
+                    <div class="form-group">
+                        <input v-model="password" id="password" name="password" class="form-control" type="password"
+                            placeholder="Contraseña">
+                    </div>
+
+                    <!-- CONFIRMACION DE CONTRASEÑA -->
+                    <div class="form-group">
+                        <input id="password_confiramtion" name="password_confiramtion" class="form-control"
+                            type="password" required placeholder="Confirmar contraseña">
+                    </div>
+
+                    <!-- TERMINOS Y CONDICIONES -->
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="terms" name="terms">
+                            <label class="custom-control-label" for="terms">Acepto <a href="javascript:void(0)">Términos
+                                    y
+                                    condiciones</a></label>
+                        </div>
+                    </div>
+
+                    <!-- BOTONES -->
+                    <div class="form-group">
+                        <!-- Boton crear cuenta -->
+                        <button id="submit-register" class="btn btn-block btn-primary" data-toggle="modal">Crear
+                            cuenta</button>
+                    </div>
+
+                </form>
+
+                <!-- MODALES -->
+                <m-00 :modal='modal' v-on:hide='hideModal'></m-00>
+                <m-01 :modal='modal' :successfulResponse='successfulResponse' :email='email'></m-01>
+                <m-02 :modal='modal' v-on:hide='hideModal'></m-02>
+                <m-03 :modal='modal' v-on:hide='hideModal'></m-03>
+                <m-04 :modal='modal' v-on:hide='hideModal'></m-04>
+            </div>
+
 
             <!-- ¿YA TIENES UNA CUENTA? -->
             <p class="text-center m-0">
@@ -106,159 +116,105 @@
         </div>
     </div>
 
+    <!-- Modal m-00 Algo saliío mal} -->
+    <script type='text/x-template' id='m-00-template'>
+        <div id="m-00" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row">
+                            <div class="col d-flex flex-column align-items-center justify-content-center">
+                                <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
+                                <h1 class="mb-4">Fuera de servicio</h1>
+                                <p>Por el momento no es posible completar tu solicitud. <br>
+                                    Por favor vuelve a intentarlo en unos minutos.</p>
+                                <button
+                                    class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal"
+                                    data-dismiss="modal">
+                                    <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>    
+
     <!-- Modal m-01 (registro exitoso) -->
-    <div id="m-01" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="row">
-                        <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Registro exitoso</h1>
-                            <p>En breve recibirás un correo para activar tu cuenta</p>
-                            <p class="m-0">Si no recibiste un correo de activación</p>
-                            <P>haz <a href="">clic aquí</a> para reenviar</p>
-                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5" onclick='window.location.href="login.html"'>
-                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
-                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                            </button>
+    <script type='text/x-template' id='m-01-template'>
+        <div id="m-01" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col d-flex flex-column align-items-center justify-content-center">
+                                <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
+                                <h1 class="mb-4">Registro exitoso</h1>
+                                <p>En breve recibirás un correo para activar tu cuenta</p>
+                                <p class="m-0">Si no recibiste un correo de activación</p>
+                                <P>haz <a href="#" v-on:click.prevent='sendEmailAgain'>clic aquí</a> para reenviar</p>
+                                <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5"
+                                    onclick='window.location.href="login.html"'>
+                                    <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-     <!-- Modal m-00 Algo saliío mal} -->
-     <div id="m-00" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="row">
-                        <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Fuera de servicio</h1>
-                            <p>Por el momento no es posible completar tu solicitud. <br>
-                            Por favor vuelve a intentarlo en unos minutos.</p>
-                            <button
-                                class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal" data-dismiss="modal">
-                                <img src="assets/images/modals/iconcheck.svg" width="46px">
-                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <!-- Modal m-02 Validación exitosa-->
-    <div id="m-02" class="modal modal-font" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="row">
-                        <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Validación exitosa</h1>
-                            <p>Tu cuenta ha sido validada. Gracias por confiar <br> en nosotros para encontrar tu espacio de trabajo.</p>
-                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
-                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
-                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </script>    
 
     <!-- Modal m-03 correo enviado -->
-    <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="row">
-                        <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Correo enviado</h1>
-                            <p>El correo de activación ha sido reenviado. <br> Revisa tu bandeja de entrada por favor. </p>
-                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
-                                <img src="assets/images/modals/miconcheckbot.svg" width="46px">
-                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                            </button>
+    <script type='text/x-template' id='m-03-template'>
+        <div id="m-03" class="modal modal-font" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row">
+                            <div class="col d-flex flex-column align-items-center justify-content-center">
+                                <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
+                                <h1 class="mb-4">Correo enviado</h1>
+                                <p>El correo de activación ha sido reenviado. <br> Revisa tu bandeja de entrada por favor.
+                                </p>
+                                <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5" onclick='window.location.href="login.html"'>
+                                    <img src="assets/images/modals/miconcheckbot.svg" width="46px">
+                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    
+    </script> 
 
-  
-
-
-    
-    
-
-      <!-- Modal m-04 Link expirado -->
-      <div id="m-04" class="modal modal-font" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="row">
-                        <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
-                            <h1 class="mb-4">Link expirado</h1>
-                            <p>El link de activación de cuenta ha expirado. <br> 
-                                Haz <a href="">clic aquí</a> para reenviar</p>
-                            <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
-                                <img src="assets/images/modals/iconcheck.svg" width="46px">
-                                <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    
     <!-- ============================================================== -->
     <!-- Configuration files -->
     <!-- ============================================================== -->
     <script src="dist/config/environment.js"></script>
 
-
     <!-- ============================================================== -->
-    <!-- jQuery AND jQuery Validate -->
+    <!-- All Required js -->
     <!-- ============================================================== -->
+    <!-- Jquery -->
     <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Jquery validation pluging -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-
 
     <!-- ============================================================== -->
     <!-- Vue -->
@@ -301,8 +257,14 @@
     <!-- ============================================================== -->
     <!-- Vue component -->
     <!-- ============================================================== -->
-    <script src="dist/components/registerFormComponent.js"></script>
-
+    <!-- Modals -->
+    <script src="dist/components/modals/m-00.js"></script>
+    <script src="dist/components/modals/m-01.js"></script>
+    <script src="dist/components/modals/m-02.js"></script>
+    <script src="dist/components/modals/m-03.js"></script>
+    <script src="dist/components/modals/m-04.js"></script>
+    <!-- Form -->
+    <script src="dist/components/registerForm.js"></script>
 
     <!-- ============================================================== -->
     <!-- Utils -->
@@ -315,17 +277,6 @@
     <!-- Flows -->
     <!-- ============================================================== -->
     <script src="dist/flows/flow_register.js"></script>
-
-
-    <!-- ============================================================== -->
-    <!-- Bootstrap -->
-    <!-- ============================================================== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
     <!-- ============================================================== -->
     <!-- This page plugin js -->
