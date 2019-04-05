@@ -3,6 +3,22 @@ $(document).ready(function () {
         debug: true,
         rules: {
             email: {
+                remote: {
+                    url: 'http://localhost/api/controllers/newsletter.php',
+                    method: "GET",
+                    contentType:  "application/json; charset=utf8",
+                    dataType: "json",
+                    data: {
+                        "email": function () {
+                            return $("#email").val();
+                        }
+                    },
+                    dataFilter: function (data) {
+                        data = JSON.parse(data)
+                        console.log(data)
+                        return !data.response
+                    }
+                },
                 required: true,
             },
         },
@@ -10,6 +26,7 @@ $(document).ready(function () {
             email: {
                 email: "Introduce un correo valido",
                 required: "Este campo es requerido",
+                remote : "Correo electrónico ya está suscrito"
             },
         },
         errorElement: "div",

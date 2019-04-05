@@ -32,7 +32,7 @@ var sessions = new Vue({
                 }
             })
                 .then(function (response) {
-                    callback(response, tokenActive)
+                    callback(response)
                 })
                 .catch(()=>callbackOnFails())
         },

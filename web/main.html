@@ -221,7 +221,7 @@
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ti-settings m-r-5 m-l-5"></i> Preferencias</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" @click="logoutEvaluate" id="logoutTopBarElement">
+                                    <a class="dropdown-item" href="" data-toggle="modal" data-target="#m-12">
                                         <i class="fa fa-power-off m-r-5 m-l-5"></i> Salir</a>
                                     <div class="dropdown-divider"></div>
                                 </div>
@@ -392,7 +392,7 @@
                                     ¿Desea continuar?</p>
                                 </div>
                                 <div class="col d-flex flex align-items-center justify-content-around">
-                                <button
+                                <button  @click="logoutEvaluate" id="logoutButtonElement"
                                     class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal1" data-dismiss="modal">
                                     <img src="assets/images/modals/miconcheckbot.svg" width="66px">
                                     <span class="ml-4 mr-2 d-inline-block text-center" style="font-size:1.6rem">Salir</span>
@@ -477,7 +477,7 @@
     <!-- ============================================================== -->
     <!-- Vue component -->
     <!-- ============================================================== -->
-    <script src="dist/components/logoutTopBarElement.js"></script>
+    <script src="dist/components/logoutButtonElement.js"></script>
 
 
     <!-- ============================================================== -->
