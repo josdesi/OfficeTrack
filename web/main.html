@@ -12,7 +12,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Office Track - Main View</title>
     <!-- Custom CSS -->
+    
     <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/modal.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -345,6 +347,68 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+
+      <!-- Modal m-00 Algo saliío mal} -->
+      <div id="m-00" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row">
+                            <div class="col d-flex flex-column align-items-center justify-content-center">
+                                <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
+                                <h1 class="mb-4">Fuera de servicio</h1>
+                                <p>Por el momento no es posible completar tu solicitud. <br>
+                                Por favor vuelve a intentarlo en unos minutos.</p>
+                                <button
+                                    class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal" data-dismiss="modal">
+                                    <img src="assets/images/modals/iconcheck.svg" width="46px">
+                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <!-- Modal m-12 Salir} -->
+       <div id="m-12" class="modal modal-font" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row justify-content-center">
+                            <div class="col12 d-flex flex-column align-items-center justify-content-center text-center">
+                                <img src="assets/images/modals/logout.svg" class="mt-4 mb-4" width="150">
+                                <h1 class="mb-4">Cerrar Sesión</h1>
+                                <p>Estas a punto de cerrar sesión. <br>
+                                    ¿Desea continuar?</p>
+                                </div>
+                                <div class="col d-flex flex align-items-center justify-content-around">
+                                <button
+                                    class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal1" data-dismiss="modal">
+                                    <img src="assets/images/modals/miconcheckbot.svg" width="66px">
+                                    <span class="ml-4 mr-2 d-inline-block text-center" style="font-size:1.6rem">Salir</span>
+                                </button>
+                                <button
+                                    class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5 btn-modal1" data-dismiss="modal">
+                                    <img src="assets/images/modals/iconcheck.svg" width="66px">
+                                    <span class="ml-2 mr-2 d-inline-block text-center" style="font-size:1.6rem">Cancelar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
     <div class="chat-windows"></div>
     <!-- ============================================================== -->
     <!-- All Jquery -->
