@@ -1,4 +1,4 @@
-recoverPasswordFormComponent.
+recoverPasswordForm.
     onSubmit(
         function (fields) {
             $('#submit-recover').prop('disabled', true);
@@ -6,12 +6,40 @@ recoverPasswordFormComponent.
             users.recoverPassword(
                 fields,
                 function (response, fields) {
-                    $("#m-03").modal("show");
+                    switch (response.data.code) {
+                        case 'RSP_00':
+                            recoverPasswordForm.showModal('m-05')
+                            break;
+
+                        case 'RSP_01':
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+
+                        case 'RSP_03':
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+
+                        case 'RSP_05':
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+
+                        case 'RSP_07':
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+                        case 'RSP_08':
+                            alert('Fallo en el envio de Email')
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+
+                        default:
+                            recoverPasswordForm.showModal('m-00-2')
+                            break;
+                    }
                     $('#submit-recover').prop('disabled', false);
                     $('#submit-recover').html('Recuperar');
                 },
                 function (response, fields) {
-                    $("#m-03").modal("show");
+                    recoverPasswordForm.showModal('m-00-2')
                     $('#submit-recover').prop('disabled', false);
                     $('#submit-recover').html('Recuperar');
                 })

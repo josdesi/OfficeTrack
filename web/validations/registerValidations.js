@@ -3,10 +3,25 @@ $(document).ready(function () {
         debug: true,
         rules: {
             username: {
+                remote: {
+                    url: 'http://localhost/api/controllers/checkUsername.php',
+                    method: "GET",
+                    contentType:  "application/json; charset=utf8",
+                    dataType: "json",
+                    data: {
+                        "username": function () {
+                            return $("#username").val();
+                        }
+                    },
+                    dataFilter: function (data) {
+                        data = JSON.parse(data)
+                        console.log(data)   
+                        return !data.response
+                    }
+                },
                 usuario: true,
                 required: true,
-                minlength: 2,
-                checkUser: true
+                minlength: 2,                
             },
             password: {
                 contraseña: true,
@@ -19,10 +34,25 @@ $(document).ready(function () {
                 equalTo: "#password"
             },
             email: {
+                remote: {
+                    url: 'http://localhost/api/controllers/checkEmail.php',
+                    method: "GET",
+                    contentType: "application/json; charset=utf8",
+                    dataType: "json",
+                    data: {
+                        "email": function () {
+                            return $("#email").val();
+                        }
+                    },
+                    dataFilter: function (data) {
+                        data = JSON.parse(data)
+                        console.log(data)
+                        return !data.response
+                    }
+                },
                 correo: true,
                 required: true,
-                email:false,
-                checkEmail: true
+                email: false,                
             },
             terms: {
                 required: true
@@ -33,7 +63,7 @@ $(document).ready(function () {
                 minlength: "El nombre de usuario debe tener al menos 3 caracteres",
                 required: "Este campo es requerido",
                 usuario: "Introduce un nombre de usuario valido",
-                checkUser: "El nombre de usuario ya se encuentra en uso"
+                remote : "Nombre de usuario ya se está en uso"
             },
             password: {
                 required: "Este campo es requerido",
@@ -47,7 +77,7 @@ $(document).ready(function () {
             email: {
                 required: "Este campo es requerido",
                 correo: "Introduce un correo valido",
-                checkEmail: "El correo electronico ya esta registrado en una cuenta"
+                remote: "Correo electrónico ya esta en uso"
             },
             terms: "Debes aceptar los terminos y condiciones"
         },

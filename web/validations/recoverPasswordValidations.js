@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#recoverPasswordFormComponent").validate({
+    $("#recoverPasswordForm").validate({
         debug: true,
         rules: {
             email: {

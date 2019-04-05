@@ -15,7 +15,7 @@ registerForm.setSubmitFunction
                                 break;
 
                             case 'RSP_01':
-                                registerForm.showModal('m-01')
+                                registerForm.showModal('m-00')
                                 break;
 
                             case 'RSP_02':

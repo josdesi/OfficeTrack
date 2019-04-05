@@ -1,20 +1,20 @@
-Vue.component('m-04',{
-    template: '#m-04-template',
+Vue.component('m-10',{
+    template: '#m-10-template',
     props:{
         modal: String,
         email: String,
     },
     mounted: function () {
-        $('#m-04').on('hide.bs.modal', () => {
-            this.$emit('hide','m-04')
+        $('#m-10').on('hide.bs.modal', () => {
+            this.$emit('hide','m-10')
         })
     },
     watch:{
         modal(newVal,oldVal){
-            if(newVal === 'm-04'){
-                $('#m-04').modal('show')
+            if(newVal === 'm-10'){
+                $('#m-10').modal('show')
             } else {
-                $('#m-04').modal('hide')
+                $('#m-10').modal('hide')
             }
         }
     },    

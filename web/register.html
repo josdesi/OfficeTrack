@@ -144,7 +144,7 @@
                 </div>
             </div>
         </div>
-    </script>
+    </script>    
 
     <!-- Modal m-01 (registro exitoso) -->
     <script type='text/x-template' id='m-01-template'>
@@ -170,35 +170,7 @@
                 </div>
             </div>
         </div>
-    </script>
-
-    <!-- Modal m-02 Validación exitosa-->
-    <script type='text/x-template' id='m-02-template'>
-        <div id="m-02" class="modal modal-font" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="container-fluid">
-                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="row">
-                            <div class="col d-flex flex-column align-items-center justify-content-center">
-                                <img src="assets/images/modals/miconcheck.svg" class="mt-4 mb-4" width="150">
-                                <h1 class="mb-4">Velidación exitosa</h1>
-                                <p>Tu cuenta ha sido validada. Gracias por confiar en nosotros para encontrar tu espacio de
-                                    trabajo.</p>
-                                <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
-                                    <img src="assets/images/modals/miconcheckbot.svg" width="46px">
-                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>
+    </script>    
 
     <!-- Modal m-03 correo enviado -->
     <script type='text/x-template' id='m-03-template'>
@@ -226,29 +198,33 @@
                 </div>
             </div>
         </div>
+    </script> 
 
-    <!-- Modal m-04 Link expirado -->
-    <script type='text/x-template' id='m-04-template'>
-        <div id="m-01-1" class="modal modal-font" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="container-fluid">
-                        <button class="close p-3 position-absolute" style="right:0; z-index:1;" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="row">
-                            <div class="col d-flex flex-column align-items-center justify-content-center">
-                                <img src="assets/images/modals/iconcancel.svg" class="mt-4 mb-4" width="150">
-                                <h1 class="mb-4">Link expirado</h1>
-                                <p>El link de activación de cuenta ha expirado. <br>
-                                    Haz <a href="">clic aquí</a> para reenviar</p>
-                                <button class="d-flex align-items-center btn btn-primary rounded-pill p-2 mt-3 mb-5">
-                                    <img src="assets/images/modals/iconcheck.svg" width="46px">
-                                    <span class="ml-2 mr-2 d-inline-block" style="font-size:2rem">Aceptar</span>
-                                </button>
-                            </div>
-                        </div>
+    <!-- ============================================================== -->
+    <!-- Configuration files -->
+    <!-- ============================================================== -->
+    <script src="dist/config/environment.js"></script>
+
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <!-- Jquery -->
+    <script src="assets/libs/jquery/dist/jquery.min.js "></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Jquery validation pluging -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+    <!-- ============================================================== -->
+    <!-- Vue -->
+    <!-- ============================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+    <!-- ============================================================== -->
+    <!-- Validaciones -->
+    <!-- ============================================================== -->
     <script src="validations/customMethods.js"></script>
     <script src="validations/registerValidations.js"></script>
 
@@ -301,17 +277,6 @@
     <!-- Flows -->
     <!-- ============================================================== -->
     <script src="dist/flows/flow_register.js"></script>
-
-
-    <!-- ============================================================== -->
-    <!-- Bootstrap -->
-    <!-- ============================================================== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
     <!-- ============================================================== -->
     <!-- This page plugin js -->

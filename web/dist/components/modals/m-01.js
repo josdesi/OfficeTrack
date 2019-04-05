@@ -21,7 +21,7 @@ Vue.component('m-01',{
     },
     methods:{
         sendEmailAgain(){
-            registerForm.showModal('m-03')
+            $('#m-03').modal('show')
         },
     }
 })

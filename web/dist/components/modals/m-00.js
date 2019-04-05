@@ -5,7 +5,7 @@ Vue.component('m-00', {
     },
     mounted: function () {
         $('#m-00').on('hide.bs.modal', () => {
-            this.$emit('hide')
+            this.$emit('hide','m-00')
         })
     },
     watch: {
