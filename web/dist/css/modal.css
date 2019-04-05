@@ -24,6 +24,13 @@
     background-color: #007db6;
     border-color: #007db6;
 }
+.btn-modal1{
+    
+    background-color: #007db6;
+    border-color: #007db6;
+    width: 205px;
+    font-size: 18px;
+}
 
 .btn-modal:hover{
     color: #fff;
