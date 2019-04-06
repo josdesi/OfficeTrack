@@ -17,19 +17,19 @@ loginForm.
                             break;
 
                         case 'RSP_01':
-                            loginForm.showModal('m-00')
+                            $('#m-00').modal('show')
                             break;
 
                         case 'RSP_02':
-                            loginForm.showModal('m-01')
+                            $('#m-01').modal('show')
                             break;
 
                         case 'RSP_03':
-                            loginForm.showModal('m-00')
+                            $('#m-00').modal('show')
                             break;
 
                         case 'RSP_04':
-                            loginForm.showModal('m-00')
+                            $('#m-00').modal('show')
                             break;
 
                         case 'RSP_05':
@@ -39,15 +39,15 @@ loginForm.
                             window.location.href = "login.html?correct_password=false"
                             break;
                         case 'RSP_07':
-                            loginForm.showModal('m-00')
+                            $('#m-00').modal('show')
                             break;
                         case 'RSP_08':
                             alert('Fallo en el envio de Email')
-                            loginForm.showModal('m-00')
+                                $('#m-00').modal('show')
                             break;
 
                         default:
-                            loginForm.showModal('m-00')
+                        $('#m-00').modal('show')
                             break;
                     }
                     $('#submit-login').prop('disabled', false);
@@ -55,7 +55,7 @@ loginForm.
                 },
                 function (error) {
                     console.error(error)
-                    loginForm.showModal('m-00')
+                    $('#m-00').modal('show')
                     $('#submit-login').prop('disabled', false);
                     $('#submit-login').html('Iniciar sesión');
                 })

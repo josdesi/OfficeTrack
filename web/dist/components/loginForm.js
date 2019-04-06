@@ -4,15 +4,7 @@ var loginForm = new Vue({
     // FIELDS
     username: '',
     password: '',
-
-    emailToken: undefined,
-
-    //CURRENT MODAL
-    modal: null,
-
-    //RESPONSE STATE
-    successfulResponse: false,
-
+    
     //SUBMIT FUNCTION
     OnSubmitEventListener: undefined,
   },
@@ -22,20 +14,12 @@ var loginForm = new Vue({
     let emailToken = url.searchParams.get("emailToken") || null;
 
     if (confirmed === 'true') {
-      this.showModal('m-02')
+      $('#m-02').modal('show')
     } else if (confirmed === 'false') {
-      this.showModal('m-04')
+      $('#m-04').modal('show')
     }
   },
   methods: {
-    showModal: function (modalName) {
-      this.modal = modalName
-    },
-    hideModal: function (modalName) {
-      if (this.modal === modalName) {
-        this.modal = null
-      }
-    },
     onSubmitEventListener: function (ev) {
       ev.preventDefault();
       ev.stopPropagation();
@@ -50,7 +34,6 @@ var loginForm = new Vue({
       }
     },
     onSubmit: function (callback) {
-      console.log("Se agrega ", callback, " a loginFormComponent")
       this.OnSubmitEventListener = callback;
     },
   }

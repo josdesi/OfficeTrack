@@ -1,7 +1,4 @@
-var URL_USERS = env.usersURL;
-var URL_LOGIN = env.loginURL;
-var URL_RECOVER_PASSWORD = env.recoverPasswordURL;
-var URL_CHANGE_PASSWORD = env.changePasswordURL;
+var URL_NEWLETTER = env.newsletterURL;
 
 
 var newsletter = new Vue({
@@ -13,7 +10,7 @@ var newsletter = new Vue({
         register: function (fields, callback, callbackOnFail) {
             axios({
                 method: 'post',
-                url: URL_USERS,
+                url: URL_NEWLETTER,
                 data: fields,
                 headers: {
                     'Content-Type': 'application/json'

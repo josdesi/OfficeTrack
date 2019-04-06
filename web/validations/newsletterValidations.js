@@ -15,7 +15,6 @@ $(document).ready(function () {
                     },
                     dataFilter: function (data) {
                         data = JSON.parse(data)
-                        console.log(data)
                         return !data.response
                     }
                 },
@@ -26,7 +25,7 @@ $(document).ready(function () {
             email: {
                 email: "Introduce un correo valido",
                 required: "Este campo es requerido",
-                remote: "Correo electronico ya esta suscrito"
+                remote: "El correo electrónico ya se encuentra registrado"
             },
         },
         errorElement: "div",
