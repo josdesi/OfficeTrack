@@ -12,7 +12,7 @@ var env = {
    logoutURL: 'http://localhost/api/controllers/logout.php',
    recoverPasswordURL: 'http://localhost/api/controllers/recoverPassword.php',
    changePasswordURL: 'http://localhost/api/controllers/changePassword.php',
-   serverURL: 'http://localhost:9091',
-   
+   newsletterURL: 'http://localhost/api/controllers/newsletter.php',
+   serverURL: 'http://localhost:9091',  
 
 };

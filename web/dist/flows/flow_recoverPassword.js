@@ -38,7 +38,8 @@ recoverPasswordForm.
                     $('#submit-recover').prop('disabled', false);
                     $('#submit-recover').html('Recuperar');
                 },
-                function (response, fields) {
+                function (error) {
+                    console.error(error)
                     recoverPasswordForm.showModal('m-00-2')
                     $('#submit-recover').prop('disabled', false);
                     $('#submit-recover').html('Recuperar');

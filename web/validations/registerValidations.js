@@ -15,7 +15,6 @@ $(document).ready(function () {
                     },
                     dataFilter: function (data) {
                         data = JSON.parse(data)
-                        console.log(data)   
                         return !data.response
                     }
                 },
@@ -46,7 +45,6 @@ $(document).ready(function () {
                     },
                     dataFilter: function (data) {
                         data = JSON.parse(data)
-                        console.log(data)
                         return !data.response
                     }
                 },

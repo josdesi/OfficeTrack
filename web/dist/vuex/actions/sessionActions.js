@@ -18,7 +18,6 @@ var actions = (function (a, b) {
 
 })({
     saveBearerToken: (context, payload) => {
-        console.log('Token en accion saveBearerToekn() ', payload)
         context.commit('SAVE_BEARER_TOKEN', payload);
     }
 }, actions);

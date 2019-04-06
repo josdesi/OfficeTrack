@@ -22,7 +22,7 @@ var users = new Vue({
                 .then(function (response) {
                     callback(response, fields)
                 })
-                .catch(() => callbackOnFail())
+                .catch((error) => callbackOnFail(error))
         },
         recoverPassword: function (fields, callback, callbackOnFail) {
             axios({
@@ -36,7 +36,7 @@ var users = new Vue({
                 .then(function (response) {
                     callback(response, fields)
                 })
-                .catch(() => callbackOnFail())
+                .catch((error) => callbackOnFail(error))
         },
         changePassword: function (fields, callback, callbackOnFail) {
             let url = new URL(window.location.href);
@@ -55,7 +55,7 @@ var users = new Vue({
                         callback(response, fields)
                     }
                 )
-                .catch(() => callbackOnFail())
+                .catch((error) => callbackOnFail(error))
         },
     }
 })

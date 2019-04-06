@@ -7,22 +7,10 @@ var registerForm = new Vue({
     password: '',
     termsAndConditions: false,
 
-    //CURRENT MODAL
-    modal: null,
-
-    //RESPONSE STATE
-    successfulResponse: false,
-
     //SUBMIT FUNCTION
     submit: undefined,
   },
   methods: {
-    showModal: function (modalName) {
-      this.modal = modalName
-    },
-    hideModal: function () {
-      this.modal = null
-    },
     onSubmitEventListener: function (ev) {
       ev.preventDefault();
       ev.stopPropagation();
