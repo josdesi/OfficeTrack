@@ -6,7 +6,8 @@ changePasswordFormComponent.
                 function (response, fields) {
                     $("#m-04").modal("show");
                 },
-                function (response, fields) {
+                function (error) {
+                    console.error(error)
                     $("#m-04").modal("show");
                 })
         })

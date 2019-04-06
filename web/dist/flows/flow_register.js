@@ -54,7 +54,8 @@ registerForm.setSubmitFunction
                         $('#submit-register').prop('disabled', false);
                         $('#submit-register').html('Crear cuenta');
                     },
-                    function () {
+                    function (error) {
+                        console.error(error)
                         registerForm.showModal('m-00')
                         $('#submit-register').prop('disabled', false);
                         $('#submit-register').html('Crear cuenta');

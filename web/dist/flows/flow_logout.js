@@ -20,6 +20,7 @@ logoutButtonElement.onClickLogout(function () {
             }
         },
         function () {
+            console.error(error)
             logoutButtonElement.showModal('m-00')
         })
 })

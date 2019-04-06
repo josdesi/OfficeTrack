@@ -33,7 +33,8 @@ onSubmit(
                 $('#submit-newsletter').prop('disabled', false);
                 $('#btn-text').html('Suscribirse');
             },
-            function () {
+            function (error) {
+                console.error(error)
                 newsletterForm.showModal('m-00')
                 $('#submit-newsletter').prop('disabled', false);
                 $('#btn-text').html('Suscribirse');

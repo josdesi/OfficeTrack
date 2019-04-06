@@ -53,7 +53,8 @@ loginForm.
                     $('#submit-login').prop('disabled', false);
                     $('#submit-login').html('Iniciar sesión')
                 },
-                function () {
+                function (error) {
+                    console.error(error)
                     loginForm.showModal('m-00')
                     $('#submit-login').prop('disabled', false);
                     $('#submit-login').html('Iniciar sesión');
