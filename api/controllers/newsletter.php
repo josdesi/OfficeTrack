@@ -32,6 +32,10 @@ switch ($requestMethod) {
         createNewsletter();
         break;
 
+    case 'GET':
+        checkEmailNL();
+        break;
+
     default:
         # code...
         break;
@@ -43,6 +47,7 @@ function createNewsletter()
     $res = new ResponseDTO();
     $emailBusiness = new EmailBusinessImpl();
     $NewsletterBusinessImpl = new NewsletterBusinessImpl();
+    $newsletterDTO = new NewsletterDTO();
 
     $data = json_decode(file_get_contents("php://input"));
 
@@ -103,6 +108,53 @@ function createNewsletter()
         http_response_code(200);
         $res->setCode("RSP_00");
         $res->setMessage("Respuesta exitosa");
+
+    } catch (Exception $e) {
+        http_response_code(201);
+    } finally {
+        echo json_encode($res);
+    }
+}
+
+function checkEmailNL(){
+    $res = new ResponseDTO();
+    $emailBusiness = new EmailBusinessImpl();
+    $NewsletterBusinessImpl = new NewsletterBusinessImpl();
+    $newsletterDTO = new NewsletterDTO();
+
+    //Inputs de la peticion
+    $dataEmail = $_GET['email'];
+
+    try {
+
+        //Confirma que la petición es correcta
+        if ( empty($dataEmail) ) {
+            $res->setCode("RSP_01");
+            $res->setMessage("Faltaron datos");
+            throw new Exception();
+        }
+
+        //Busca usuario por email
+        try {
+            $newsletterDTO = $NewsletterBusinessImpl->findByEmail($dataEmail);
+        } catch (Exception $th) {
+            $res->setCode("RSP_06");
+            $res->setMessage("No fue posible verificar datos");
+            throw new Exception();
+        }
+
+        //Verifica si la busqueda por email regreso algun valor
+        if ($newsletterDTO !== null) {
+            $res->setCode("RSP_02");
+            $res->setMessage("El correo ya se encuentra registrado");
+            $res->setResponse(true);
+        } else{
+            $res->setCode("RSP_00");
+            $res->setMessage("El correo no esta registrado");
+            $res->setResponse(false);
+        }
+        //Establece respuesta OK
+        http_response_code(200);
 
     } catch (Exception $e) {
         http_response_code(201);

@@ -58,7 +58,7 @@ function logout()
         if (
             empty($sessionToken)
         ) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_01");
             $res->setMessage("Necesitas un token de session para cerrar sesión");
             throw new Exception("No tienes autorización");
         }
@@ -68,7 +68,7 @@ function logout()
             //Si el token es valido, la función retorna un objeto payload, de lo contrario lanza una excepción
             $tokenPayload = $tokenBusinessImpl->decodeSessionToken($sessionToken);
         } catch (Exception $th) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_03");
             $res->setMessage("Token invalido. No tienes autorización");
             throw new Exception();
         }
@@ -83,7 +83,7 @@ function logout()
 
             $sessionBusinessImpl->delete($sessionDTO);
         } catch (Exception $th) {
-            $res->setCode("RSP_??");
+            $res->setCode("RSP_07");
             $res->setMessage("Error en la persistencia");
             throw new Exception();
         }
